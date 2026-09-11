@@ -230,6 +230,36 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
+### TRIGGER — one lever, pivoting inside the tube on a pin through both walls
+The F2 is electronic, so the trigger only has to close a microswitch. **The switch does not need
+to be inside the tube — only its wires do.**
+
+**Pivot is a ⌀4.2 pin through BOTH tube side walls at X −552, Z +6.** Anchoring in the steel beats
+any bracket, and it puts the spring inside where there is room.
+
+- `Trigger` — the donor butterfly plus an integral lever: a drop behind the backplate
+  (X −578…−569, Z +2…+30) then a run forward through the backplate (X −572…−534, Z +2…+10).
+  Pivot bore at X −552 Z +6, ⌀3 peg hole in the tail at X −534 for the return spring.
+- `Trigger_Switch_Mount` — printed, bolts to the backplate's inner face with the 2 × M4 at
+  Y ±16 Z +8. Holds a microswitch under the tail at X −540, Z −6, plunger up.
+- Backplate carries a **16 × 15mm lever slot** at Y 0, Z −2…+13.
+
+Lever ratio: thumb radius 51mm, tail radius 18mm. **6° of trigger travel = 5.33mm at the thumb
+and 1.88mm at the tail** — a D2F needs ~0.5mm, so 2–3° is enough to fire. Return is a torsion
+spring on the pivot pin; the ⌀3 tail peg is the alternative anchor for a tension spring.
+
+Verified clear of tube, backplate and switch mount through 10°.
+
+**Two rejected versions, do not go back to them:**
+1. A 27mm slab arm hanging off the trigger with a ⌀7 boss poking through the backplate into the
+   tube, plus two welded steel ears for the pivot. Clunky, and the boss bound in its hole as it
+   tilted through the arc.
+2. Pivoting on a printed bracket bolted behind the backplate, switch outside. Tidier, but the
+   pivot was in plastic and there was nowhere good for a spring.
+
+**The switch mount's flange must be split either side of the lever's Y ±6 channel** or it fouls
+the lever at rest (0.096 cm³).
+
 ### BARREL — EMT is the barrel, only the jacket is printed
 **Do not print the barrel.** 1" EMT conduit (⌀29.54) *is* the barrel, running X 13.65 (bottomed
 in the socket) to X 1010.5 — 996.9mm / 39-1/4", 2.49 lb. Socket ID 30.18 gives 0.64mm diametral

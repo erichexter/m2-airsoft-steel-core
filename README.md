@@ -80,6 +80,19 @@ then fit the pair and add the shoe.
 To install the shoe, turn it 90° about its long axis so its 8 mm edge is vertical, pass it through
 the slot, and rotate it home.
 
+**Trigger** — the butterfly and its lever are **one printed part**. It runs through a slot in the
+backplate and pivots on a ⌀4.2 pin passing through **both tube side walls** at X −552, so the
+pivot is anchored in steel rather than plastic. A tail forward of the pivot works a microswitch
+carried on a small printed mount bolted to the backplate's inner face.
+
+The F2 is electronic, so the trigger only has to close a switch — nothing mechanical reaches the
+engine, and only the wires run forward. Lever ratio is 51 mm at the thumb against 18 mm at the
+tail: **6° of travel gives 5.3 mm at the thumb and 1.9 mm at the tail**, where a typical
+microswitch needs about 0.5 mm. Return and resistance come from a torsion spring on the pivot pin;
+there's a ⌀3 peg hole in the tail if you'd rather hang a tension spring off it.
+
+Verified clear of the tube, backplate and switch mount through 10°.
+
 Swept in 25 mm steps against the tube, the side panels, the pintle tab, the backplate and the
 cradle: 0.0000 cm³ throughout.
 
