@@ -48,6 +48,11 @@ thin-feature limit. Everything else is larger.
 
 ## Notes for the vendor
 
+- **The STEP declares centimetres** (`SI_UNIT(.CENTI.,.METRE.)`) — that's Fusion's internal unit
+  and it exports that way regardless of display settings. It is valid STEP and any conforming
+  reader scales it correctly. Flagging it only so that if a preview ever looks 10× off, the cause
+  is obvious. All dimensions quoted in this document are millimetres and inches.
+
 - The top opening and the belt slot **meet** at X −2 and form one continuous aperture. They are
   modelled as a single cut in the STEP; please don't treat them as separate features that leave a
   web between them.
@@ -56,8 +61,37 @@ thin-feature limit. Everything else is larger.
 - ±0.005" on overall dimensions is more than adequate here. Feature positions matter more than
   the absolute cut length — the tube length can run ±0.030" without consequence.
 
-## Confirm before ordering
+## STOCK AVAILABILITY — read before quoting
 
-2" × 3" × 0.120" wall may or may not be in the vendor's public tube inventory. If it isn't, the
-nearest substitute is **2" × 3" × 0.125"** — the 0.005" of extra wall changes nothing in this
-design, since all interior clearances were checked with ≥2mm of margin.
+**2 × 3 × 0.120 A500 is NOT in RMFG's public tube list** (checked 2026-09-11). Their A500
+rectangular inventory is 1.5×3×.120, 3×1.5×.083, 3×2×.250, 4×2×.120, 4×2×.188, 4×3×.250,
+6×3×.3125.
+
+Their docs say: *"If you need a different tube size, material, or wall thickness, contact support
+before quoting."* **2 × 3 × 0.120 is a very common A500 size — ask for it first.**
+
+If they can't supply it, here is what the alternatives cost:
+
+| Stock | ID | Verdict | Weight (588mm) |
+|---|---|---|---|
+| **3 × 2 × .250** | 38.1 × 63.5 | only in-stock option that fits | **14.77 lb** |
+| 1.5 × 3 × .120 | 32.0 × 70.1 | cradle (36mm) will not fit | 6.71 |
+| 4 × 2 × .120 | 44.7 × 95.5 | 101.6mm tall vs 93.6mm available | 9.08 |
+| 2 × 2 × .120 sq | 44.7 × 44.7 | fits but 25mm shorter — significant redesign | 5.92 |
+| 3 × 3 × .120 sq | 70.1 sq | 76.2 wide; receiver necks to 60mm | 9.08 |
+| *2 × 3 × .120 wanted* | 44.7 × 70.1 | — | 7.50 |
+
+3 × 2 × .250 is dimensionally acceptable but **doubles the steel weight** and leaves the engine
+cradle only 1.05mm of clearance per side. Prefer sourcing the 0.120 wall.
+
+## CORNER RADII — model does not include them
+
+RMFG's stock A500 carries outside corner radii: **R0.24" on 0.120" wall, R0.5" on 0.250" wall**.
+The STEP here is modelled with **sharp corners**.
+
+- For the printed skins this is harmless — real rounded corners give *more* clearance, not less.
+- For the **hinge tabs**, which lap the inner side wall, the inside corner radius reduces the
+  available flat. The tabs sit at Y ±19.18…22.35 and Z 0…+18, well clear of the corners, so this
+  should not bite — but confirm against the vendor's reference STEP.
+
+Download their nominal profile STEP and check before cutting.
