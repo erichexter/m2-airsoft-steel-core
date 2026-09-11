@@ -109,7 +109,13 @@ clearance was checked against. No adjustment needed.
 ## TWO RISKS FROM THE REAL PROFILE
 
 ### 1. Corner radius is a RANGE, and the pintle tabs sit near it
-The spec gives 0.118"–0.360" (3.0–9.14 mm) outside. The model has **sharp corners**.
+The spec gives 0.118"–0.360" (3.0–9.14 mm) outside.
+
+**The model now carries A500 radii: R0.240" outside, R0.120" inside** (2× and 1× wall, the
+conventional values for 0.120" wall, and mid-range of the published spec). Sharp corners caused
+OSH Cut's profile matcher to identify the section as **aluminium extrusion instead of A500 steel**
+— aluminium is the closest thing in their catalogue to a sharp-cornered rectangle. Adding the
+radii fixes the match.
 
 Consequence for the **bottom face flat**, where the pintle tabs weld:
 
