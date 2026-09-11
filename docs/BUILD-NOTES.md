@@ -230,6 +230,24 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
+### BARREL — EMT is the barrel, only the jacket is printed
+**Do not print the barrel.** 1" EMT conduit (⌀29.54) *is* the barrel, running X 13.65 (bottomed
+in the socket) to X 1010.5 — 996.9mm / 39-1/4", 2.49 lb. Socket ID 30.18 gives 0.64mm diametral
+clearance over the full 100mm of engagement.
+
+**The perforated jacket IS printed** — it is the M2's identifying feature. X 26.75…287 (260.2mm),
+bored ⌀38.90 over the socket and ⌀30.20 for the EMT, with a centring ring at X 274…284 so it
+can't flop on the conduit. Fits a 300mm bed stood on end (+X up, 9.3% overhang).
+
+The jacket-to-thin-barrel step is at **X ≈ 285**; X 285…298 is a smooth prismatic zone with no
+vertices, which is why it cuts cleanly there.
+
+EMT is galvanised: etch-prime before paint, and never weld or braze it (zinc fumes). It doesn't
+need welding — it's a slip fit.
+
+The socket leaves **88.8mm exposed** ahead of the front skin. It was positioned forward when a
+full-length printed shroud was going to hide it; the jacket now covers it, so that is moot.
+
 ### CHARGING HANDLE — slide + spring return, 150mm travel
 The corpus "CH slot" at X −542.6…−347.6, Z −12.9…−6.3 (6.7mm tall) is a **moulded detail line,
 not a functional track**. The handle's actual shoe passes the left wall at **X −330…−285,

@@ -10,7 +10,9 @@ airsoft engine and hop-up.
 The result is stiffer, survives being carried by the barrel or dropped, and puts the hinge,
 pintle and barrel mounts into welded steel rather than plastic.
 
-**~8.75 lb of steel, ~2.6 lb of PLA, ~14 lb finished** with engine and hardware.
+**~11.2 lb of steel** (including the EMT barrel) and **~3.6 lb of PLA** — call it **~17 lb
+finished** with the engine and hardware. The PLA figure assumes a 2mm shell and light infill;
+printed solid the same parts would be 8.9 lb.
 For scale: a real M2HB is 84 lb; commercial airsoft M2 replicas run 33–44 lb.
 
 ---
@@ -72,9 +74,23 @@ cord at the barrel plate and route it down the **left side at Y −20, Z −30**
 cradle (which reaches Y −18), the F2 (Y ±12.7), the hinge tab (Z −20 and up) and the pintle tabs
 (Z −35 and down). It is the one path through that is clear end to end.
 
-**Barrel is 1" EMT conduit.** OD 1.163", and the DOM socket's 1.188" ID takes it with 0.64mm of
-clearance and up to 101mm of engagement. Note that 1" *pipe* of any schedule is too small — NPS
-is nominal, and 1" sch40 has a 1.049" ID.
+**The barrel is 1" EMT conduit.** OD 1.163", and the DOM socket's 1.188" ID takes it with 0.64mm
+of clearance and the full 100mm of socket engagement. Cut it **39-1/4"** (996mm) measured from
+where it bottoms in the socket. Note that 1" *pipe* of any schedule is too small — NPS is
+nominal, and 1" sch40 has a 1.049" ID.
+
+**The perforated barrel jacket is printed** and slides over the EMT — it's the M2's signature
+feature and the one part of the barrel worth printing. 260mm long, ⌀101.6 at the rear flange,
+bored ⌀38.90 over the steel socket and ⌀30.20 for the EMT, with a centring ring at the muzzle end
+so it can't flop about on the conduit. Stood on end it fits a 300mm bed with 40mm to spare.
+Forward of the jacket the EMT is bare.
+
+EMT is galvanised. Scuff and etch-prime it before painting or nothing will stick, and **do not
+weld or braze it** — heating zinc gives off fumes that will make you ill. It doesn't need welding
+here; it's a slip fit into the socket.
+
+The socket runs X 13.65…113.65 and the jacket X 26.75…287, so the steel is completely hidden
+inside the printed jacket. Nothing of it shows.
 
 **Engine** — PolarStar F2, HPA. No battery bay needed; the air line exits through the tube floor.
 
@@ -98,7 +114,7 @@ All imperial, 12" minimum lengths, cut to length only — no rip cuts.
 | 7 | 1/4" round bar | 1018 CRS | 18" | Hinge pin + **231 mm charging-handle guide rod** |
 | 8 | 1/2" round bar | 1018 CRS | 12" | Pintle pin |
 | 9 | 9/16" round bar | 1018 CRS | 12" | Front mount pin |
-| 10 | 1" EMT conduit | — | 10 ft | Barrel |
+| 10 | 1" EMT conduit | — | 10 ft | **Barrel** — cut 39-1/4", the rest is spare |
 
 **A36 hot-rolled** is the cheap general-purpose structural grade — fine for tabs and plates that
 get welded. **1018 cold-rolled** is used for the three pins only: hot-rolled round bar carries mill
@@ -123,8 +139,8 @@ Working design, not yet fabricated. Known open items:
   measured from real hardware — **verify before drilling steel**
 - Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
   and check the return force by hand before committing to the anchor point
-- The printed barrel is 984 mm and must be cut into sections to fit a 300 mm bed; the original
-  was printed whole on a much larger machine
+- The barrel jacket's fit on the EMT is set by the centring ring alone; if it rattles, shim it or
+  add a second ring partway along
 - Trigger mounting is unsolved: the trigger sits at Z +26…+57, entirely above the tube's top at
   Z +24, so the 1/8" backplate as drawn cannot reach it
 
