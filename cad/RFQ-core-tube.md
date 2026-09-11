@@ -61,37 +61,76 @@ thin-feature limit. Everything else is larger.
 - ±0.005" on overall dimensions is more than adequate here. Feature positions matter more than
   the absolute cut length — the tube length can run ±0.030" without consequence.
 
-## STOCK AVAILABILITY — read before quoting
+## VENDOR — OSH Cut
 
-**2 × 3 × 0.120 A500 is NOT in RMFG's public tube list** (checked 2026-09-11). Their A500
+**Order as: `3" x 2" x 0.12" wall - Rectangular A500 Cold-Formed Carbon Steel`**
+(their catalogue: app.oshcut.com/catalog/tube)
+
+That is exactly the section this design is built around — no substitution, no compromise.
+**Orient it 2" wide (Y) × 3" tall (Z).** The catalogue calls it 3 × 2; the design uses the 2"
+dimension as the width.
+
+OSH Cut accepts STEP directly, along with DXF, SVG, AI, SLDPRT, IPT, IGS, x_t and others.
+
+### Why not RMFG
+Checked 2026-09-11: **2 × 3 × 0.120 A500 is not in RMFG's public tube list.** Their A500
 rectangular inventory is 1.5×3×.120, 3×1.5×.083, 3×2×.250, 4×2×.120, 4×2×.188, 4×3×.250,
-6×3×.3125.
+6×3×.3125. The only one that fits is 3×2×**.250**, which doubles the steel to 14.77 lb (vs 7.50)
+and leaves the engine cradle 1.05mm of clearance per side. Rejected. They will quote other sizes
+on request, but OSH Cut stocks the right one outright.
 
-Their docs say: *"If you need a different tube size, material, or wall thickness, contact support
-before quoting."* **2 × 3 × 0.120 is a very common A500 size — ask for it first.**
-
-If they can't supply it, here is what the alternatives cost:
+For reference, what the other candidates would have cost:
 
 | Stock | ID | Verdict | Weight (588mm) |
 |---|---|---|---|
-| **3 × 2 × .250** | 38.1 × 63.5 | only in-stock option that fits | **14.77 lb** |
+| 3 × 2 × .250 | 38.1 × 63.5 | fits, doubles the weight | 14.77 lb |
 | 1.5 × 3 × .120 | 32.0 × 70.1 | cradle (36mm) will not fit | 6.71 |
 | 4 × 2 × .120 | 44.7 × 95.5 | 101.6mm tall vs 93.6mm available | 9.08 |
-| 2 × 2 × .120 sq | 44.7 × 44.7 | fits but 25mm shorter — significant redesign | 5.92 |
+| 2 × 2 × .120 sq | 44.7 × 44.7 | fits but 25mm shorter — big redesign | 5.92 |
 | 3 × 3 × .120 sq | 70.1 sq | 76.2 wide; receiver necks to 60mm | 9.08 |
-| *2 × 3 × .120 wanted* | 44.7 × 70.1 | — | 7.50 |
+| **3 × 2 × .120 — ordered** | **44.7 × 70.1** | — | **7.50** |
 
-3 × 2 × .250 is dimensionally acceptable but **doubles the steel weight** and leaves the engine
-cradle only 1.05mm of clearance per side. Prefer sourcing the 0.120 wall.
+## CONFIRMED STOCK SPEC (OSH Cut, 2026-09-11)
 
-## CORNER RADII — model does not include them
+| | |
+|---|---|
+| Outer | 3.000" × 2.000" |
+| **Inner** | **2.760" × 1.760" = 70.10 × 44.70 mm** |
+| Wall | 0.120" |
+| Outside corner radius | **0.118" to 0.360"** (3.00 – 9.14 mm) |
+| Weld seam | **Yes** |
+| Max length | 235" |
+| Alloy | A500, mill finish, in stock |
+| Yield / Ultimate | 39 ksi / 45 ksi |
 
-RMFG's stock A500 carries outside corner radii: **R0.24" on 0.120" wall, R0.5" on 0.250" wall**.
-The STEP here is modelled with **sharp corners**.
+**The inner dimensions match this design exactly** — 70.10 × 44.70 mm is the interior every
+clearance was checked against. No adjustment needed.
 
-- For the printed skins this is harmless — real rounded corners give *more* clearance, not less.
-- For the **hinge tabs**, which lap the inner side wall, the inside corner radius reduces the
-  available flat. The tabs sit at Y ±19.18…22.35 and Z 0…+18, well clear of the corners, so this
-  should not bite — but confirm against the vendor's reference STEP.
+## TWO RISKS FROM THE REAL PROFILE
 
-Download their nominal profile STEP and check before cutting.
+### 1. Corner radius is a RANGE, and the pintle tabs sit near it
+The spec gives 0.118"–0.360" (3.0–9.14 mm) outside. The model has **sharp corners**.
+
+Consequence for the **bottom face flat**, where the pintle tabs weld:
+
+| Actual corner R | Flat bottom spans | Pintle tab contact |
+|---|---|---|
+| 0.118" (3.0mm) | Y ±22.4 | 6.7 mm — fine |
+| 0.360" (9.14mm) | Y ±16.3 | **0.6 mm — will not seat** |
+
+The pintle tabs run Y 15.7…28.4. At the small end of the radius range they land on flat steel;
+at the large end almost the whole tab is over the corner radius and the joint has nothing to sit
+on. **Measure the corner radius on the actual tube before welding the pintle tabs.** If it comes
+in large, either relieve the tab's top edge to match the radius or move the tabs inboard — but
+note that moving them shifts the ⌀12 bore away from the printed lug position.
+
+Everything else is clear: the **hinge tabs** sit at Y ±19.18…22.35, Z 0…+18 on the inner side
+wall, and even a 6.1 mm inside radius leaves flat from Z −36.95 to +20.95. No conflict.
+
+For the skins, rounded corners are harmless — they give *more* clearance, not less.
+
+### 2. The tube has an internal weld seam
+"Weld Seam: Yes". Position isn't specified and is usually on one flat face. It could interfere
+with the hinge tabs lapping the inner wall, or with the engine cradle seating flat.
+**Locate the seam on arrival and orient the tube so it falls on an unused face** — the right side
+above the CH slot is the least congested.
