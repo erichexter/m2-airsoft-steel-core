@@ -18,12 +18,31 @@ For scale: a real M2HB is 84 lb; commercial airsoft M2 replicas run 33–44 lb.
 ## What's here
 
 ```
-cad/M2_steel_core.stp    STEP export — core tube, all six weldments, engine cradle
-docs/BUILD-NOTES.md      Full build notes: cut list, coordinates, weld plan, gotchas
-LICENSE                  CC BY-NC-SA 4.0
+cad/M2_core_tube_RFQ.stp   Core tube alone — upload this for a laser-cut quote
+cad/M2_steel_core.stp      Full steel assembly + engine cradle
+cad/RFQ-core-tube.md       Stock spec, feature table, vendor notes
+stl/                       Printed parts, ready to slice
+source/                    Fusion 360 archive (.f3d)
+tools/stlcheck.js          Printability checker — run it on the STLs
+docs/BUILD-NOTES.md        Full build notes: cut list, coordinates, weld plan, gotchas
+LICENSE                    CC BY-NC-SA 4.0
 ```
 
-The STEP file contains **only original work** — the steel design and the printed cradle.
+The STEP and STL files contain **only original work** — the steel design, the printed skins
+derived as described under ATTRIBUTION, and the cradle.
+
+### Checking the prints
+
+```
+node tools/stlcheck.js stl/*.stl
+```
+
+Reports triangle count, watertightness (open and non-manifold edges), degenerate facets,
+connected shells, bounding box against the bed, normal orientation, and overhang burden for each
+axis-aligned orientation. All current parts pass watertight with correct normals.
+
+**It only tests axis-aligned orientations.** `Hatch.stl` is 329.9mm and reports as not fitting;
+it does fit laid diagonally (294mm footprint on a 300mm bed, 5.7mm margin).
 
 ---
 

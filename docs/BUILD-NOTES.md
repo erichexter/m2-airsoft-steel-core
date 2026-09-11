@@ -74,34 +74,54 @@ drop the front mount to 1/2" — that's 1.3mm of slop on a pin carrying the gun'
 Dropped 8mm off-centre so the front mounting bore clears the floor by 3.05mm.
 An initial 3"×3" pick was wrong — the receiver necks to 60mm wide in two places.
 
+**Cut length 589.52mm (23.210").** Corner radii modelled: **R0.240" outside, R0.120" inside**.
+Without them OSH Cut's profile matcher reads the section as aluminium extrusion — nothing in
+their steel catalogue has square corners.
+
 ### Cuts in the tube
 | Cut | Location |
 |---|---|
-| Top opening | X −310 … −2, Y ±19, R5 |
-| Belt slot | X −141 … −2, both walls, Z +18 up through the top edge |
+| Top opening | X −310 … −2, **straight cut at Z +24, full width** |
+| Belt slot | X −141 … −2, both walls, Z +18 up to the cut top edge |
 | CH shaft slot | X −540 … −348 (192mm), Z −12 … −4, both walls, R4 |
 | Air line | ⌀12.7 at X −410, bottom wall |
 | Front mounting bore | ⌀14 at X +1, Z −33, both side walls |
+| Pintle notches | X −384 … −338, both bottom corners, cut by the tabs themselves |
+| Front locating tabs | X +20 … +26.35, top and bottom, 25mm wide |
+| Rear locating tabs | X −563.18 … −560, top and bottom, 25mm wide |
 
 The top opening **must** run forward to meet the belt slot at X −2. Stopping it short leaves a
 cantilevered tongue ("a diving board").
+
+**The top is one straight cut at Z +24** — the height where the corner radii begin, so it lands
+flat on both side walls. No flanges, no R5 corners, no tab notches. The earlier flanged version
+(Y ±19 with R5) fouled the hinge tabs and left messy geometry.
+
+**Locating tabs are exactly their plate's thickness** so tab and plate faces finish flush —
+nothing protrudes at either end. They pass through through-slots, keeping both the tube and the
+plates laser-only. Blind pockets would be a milling op and were rejected.
 
 ---
 
 ## Weldments
 
-- **Pintle tabs** ×2 — 1/2" plate, X −384…−338, Y ±15.7…28.4, Z −92…−46.1, ⌀12 bore at
-  X −361 / Z −79. Tapered profile matching the printed lug.
+- **Pintle tabs** ×2 — 1/2" plate, X −384…−338, Y ±15.7…28.4, **Z −92…−35**, ⌀12 bore at
+  X −361 / Z −79. Tapered profile matching the printed lug (measured Y ±16…28).
+  The top 11.1mm sits inside the tube and **cuts its own notch** through the bottom wall and up
+  the corner, so the tab drops into a slot instead of balancing on the corner radius.
+  Do not move them inboard — that was tried and rejected; it shifts the bore off the lug.
 - **Hinge tabs** ×2 — 1/8" plate, **inside the tube** at Y ±19.18…22.35, X −22…0, Z −20…+70.5.
   22 × 40mm weld foot laps the inner side wall; neck tapers to an **r8 round head concentric
   with the pin** at X −9, Z +62.5. Round head = the hatch needs only a circular relief, so
   rotation is free by construction. **Line-drill the pin through both tabs after welding.**
 - **Hatch spine** — 1/8" × 25mm × 329.9mm, inlaid into the hatch underside so hinge load never
   passes through plastic.
-- **Barrel plate** — 1/4", welded across the open tube end at X +20, **bore ⌀38.9 (1-17/32")**.
-  Leaves a 6.0mm web each side in Y.
-- **Barrel socket** — 1-1/2" OD × 0.156" wall round tube, **X −75 … +26.35 (101.4mm)**.
-  Front face flush with the plate; 95mm of it sits inside the tube (3.3mm clearance each side).
+- **Barrel plate** — 1/4", welded across the tube end at X +20…+26.35, **bore ⌀38.9 (1-17/32")**
+  plus two through-slots for the locating tabs. Leaves a 6.0mm web each side in Y.
+- **Barrel socket** — 1-1/2" OD × 0.156" wall round tube, **X +13.65 … +113.65 (100mm)**.
+  Only 6.35mm sits inside the tube; 87mm runs outside under the shroud.
+- **Backplate** — 1/8", X −563.18 … −560, matching the tube's rounded profile, with two
+  through-slots for the rear locating tabs. Basis for the trigger mount; bolt pattern TBD.
 
 ### Barrel = 1" EMT conduit, passing INSIDE the socket
 EMT: OD 1.163" (29.54mm), wall 0.042", ID 1.079".
@@ -217,6 +237,9 @@ Manual deletions "keep coming back" because regenerating from source discards th
 - **Pintle lug**: X −395 … −325, everything **below Z −67**. The steel tabs are the lug.
   Cut only below −67, not −50 — the shoulder Z −50…−67 is real side-panel geometry.
 - **Front trim**: X 26…41, Y ±14, Z −36…−22 — strands left forward of the barrel plate.
+- **Front ring trim**: cylinder r19.8 on the barrel axis, X +19.5…+27.0. Removes two floating
+  concentric rings (r15.1 and r19.4) left in FrontBoss when the socket bore went through.
+  Socket OD is r19.05, so the trim clears the steel by 0.75mm.
 - **Pin bore**: ⌀6.35 at X −9, Z +62.5 cut from **every** skin so one pin passes through
   FrontBoss lug → tab → hatch boss → tab → FrontBoss lug.
 
@@ -246,6 +269,23 @@ entirely — the region `{|Y|>25.8, Z>38.5}` belonged to no piece and vanished.
   event on screen transitions so Fusion orbits forever. Click the button once in the viewport.
 
 ---
+
+## Print orientation — a real tension
+
+`tools/stlcheck.js` reports overhang burden per orientation. Standing the pieces **on end**
+collapses it, but puts the visible face vertical where it cannot be ironed:
+
+| Piece | Flat (+Z up, ironable) | On end (min support) |
+|---|---|---|
+| Hatch | 33.6% | 4.2% |
+| Bot1 | 31.7% | 3.4% |
+| Top1 | 22.0% | 4.6% |
+| Bot2 | 21.3% | 0.4% |
+| Side_L1 | 11.3% | 2.3% |
+
+Flat-and-ironable is the chosen orientation; the cost is 20–30% of surface needing support on
+several pieces. All parts pass watertight with correct normals and 1 shell (except Bot2's two
+rails, left deliberately).
 
 ## Still open
 
