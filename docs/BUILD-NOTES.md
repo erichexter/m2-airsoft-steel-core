@@ -230,6 +230,17 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
+### Pin bores are sized to IMPERIAL bar, not round metric
+US bar stock is 6.35 / 12.70 / 14.29 mm — a ⌀12 bore will not take a 1/2" pin. Every pin bore is
+cut **0.30 mm over nominal bar**: hinge ⌀6.65 (1/4"), pintle ⌀13.0 (1/2"), front mount ⌀14.6
+(9/16"). Do not round these back to 12/14/6.
+
+**When auditing bores, check the face AXIS and AREA, not just the diameter.** The tube's A500
+corner radii show up as cylindrical faces at ⌀12.19 (R0.240" outside) and ⌀6.10 (R0.120" inside),
+running lengthwise along X with face areas in the thousands of mm². They are fillets, not holes.
+Reading them as bores produced a false "three bores are wrong" report; only two actually were.
+Real pin bores run along **Y**, are short, and have face areas under ~500 mm².
+
 ### Standing subtractions — IN THE GENERATOR, not by hand
 Manual deletions "keep coming back" because regenerating from source discards them.
 - **Tube clearance envelope `ENV`**: `bx(-26.85, 0, -0.80, 59.1, 5.16, 7.70)` — X −564…+27,

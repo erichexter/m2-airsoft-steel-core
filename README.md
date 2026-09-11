@@ -75,16 +75,29 @@ plan, and the fabrication order.
 
 All imperial, 12" minimum lengths, cut to length only — no rip cuts.
 
-| # | Stock | Buy | For |
-|---|---|---|---|
-| 1 | 2" × 3" × 0.120" wall rect tube | 24" | Core tube |
-| 2 | 1-1/2" OD × 1.188" ID DOM | 12" | Barrel socket |
-| 3 | 1/2" × 2" flat bar | 12" | Pintle tabs |
-| 4 | 1/4" × 3" flat bar | 12" | Barrel plate |
-| 5 | 1/8" × 1" flat bar | 24" | Hatch spine + hinge tabs |
-| 6 | 1/4" round bar | 12" | Hinge pin |
-| 7 | 1/2" round bar | 12" | Pintle pin |
-| 8 | 9/16" round bar | 12" | Front mount pin |
+| # | Stock | Grade | Buy | For |
+|---|---|---|---|---|
+| 1 | 2" × 3" × 0.120" wall rect tube | A500 Gr B | — | Core tube — **supplied by the laser vendor, don't buy separately** |
+| 2 | 1-1/2" OD × 1.188" ID | **DOM** | 12" | Barrel socket |
+| 3 | 1/2" × 2" flat bar | A36 HR | 12" | Pintle tabs ×2 |
+| 4 | 1/4" × 3" flat bar | A36 HR | 12" | Barrel plate |
+| 5 | 1/8" × 1" flat bar | A36 HR | 24" | Hatch spine + hinge tabs |
+| 6 | 1/8" × 3" flat bar | A36 HR | 12" | Backplate |
+| 7 | 1/4" round bar | 1018 CRS | 12" | Hinge pin |
+| 8 | 1/2" round bar | 1018 CRS | 12" | Pintle pin |
+| 9 | 9/16" round bar | 1018 CRS | 12" | Front mount pin |
+| 10 | 1" EMT conduit | — | 10 ft | Barrel |
+
+**A36 hot-rolled** is the cheap general-purpose structural grade — fine for tabs and plates that
+get welded. **1018 cold-rolled** is used for the three pins only: hot-rolled round bar carries mill
+scale and a loose diameter tolerance, so it will not slip-fit a bore.
+
+Pin bores are cut **0.30 mm over** nominal bar (⌀6.65 / ⌀13.0 / ⌀14.6) so imperial stock drops in.
+Don't "correct" them to round metric numbers — 1/4", 1/2" and 9/16" bar is 6.35, 12.70 and
+14.29 mm, and a 12 mm bore will not accept a 1/2" pin.
+
+**Item 2 is the one place not to substitute.** ERW tubing is cheaper but has an internal weld
+bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean ID.
 
 ---
 
@@ -102,12 +115,22 @@ Working design, not yet fabricated. Known open items:
 
 ## ATTRIBUTION
 
-The cosmetic skin geometry in this project is **derived from a third-party 3D-printed Browning M2
-receiver model** that is not mine and is not redistributed here. Only the steel core design, the
-cradle, and the documentation are original work covered by the LICENSE.
+The cosmetic skin geometry is **derived from**:
 
-If you intend to publish the printed skin STLs, check the original model's license first — a
-derivative work cannot be relicensed beyond what the source permits.
+> **M2 Browning 0.50 cal Machine Gun (1:1 Scale)** by **HappyBattleSheep**
+> https://www.thingiverse.com/thing:7248430
+> Licensed **CC BY** (Creative Commons — Attribution)
+
+Specifically, the skins are cut from that model's `corpus` part. The steel core, the engine
+cradle, the weldments, the tooling and the documentation are original work.
+
+The source is CC BY, which permits derivatives and redistribution provided the original author is
+credited. That credit is the line above — **keep it if you fork this.** CC BY is not share-alike,
+so this derivative may carry the more restrictive CC BY-NC-SA in [LICENSE](LICENSE); that applies
+to the original contributions here and cannot revoke anyone's rights to HappyBattleSheep's work,
+which remains available under CC BY from the link above.
+
+The upstream model pack is not vendored into this repo — download it from Thingiverse.
 
 The PolarStar F2 engine and FCU CAD models are the property of PolarStar Airsoft and are
 referenced for fitment only. They are not included in this repository.

@@ -1,3 +1,6 @@
 # OS
 Thumbs.db
 .DS_Store
+
+# upstream model pack - third-party, download from thingiverse.com/thing:7248430
+source/model.zip

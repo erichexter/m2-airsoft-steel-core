@@ -46,7 +46,7 @@ catalogue has square corners.
 | Belt slot | both sides | X −141 … −2 | open to the cut top edge, R4 bottom |
 | CH shaft slot | both sides | X −540 … −348, Z −12…−4 | 192 × 8mm, radiused ends |
 | Air line | bottom | X −410, centreline | ⌀12.7 (1/2") |
-| Front mount bore | both sides | X +1, Z −33 | ⌀14.0 |
+| Front mount bore | both sides | X +1, Z −33 | ⌀14.6 |
 | Pintle notches | bottom corners | X −384 … −338 | for the 1/2" pintle tabs |
 | Front locating tabs | top + bottom | X +20 … +26.35 | 25mm wide |
 | Rear locating tabs | top + bottom | X −563.18 … −560 | 25mm wide |
