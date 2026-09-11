@@ -61,21 +61,27 @@ slot through both walls, an air-line pass-through, and the front mounting bore.
 - Hatch spine, 1/8" × 1" flat, inlaid into the cover so hinge load never passes through plastic
 - Barrel plate, 1/4", welded across the open tube end
 - Barrel socket, 1-1/2" OD × 1.188" ID DOM
-- Charging-handle rod tabs ×2, 1/8" plate, welded inside the left wall
 
 **Charging handle** — slides, spring returns, **150 mm of travel**, and it runs in the
-**existing 192 × 8 mm slot** — no extra metal is removed for it. A printed carrier rides a 1/4"
-steel rod held by two tabs welded inside the left wall; its neck is 7 mm, so it passes the 8 mm
-slot with 0.5 mm each side, and the mounting pad bears on the outside of the side panel. The
-neck is 34 mm and the slot's straight section is 184 mm, so 34 + 150 travel uses it exactly.
+**existing 192 × 8 mm slot**. No extra metal is removed for it and **no guide rod is used** —
+three printed parts sandwich the receiver wall and the slot itself is the track:
 
-The handle bolts on with **2 × M6** into heat-set inserts in two ⌀14 bosses, which register in
-matching pockets so the joint is located as well as clamped. The carrier's pad cantilevers 106 mm
-forward to reach them, because the side panel is only open over X −540…−350 while the handle has
-material to bolt into over X −320…−262 — the neck has to stay in the opening and the bolts have to
-go where the handle is solid.
+| Part | Where |
+|---|---|
+| `CH_Shoe` | inside the tube, Y −22…−14, 16 mm tall behind an 8 mm slot so it can't pull out |
+| `CH_Carrier` | 7 mm neck through the slot, pad outside the panel at Y −38…−30 |
+| `CH_Handle` | full-length foot bolting to the pad, 1,696 mm² of flat contact |
 
-Swept against the tube, the weldments and the skins: 0.0000 cm³ throughout the stroke.
+The shoe and carrier clamp a 7.65 mm stack — skin plus steel wall — across an 8 mm neck, leaving
+**0.35 mm of running clearance**. Two M4 bolts hold the sandwich; four **M6** into heat-set
+inserts in the handle's own foot carry the pull. Assemble the handle to the carrier off the gun,
+then fit the pair and add the shoe.
+
+To install the shoe, turn it 90° about its long axis so its 8 mm edge is vertical, pass it through
+the slot, and rotate it home.
+
+Swept in 25 mm steps against the tube, the side panels, the pintle tab, the backplate and the
+cradle: 0.0000 cm³ throughout.
 
 The return is **elastic shock cord, not a steel spring** — 150 mm of travel would need a
 ~350 mm compression spring and there is only 230 mm of clear tube behind the carrier. Anchor the
@@ -118,9 +124,9 @@ All imperial, 12" minimum lengths, cut to length only — no rip cuts.
 | 2 | 1-1/2" OD × 1.188" ID | **DOM** | 12" | Barrel socket |
 | 3 | 1/2" × 2" flat bar | A36 HR | 12" | Pintle tabs ×2 |
 | 4 | 1/4" × 3" flat bar | A36 HR | 12" | Barrel plate |
-| 5 | 1/8" × 1" flat bar | A36 HR | 30" | Hatch spine + hinge tabs + 2 CH rod tabs |
+| 5 | 1/8" × 1" flat bar | A36 HR | 24" | Hatch spine + hinge tabs |
 | 6 | 1/8" × 3" flat bar | A36 HR | 12" | Backplate |
-| 7 | 1/4" round bar | 1018 CRS | 18" | Hinge pin + **231 mm charging-handle guide rod** |
+| 7 | 1/4" round bar | 1018 CRS | 12" | Hinge pin |
 | 8 | 1/2" round bar | 1018 CRS | 12" | Pintle pin |
 | 9 | 9/16" round bar | 1018 CRS | 12" | Front mount pin |
 | 10 | 1" EMT conduit | — | 10 ft | **Barrel** — cut 39-1/4", the rest is spare |

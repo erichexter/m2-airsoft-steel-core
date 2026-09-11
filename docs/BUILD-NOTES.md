@@ -258,10 +258,26 @@ forced an RFQ change for nothing. Reverted.
 Track = **the existing 192 × 8mm slot**, X −540…−348, Z −12…−4, both walls, R4 ends. Straight
 section is X −536…−352 = 184mm. Neck 34mm + 150mm travel = 184mm, an exact fit.
 
-- carrier body  X −386…−352, Y −22…−11, Z −16…0, ⌀6.85 bore on the rod
-- neck          Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**
-- mounting pad  X −386…**−280**, Y −38…−30, Z −13…0 — bears on the outside of the side panel
-- rod           1/4", X −549…−341.8 (207mm), tabs at X −549 and X −345
+**No guide rod. No shaft. Three printed parts sandwich the wall and the slot is the track.**
+An earlier version had a 1/4" rod on two welded tabs — deleted, it was a complicated part for no
+benefit and cost 0.128 lb of steel and two weldments.
+
+- `CH_Shoe`    X −386…−352, **Y −22…−14**, Z −16…0 — inside the tube, 16mm tall behind an 8mm
+               slot so it cannot pull out. 2 × M4 heat-set inserts.
+- `CH_Carrier` neck Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**; pad X −386…**−280**,
+               Y −38…−30, Z −13…+3. 2 × M4 clearance to the shoe, 4 × M6 clearance to the handle.
+- `CH_Handle`  donor arm outboard of Y −48, unioned to a **full-length foot** X −386…−280,
+               Y −48…−38, Z −13…+3. **4 × M6 heat-set inserts in the foot.**
+
+Clamped stack is skin-outer-face (Y −30.0) to tube-inner-face (Y −22.35) = **7.65mm**, neck spans
+8.0mm → **0.35mm running clearance**. Do not "fix" the neck to 7.65.
+
+Mating area handle-to-carrier is **1696 mm²** of flat contact. The earlier 2 × ⌀14 boss joint was
+replaced because it only touched at two spots and M4 was too small.
+
+**Assembly order:** bolt handle to carrier off the gun (M6 heads sit in counterbores on the pad's
+inner face and are unreachable once fitted) → offer the pair to the slot → turn the shoe 90° about
+X so its 8mm edge is vertical, pass it through the slot, rotate home → 2 × M4.
 
 ### The pad must cantilever forward — the slot and the handle do not line up
 Two measured facts that force the design:
