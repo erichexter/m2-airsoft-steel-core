@@ -260,8 +260,27 @@ section is X −536…−352 = 184mm. Neck 34mm + 150mm travel = 184mm, an exact
 
 - carrier body  X −386…−352, Y −22…−11, Z −16…0, ⌀6.85 bore on the rod
 - neck          Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**
-- mounting pad  Y −33…−30, **Z −13…+3** — bears on the outside of the side panel
+- mounting pad  X −386…**−280**, Y −38…−30, Z −13…0 — bears on the outside of the side panel
 - rod           1/4", X −549…−341.8 (207mm), tabs at X −549 and X −345
+
+### The pad must cantilever forward — the slot and the handle do not line up
+Two measured facts that force the design:
+- **`Side_L1` is open only over X −540…−350.** Forward of that the panel is solid, so the neck
+  cannot go forward — it has to stay inside that window.
+- **The donor handle only has material to bolt into over X −320…−262** (probe Y −70…−46). Its
+  arm root is forward of the panel opening entirely.
+
+So the neck sits at X −386…−352 and the **pad cantilevers 106mm forward to X −280** to reach the
+handle. Do not try to move the slot forward to meet the handle: moving it 28mm forward put the
+neck into solid panel (0.466 cm³) and the bolts still had nothing to bite. Reverted.
+
+Joint: **2 × M6** through the handle into heat-set inserts (⌀8.0 × 9mm) in ⌀14 bosses on the pad
+at **X −306 and −286**, the bosses registering in ⌀14.4 pockets in the handle so the joint is
+located as well as clamped. M4 was too small. Confirmed 0.92 and 1.14 cm³ of handle material
+behind each boss — check this, because most of the pad's length has nothing behind it.
+
+Trimming the donor at Y −38 leaves a **0.286 cm³ loose fragment** at X −360…−351; delete it or the
+STL exports as two shells.
 
 **The pad's top must not exceed Z +3.** The left skin's outer surface steps outboard above
 Z ≈ +3.3; a pad reaching Z +4 buries 0.7mm into the panel at every stroke position.

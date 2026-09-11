@@ -68,7 +68,14 @@ slot through both walls, an air-line pass-through, and the front mounting bore.
 steel rod held by two tabs welded inside the left wall; its neck is 7 mm, so it passes the 8 mm
 slot with 0.5 mm each side, and the mounting pad bears on the outside of the side panel. The
 neck is 34 mm and the slot's straight section is 184 mm, so 34 + 150 travel uses it exactly.
-Swept in 10 mm steps against the tube, all weldments and all skins: 0.0000 cm³ throughout.
+
+The handle bolts on with **2 × M6** into heat-set inserts in two ⌀14 bosses, which register in
+matching pockets so the joint is located as well as clamped. The carrier's pad cantilevers 106 mm
+forward to reach them, because the side panel is only open over X −540…−350 while the handle has
+material to bolt into over X −320…−262 — the neck has to stay in the opening and the bolts have to
+go where the handle is solid.
+
+Swept against the tube, the weldments and the skins: 0.0000 cm³ throughout the stroke.
 
 The return is **elastic shock cord, not a steel spring** — 150 mm of travel would need a
 ~350 mm compression spring and there is only 230 mm of clear tube behind the carrier. Anchor the
