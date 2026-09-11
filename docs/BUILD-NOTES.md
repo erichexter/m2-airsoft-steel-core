@@ -232,6 +232,12 @@ clamping during glue-up.
 
 ### Standing subtractions — IN THE GENERATOR, not by hand
 Manual deletions "keep coming back" because regenerating from source discards them.
+- **Tube clearance envelope `ENV`**: `bx(-26.85, 0, -0.80, 59.1, 5.16, 7.70)` — X −564…+27,
+  Y ±25.8, Z −46.5…+30.5. **It must span the WHOLE tube including the locating tabs at both
+  ends**, not just the tube body. It was X −561…+21 while the front tabs reached X +26.35, and
+  the ~5mm of tab past the envelope drove FrontBoss into the steel by 0.5795 cm³.
+  **Whenever the tube's extents change, ENV changes with them** — query
+  `tube.boundingBox` and check it rather than assuming.
 - **Feed way**: no skin material above the tube in X −334.3 … −13.3. Deletes `Top2` entirely and
   ends `Top1` at X −334.3 — the top deck only exists *behind* the hatch.
 - **Pintle lug**: X −395 … −325, everything **below Z −67**. The steel tabs are the lug.
