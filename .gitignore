@@ -1,0 +1,8 @@
+# Fusion / CAD scratch
+*.f3d
+*.f3z
+~$*
+
+# OS
+Thumbs.db
+.DS_Store

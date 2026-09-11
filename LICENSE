@@ -1,0 +1,71 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)
+
+SPDX-License-Identifier: CC-BY-NC-SA-4.0
+
+Copyright (c) 2026 Eric Hexter
+
+================================================================================
+
+YOU ARE FREE TO:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material
+
+The licensor cannot revoke these freedoms as long as you follow the license
+terms.
+
+UNDER THE FOLLOWING TERMS:
+
+  Attribution   — You must give appropriate credit, provide a link to the
+                  license, and indicate if changes were made. You may do so in
+                  any reasonable manner, but not in any way that suggests the
+                  licensor endorses you or your use.
+
+  NonCommercial — You may not use the material for commercial purposes.
+
+  ShareAlike    — If you remix, transform, or build upon the material, you must
+                  distribute your contributions under the same license as the
+                  original.
+
+  No additional restrictions — You may not apply legal terms or technological
+                  measures that legally restrict others from doing anything the
+                  license permits.
+
+NOTICES:
+
+  You do not have to comply with the license for elements of the material in
+  the public domain or where your use is permitted by an applicable exception
+  or limitation.
+
+  No warranties are given. The license may not give you all of the permissions
+  necessary for your intended use. For example, other rights such as publicity,
+  privacy, or moral rights may limit how you use the material.
+
+================================================================================
+
+The full legal text of this license is available at:
+
+    https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+A human-readable summary is available at:
+
+    https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The full legal code at the URL above is incorporated into this LICENSE file by
+reference and governs use of this work.
+
+================================================================================
+
+SCOPE
+
+This license covers the original work in this repository: the steel core design,
+the weldment geometry, the engine cradle, the build documentation, and the
+derived dimensions and measurements.
+
+It does NOT cover, and this repository does not redistribute:
+
+  - The PolarStar F2 engine and FCU CAD models, which are the property of
+    PolarStar Airsoft and are referenced for fitment only.
+  - The original 3D-printed Browning M2 receiver model from which the cosmetic
+    skin geometry is derived. See ATTRIBUTION in README.md.
