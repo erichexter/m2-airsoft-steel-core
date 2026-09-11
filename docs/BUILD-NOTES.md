@@ -230,6 +230,35 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
+### CHARGING HANDLE — slide + spring return, 150mm travel
+The corpus "CH slot" at X −542.6…−347.6, Z −12.9…−6.3 (6.7mm tall) is a **moulded detail line,
+not a functional track**. The handle's actual shoe passes the left wall at **X −330…−285,
+Z −17…+1** — 44 × 17.6mm, and it does not overlap that slot at all. Do not treat the corpus slot
+as the track.
+
+Real track: **left wall only**, X −489.5…−275.5 overall, Z −17.5…+1.5, R9.5 ends. The straight
+section must span the full stroke (X −480…−285) or the carrier's square neck corners foul the end
+radii. Right wall keeps the 8mm cosmetic slot; the left wall's cosmetic slot runs into the track.
+
+Carrier rides a **1/4" rod at Y −16, Z −8**, held by two 1/8" tabs welded inside the left wall at
+X −500 and X −272. Verified clear through the whole stroke, 65mm of rod engaged at full pull.
+
+**The return is shock cord, not a steel spring.** 150mm of travel needs a ~350mm compression
+spring; there is only 230mm of clear tube behind the carrier. Route the cord at **Y −20, Z −30**:
+clear of the cradle (reaches Y −18), the F2 (Y ±12.7), the hinge tab (Z −20 up) and the pintle
+tabs (Z −35 down). That is the only end-to-end clear path.
+
+### Fusion gotchas learned here
+- **An exception anywhere in a script rolls back everything that script did.** A mesh convert that
+  succeeded was silently undone by a trailing `isLightBulbOn` error on the consumed mesh. Wrap
+  `main()` in try/except and print the traceback instead of letting it propagate.
+- **`exportManager` body-level STL export can report `execute=True` and write nothing.** It failed
+  on the 20k-face barrel at every refinement level. Export the **occurrence or component** with
+  everything else hidden instead, and always stat the file afterwards.
+- Mesh → BRep: `component.features.meshConvertFeatures` with
+  `FacetedMeshConvertMethodType`. ~5s for 20k triangles. In a direct-design doc `add()` returns
+  null but the conversion still happens; find the new body by name.
+
 ### Pin bores are sized to IMPERIAL bar, not round metric
 US bar stock is 6.35 / 12.70 / 14.29 mm — a ⌀12 bore will not take a 1/2" pin. Every pin bore is
 cut **0.30 mm over nominal bar**: hinge ⌀6.65 (1/4"), pintle ⌀13.0 (1/2"), front mount ⌀14.6

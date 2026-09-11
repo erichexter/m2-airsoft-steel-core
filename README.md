@@ -59,6 +59,18 @@ slot through both walls, an air-line pass-through, and the front mounting bore.
 - Hatch spine, 1/8" × 1" flat, inlaid into the cover so hinge load never passes through plastic
 - Barrel plate, 1/4", welded across the open tube end
 - Barrel socket, 1-1/2" OD × 1.188" ID DOM
+- Charging-handle rod tabs ×2, 1/8" plate, welded inside the left wall
+
+**Charging handle** — slides, spring returns, **150 mm of travel**. A printed carrier rides a
+1/4" steel rod held by two tabs welded inside the left wall, and reaches out through a
+214 × 19 mm track cut in that wall. Verified clear of the tube and every weldment across the whole
+stroke, with 65 mm of rod still engaged at full pull.
+
+The return is **elastic shock cord, not a steel spring** — 150 mm of travel would need a
+~350 mm compression spring and there is only 230 mm of clear tube behind the carrier. Anchor the
+cord at the barrel plate and route it down the **left side at Y −20, Z −30**: that misses the
+cradle (which reaches Y −18), the F2 (Y ±12.7), the hinge tab (Z −20 and up) and the pintle tabs
+(Z −35 and down). It is the one path through that is clear end to end.
 
 **Barrel is 1" EMT conduit.** OD 1.163", and the DOM socket's 1.188" ID takes it with 0.64mm of
 clearance and up to 101mm of engagement. Note that 1" *pipe* of any schedule is too small — NPS
@@ -81,9 +93,9 @@ All imperial, 12" minimum lengths, cut to length only — no rip cuts.
 | 2 | 1-1/2" OD × 1.188" ID | **DOM** | 12" | Barrel socket |
 | 3 | 1/2" × 2" flat bar | A36 HR | 12" | Pintle tabs ×2 |
 | 4 | 1/4" × 3" flat bar | A36 HR | 12" | Barrel plate |
-| 5 | 1/8" × 1" flat bar | A36 HR | 24" | Hatch spine + hinge tabs |
+| 5 | 1/8" × 1" flat bar | A36 HR | 30" | Hatch spine + hinge tabs + 2 CH rod tabs |
 | 6 | 1/8" × 3" flat bar | A36 HR | 12" | Backplate |
-| 7 | 1/4" round bar | 1018 CRS | 12" | Hinge pin |
+| 7 | 1/4" round bar | 1018 CRS | 18" | Hinge pin + **231 mm charging-handle guide rod** |
 | 8 | 1/2" round bar | 1018 CRS | 12" | Pintle pin |
 | 9 | 9/16" round bar | 1018 CRS | 12" | Front mount pin |
 | 10 | 1" EMT conduit | — | 10 ft | Barrel |
@@ -109,7 +121,12 @@ Working design, not yet fabricated. Known open items:
 - Rear of the tube is open; no backplate, grips or trigger
 - Hinge, pintle and front-mount pin positions are inferred from the printed model rather than
   measured from real hardware — **verify before drilling steel**
-- Charging handle slot width is an estimate; the carrier isn't modelled
+- Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
+  and check the return force by hand before committing to the anchor point
+- The printed barrel is 984 mm and must be cut into sections to fit a 300 mm bed; the original
+  was printed whole on a much larger machine
+- Trigger mounting is unsolved: the trigger sits at Z +26…+57, entirely above the tube's top at
+  Z +24, so the 1/8" backplate as drawn cannot reach it
 
 ---
 
