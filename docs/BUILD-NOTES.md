@@ -230,7 +230,35 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
-### TRIGGER — one lever, pivoting inside the tube on a pin through both walls
+### TRIGGER — press DOWN, tail rises, switch sits ABOVE the tail
+**Direction matters and I got it backwards once.** Pressing the butterfly down at the rear swings
+the tail *up*, because the press point is behind and above the pivot. The switch therefore sits
+**above** the tail, not below it. If the switch is under the tail the mechanism can never fire.
+
+Switch is an **Omron SS-5GL13** — subminiature, simulated roller lever. Body 19.8 × 10.2 × 6.4mm,
+mounting holes ⌀1.6 at 9.5mm pitch, **OT min 1.0mm, OF 50gf**. The lever type was chosen
+deliberately: a bare plunger only tolerates a few tenths of overtravel and the striker would
+bottom on the switch body.
+
+Geometry: pivot X −552 **Z +1**, lever run Z −6…+8, striker on top of the lever at X −540 rising
+to Z +10.0, switch actuator free at Z +10.4 (**0.4mm gap**), body Z +10.4…+20.6.
+
+  5.0 deg -> presses 0.65mm   FIRES
+  5.5 deg -> presses 0.75mm   hard stop engages, inside the 1.0mm OT
+
+**`Trigger_Switch_Carrier` registers off the tube itself**, so the switch lands in the right place
+without measuring: a narrow ceiling pad at Y ±18 bearing on the interior roof (**measured at
+Z +27.0**, not the +20.95 I first assumed — the rear of the tube is uncut), and wide rails at
+Y ±22.0 on the flat part of the side walls. **The pad must be narrower than the rails** — the
+interior corner radii pull the width in to ±20.38 by Z +26.8, so a full-width roof clashes.
+
+Slides in from the rear before the backplate is welded; also bolts through 2 × M4 at Y ±16, Z −8.
+
+**Fusion joints are not available here** — `AsBuiltJointInput is only supported in parametric`,
+and this document is direct-modelling with no timeline. Motion has to be verified by transforming
+a copy and running boolean intersections, which is what every check above does.
+
+### Superseded trigger designs — do not revisit
 The F2 is electronic, so the trigger only has to close a microswitch. **The switch does not need
 to be inside the tube — only its wires do.**
 
