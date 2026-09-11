@@ -44,9 +44,7 @@ catalogue has square corners.
 |---|---|---|---|
 | Top opening | top | X −310 … −2 | **straight cut at Z +24, full width** |
 | Belt slot | both sides | X −141 … −2 | open to the cut top edge, R4 bottom |
-| CH cosmetic slot | **right** side | X −540 … −348, Z −12…−4 | 192 × 8mm, radiused ends |
-| CH cosmetic slot | **left** side | X −540 … −489.5, Z −12…−4 | runs into the track below |
-| **CH track** | **left** side only | X −489.5 … −275.5, Z −17.5…+1.5 | **214 × 19mm, R9.5 ends** |
+| CH shaft slot | both sides | X −540 … −348, Z −12…−4 | 192 × 8mm, R4 ends |
 | Air line | bottom | X −410, centreline | ⌀12.7 (1/2") |
 | Front mount bore | both sides | X +1, Z −33 | ⌀14.6 |
 | Pintle notches | bottom corners | X −384 … −338 | for the 1/2" pintle tabs |
@@ -60,11 +58,11 @@ Locating tabs at both ends are **exactly their plate's thickness** (1/4" front, 
 tab and plate faces finish flush — nothing protrudes. They pass through matching through-slots,
 so the plates and the tube are both laser-only with no milled pockets anywhere.
 
-Smallest feature is the 8mm CH cosmetic slot — 67× the 0.120" wall.
+Smallest feature is the 8mm CH slot — 67× the 0.120" wall.
 
-**The two CH features on the left side are one continuous aperture** — the 8mm cosmetic slot runs
-into the 19mm track at X −489.5. Please cut them as a single profile, not as two overlapping ones.
-The track is asymmetric by design: only the left side carries the moving handle.
+The CH slot is symmetric — same 192 × 8mm on both sides. The left one doubles as the working track
+for the charging handle; the carrier's neck is 7mm so it runs inside the 8mm slot with 0.5mm each
+side. No separate track is cut.
 
 ## Notes for the vendor
 

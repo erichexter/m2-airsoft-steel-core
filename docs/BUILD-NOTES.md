@@ -248,18 +248,30 @@ need welding — it's a slip fit.
 The socket leaves **88.8mm exposed** ahead of the front skin. It was positioned forward when a
 full-length printed shroud was going to hide it; the jacket now covers it, so that is moot.
 
-### CHARGING HANDLE — slide + spring return, 150mm travel
-The corpus "CH slot" at X −542.6…−347.6, Z −12.9…−6.3 (6.7mm tall) is a **moulded detail line,
-not a functional track**. The handle's actual shoe passes the left wall at **X −330…−285,
-Z −17…+1** — 44 × 17.6mm, and it does not overlap that slot at all. Do not treat the corpus slot
-as the track.
+### CHARGING HANDLE — slide + spring return, 150mm travel, IN THE EXISTING SLOT
+**Design the carrier to fit the slot; do not enlarge the slot to fit the donor part.** The
+upstream `charging.stl` has a shoe 17.6mm tall, and I once cut a 214 × 19mm aperture in the left
+wall to pass it. That was wrong — the donor shoe is discarded anyway (the handle bolts to a
+carrier we make), so the neck can be any size we like. It removed 4066mm² where 2032mm² does, and
+forced an RFQ change for nothing. Reverted.
 
-Real track: **left wall only**, X −489.5…−275.5 overall, Z −17.5…+1.5, R9.5 ends. The straight
-section must span the full stroke (X −480…−285) or the carrier's square neck corners foul the end
-radii. Right wall keeps the 8mm cosmetic slot; the left wall's cosmetic slot runs into the track.
+Track = **the existing 192 × 8mm slot**, X −540…−348, Z −12…−4, both walls, R4 ends. Straight
+section is X −536…−352 = 184mm. Neck 34mm + 150mm travel = 184mm, an exact fit.
 
-Carrier rides a **1/4" rod at Y −16, Z −8**, held by two 1/8" tabs welded inside the left wall at
-X −500 and X −272. Verified clear through the whole stroke, 65mm of rod engaged at full pull.
+- carrier body  X −386…−352, Y −22…−11, Z −16…0, ⌀6.85 bore on the rod
+- neck          Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**
+- mounting pad  Y −33…−30, **Z −13…+3** — bears on the outside of the side panel
+- rod           1/4", X −549…−341.8 (207mm), tabs at X −549 and X −345
+
+**The pad's top must not exceed Z +3.** The left skin's outer surface steps outboard above
+Z ≈ +3.3; a pad reaching Z +4 buries 0.7mm into the panel at every stroke position.
+
+**The skin already has the slot.** `Side_L1` is open over the slot footprint — the corpus models
+it as a through-feature, so no channel needs cutting. Verify rather than assume: a cut that
+removes 0.00 cm³ means either it was already open or the boolean silently failed.
+
+**Sweep against the SKINS too, not just tube + weldments.** The first travel check omitted them
+and missed a standing 0.071 cm³ interference at every position.
 
 **The return is shock cord, not a steel spring.** 150mm of travel needs a ~350mm compression
 spring; there is only 230mm of clear tube behind the carrier. Route the cord at **Y −20, Z −30**:
