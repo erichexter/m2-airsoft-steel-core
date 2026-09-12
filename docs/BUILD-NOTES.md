@@ -230,6 +230,28 @@ from section 2 into its neighbours. Alignment lives in the seam plane so nothing
 The top/bottom strips are too thin (3–8mm) for fingers — they keep plain butt seams and need
 clamping during glue-up.
 
+### DONOR MESHES — check `isSolid`, not just that a boolean returned
+`grip.stl` converts to a **surface** body, not a solid, because the mesh is not watertight.
+A boolean against an open surface returns "no interference" **no matter what** — there is no
+inside for it to find. That silently passed a clash check that was hiding 25.7 cm³ of overlap.
+**Always print `body.isSolid` after a mesh convert.**
+
+Repair with `tools/meshrepair.js`. The grip's defect was **T-junctions, not holes**: 8 open edges
+whose four "loop" vertices are collinear (same X, same Z, varying Y only) — one side of a seam
+used a single 66.6mm edge while the other used three shorter ones. Capping a zero-area loop with a
+centroid fan just produces degenerate triangles, which is what a naive hole-filler does. The fix is
+to **split the long edge** at the intruding vertices. 4 splits closed it; volume unchanged at
+304.6 cm³.
+
+The donor grip **includes its own backplate** — it overlapped the steel `Backplate_1-8` by
+9.04 cm³ over the full height, because on a real M2 the backplate is part of the grip assembly.
+The printed grip is relieved around the steel (−25.7 cm³) exactly as the skins are: steel carries
+load, plastic is cosmetic. The buffer tube is relieved for the trigger arm's swept envelope
+(−1.5 cm³).
+
+**Relieve against the SWEPT envelope of moving parts**, not their rest position — the trigger
+envelope over 0…5.5° is 43.0 cm³.
+
 ### TRIGGER — press DOWN, tail rises, switch sits ABOVE the tail
 **Direction matters and I got it backwards once.** Pressing the butterfly down at the rear swings
 the tail *up*, because the press point is behind and above the pivot. The switch therefore sits
