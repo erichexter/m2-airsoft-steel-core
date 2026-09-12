@@ -322,6 +322,20 @@ can't flop on the conduit. Fits a 300mm bed stood on end (+X up, 9.3% overhang).
 The jacket-to-thin-barrel step is at **X ≈ 285**; X 285…298 is a smooth prismatic zone with no
 vertices, which is why it cuts cleanly there.
 
+**The jacket's rear runs to X 24.80, not 26.75.** Trimming it to the barrel plate's front face
+(26.35) + 0.4 left a **1.95mm gap** to `FrontBoss`, which ends at X 24.80 — the 1/4" plate showed
+through all the way round. **Trim the jacket to FrontBoss, not to the plate.**
+
+To extend it: the jacket's section is **constant over X 26.75…29.00** (2.235 cm³ at every slice),
+so take a 1.95mm slice and translate it back — an exact extrusion without needing a sketch. Then
+pocket it Y ±25.8, Z −46.5…30.5 to clear the plate. Adds 4.47 cm³.
+
+**Bond the joint, don't bolt it.** The butt gives **1,615 mm² of contact** (70% of the jacket's
+2,295 mm² rear face — `FrontBoss` is only Y ±30 against the jacket's Y ±39.6, so they don't fully
+overlap). That is several times what epoxy needs, and the ⌀38.90 bore over the socket already
+locates it radially across 87mm. 23 bolt positions were found viable in the top band, but **every
+one is unreachable once assembled** — 260mm of jacket in front, 38mm of FrontBoss behind.
+
 EMT is galvanised: etch-prime before paint, and never weld or braze it (zinc fumes). It doesn't
 need welding — it's a slip fit.
 

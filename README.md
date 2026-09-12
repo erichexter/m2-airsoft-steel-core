@@ -108,10 +108,18 @@ where it bottoms in the socket. Note that 1" *pipe* of any schedule is too small
 nominal, and 1" sch40 has a 1.049" ID.
 
 **The perforated barrel jacket is printed** and slides over the EMT — it's the M2's signature
-feature and the one part of the barrel worth printing. 260mm long, ⌀101.6 at the rear flange,
+feature and the one part of the barrel worth printing. 262mm long, ⌀101.6 at the rear flange,
 bored ⌀38.90 over the steel socket and ⌀30.20 for the EMT, with a centring ring at the muzzle end
-so it can't flop about on the conduit. Stood on end it fits a 300mm bed with 40mm to spare.
+so it can't flop about on the conduit. Stood on end it fits a 300mm bed with 38mm to spare.
 Forward of the jacket the EMT is bare.
+
+It runs back to **X 24.80** so it meets `FrontBoss` flush — its rear is pocketed to clear the 1/4"
+barrel plate, which would otherwise show through. **Bond that joint with epoxy; it needs no
+fasteners.** The butt gives **1,615 mm² of face-to-face contact**, several times what an epoxy lap
+joint requires, and the jacket is already located by the ⌀38.90 bore over the steel socket across
+87mm of engagement — so it cannot shift radially and only the axial pull needs carrying. Bolts
+were considered and rejected: the joint face is buried under 260mm of jacket from the front and
+38mm of FrontBoss from the rear, so no fastener is reachable once assembled.
 
 EMT is galvanised. Scuff and etch-prime it before painting or nothing will stick, and **do not
 weld or braze it** — heating zinc gives off fumes that will make you ill. It doesn't need welding
@@ -161,16 +169,8 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 
 Working design, not yet fabricated. Known open items:
 
-- **1.95 mm gap between `FrontBoss` and `Barrel_Jacket`.** FrontBoss ends at X 24.80, the jacket
-  starts at X 26.75, so that much of the 1/4" barrel plate (X 20.00…26.35) shows all the way
-  round. Fix by extending the jacket rearward to X 24.80 with its rear pocketed to clear the
-  plate — keeps the muzzle end at X 287. See the task notes for the pocket dimensions.
-- **Nothing fastens the jacket to `FrontBoss`.** The butt face is a thin ring with poor glue area.
-  Prefer a spigot on the jacket's rear socketing into FrontBoss — that bonds *and* locates —
-  with M4/M5 heat-set inserts as the fallback if it needs to come apart. Fastener positions must
-  clear the ⌀38.10 socket and the ⌀30.20 EMT bore.
 - **No skin-to-tube fastening scheme anywhere** — no bolt bosses or captive nuts on any panel.
-  This is the same problem as the jacket joint, across the whole gun.
+  The jacket-to-FrontBoss joint is solved (bonded, see below), but the receiver panels are not.
 - Hinge, pintle and front-mount pin positions are inferred from the printed model rather than
   measured from real hardware — **verify before drilling steel**
 - Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
