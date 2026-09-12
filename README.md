@@ -177,9 +177,8 @@ Working design, not yet fabricated. Known open items:
   and check the return force by hand before committing to the anchor point
 - The barrel jacket's fit on the EMT is set by the centring ring alone; if it rattles, shim it or
   add a second ring partway along
-- The grip and buffer tube touch face-to-face at X −573.2 and could merge into one printed part,
-  dropping the rear from 3 printed pieces to 2. The steel backplate cannot join them — different
-  material and process.
+- The steel backplate cannot merge with any printed part — different material and process. The
+  grip and buffer tube are already merged into `Grip_Assembly`.
 
 ---
 
