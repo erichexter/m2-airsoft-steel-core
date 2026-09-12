@@ -50,7 +50,7 @@ CHAPTERS
 1:39 Trigger
 1:57 Barrel — 1" EMT conduit
 2:21 The perforated jacket
-2:28 Files and licence
+2:29 Files and licence
 
 CREDIT
 Skin geometry is derived from "M2 Browning 0.50 cal Machine Gun (1:1 Scale)" by
