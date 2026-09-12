@@ -61,6 +61,20 @@ slot through both walls, an air-line pass-through, and the front mounting bore.
 - Hatch spine, 1/8" × 1" flat, inlaid into the cover so hinge load never passes through plastic
 - Barrel plate, 1/4", welded across the open tube end
 - Barrel socket, 1-1/2" OD × 1.188" ID DOM
+- Backplate bosses ×2, 1/2" bar, welded down the inside of the rear walls, tapped 4 × M5
+
+**The backplate is bolted, not welded** — 4 × M5 into those bosses. Welding it shut would seal the
+trigger away permanently: the mechanism sits at X −580…−526, well behind the tube's top opening
+(X −310…−2), so there would be no access to it at all.
+
+Disassembly, verified by sweeping each part clear:
+
+1. Drift the ⌀4 pivot pin out through the **⌀6 hole in `Side_R1`** at X −552, Z +1
+2. Draw the trigger straight back — the lever slides out through the backplate slot
+3. Undo 4 × M5 and the backplate lifts off, **bringing the switch carrier with it**
+
+The pin cannot retain the backplate, in case it looks like it should: the pin is at X −552 and
+the backplate at X −563.18…−560, so they never intersect.
 
 **Charging handle** — slides, spring returns, **150 mm of travel**, and it runs in the
 **existing 192 × 8 mm slot**. No extra metal is removed for it and **no guide rod is used** —
@@ -143,7 +157,7 @@ All imperial, 12" minimum lengths, cut to length only — no rip cuts.
 |---|---|---|---|---|
 | 1 | 2" × 3" × 0.120" wall rect tube | A500 Gr B | — | Core tube — **supplied by the laser vendor, don't buy separately** |
 | 2 | 1-1/2" OD × 1.188" ID | **DOM** | 12" | Barrel socket |
-| 3 | 1/2" × 2" flat bar | A36 HR | 12" | Pintle tabs ×2 |
+| 3 | 1/2" × 2" flat bar | A36 HR | 12" | Pintle tabs ×2 + backplate bosses ×2 |
 | 4 | 1/4" × 3" flat bar | A36 HR | 12" | Barrel plate |
 | 5 | 1/8" × 1" flat bar | A36 HR | 24" | Hatch spine + hinge tabs |
 | 6 | 1/8" × 3" flat bar | A36 HR | 12" | Backplate |

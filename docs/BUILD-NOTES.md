@@ -252,6 +252,30 @@ load, plastic is cosmetic. The buffer tube is relieved for the trigger arm's swe
 **Relieve against the SWEPT envelope of moving parts**, not their rest position — the trigger
 envelope over 0…5.5° is 43.0 cm³.
 
+### BACKPLATE IS BOLTED, NOT WELDED
+Welding it seals the trigger away for good — the mechanism is at X −580…−526 and the tube's top
+opening only runs X −310…−2, so there is no other way in.
+
+**4 × M5 at Y ±16, Z −26 and Z −36**, into two 1/2" bars welded down the inside of the rear walls
+(`BP_Boss_L/R_1-2`, X −560…−547.3, Z −39…−17). 12.7mm of thread depth.
+
+**The bars must stop at Z −39.** Running them to −43 clips the tube's interior corner radius,
+which begins at Z −39.9 (0.023 cm³ each).
+
+**All four screws are low** — Y ±16 spread 32mm, but only 12mm apart in Z. The switch carrier
+occupies Y ±22, Z −16…+26.8 and blocks every upper position. The top of the plate is held by the
+rear locating tab instead. Freeing an upper pair would mean trimming the carrier's flange, which
+risks disconnecting it from the wall rails at Z 13…23.5.
+
+**The pivot pin cannot retain the backplate** — pin at X −552, backplate at X −563.18…−560, 8mm
+apart and never intersecting. What the pin *does* need is drift access: a **⌀6 hole in `Side_R1`
+at X −552, Z +1**, otherwise the side skin traps it.
+
+Disassembly, each step verified by sweeping the part clear of everything:
+1. drift the pin out through the `Side_R1` hole
+2. draw the trigger straight back, lever sliding out through the backplate slot
+3. undo 4 × M5 — the backplate lifts off and brings the switch carrier with it
+
 ### TRIGGER — press DOWN, tail rises, switch sits ABOVE the tail
 **Direction matters and I got it backwards once.** Pressing the butterfly down at the rear swings
 the tail *up*, because the press point is behind and above the pivot. The switch therefore sits
