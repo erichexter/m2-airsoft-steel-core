@@ -161,16 +161,25 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 
 Working design, not yet fabricated. Known open items:
 
-- No skin-to-tube fastening scheme yet — no bolt bosses or captive nuts
-- Rear of the tube is open; no backplate, grips or trigger
+- **1.95 mm gap between `FrontBoss` and `Barrel_Jacket`.** FrontBoss ends at X 24.80, the jacket
+  starts at X 26.75, so that much of the 1/4" barrel plate (X 20.00…26.35) shows all the way
+  round. Fix by extending the jacket rearward to X 24.80 with its rear pocketed to clear the
+  plate — keeps the muzzle end at X 287. See the task notes for the pocket dimensions.
+- **Nothing fastens the jacket to `FrontBoss`.** The butt face is a thin ring with poor glue area.
+  Prefer a spigot on the jacket's rear socketing into FrontBoss — that bonds *and* locates —
+  with M4/M5 heat-set inserts as the fallback if it needs to come apart. Fastener positions must
+  clear the ⌀38.10 socket and the ⌀30.20 EMT bore.
+- **No skin-to-tube fastening scheme anywhere** — no bolt bosses or captive nuts on any panel.
+  This is the same problem as the jacket joint, across the whole gun.
 - Hinge, pintle and front-mount pin positions are inferred from the printed model rather than
   measured from real hardware — **verify before drilling steel**
 - Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
   and check the return force by hand before committing to the anchor point
 - The barrel jacket's fit on the EMT is set by the centring ring alone; if it rattles, shim it or
   add a second ring partway along
-- Trigger mounting is unsolved: the trigger sits at Z +26…+57, entirely above the tube's top at
-  Z +24, so the 1/8" backplate as drawn cannot reach it
+- The grip and buffer tube touch face-to-face at X −573.2 and could merge into one printed part,
+  dropping the rear from 3 printed pieces to 2. The steel backplate cannot join them — different
+  material and process.
 
 ---
 
