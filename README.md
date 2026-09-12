@@ -135,6 +135,20 @@ joint requires, and the jacket is already located by the ⌀38.90 bore over the 
 were considered and rejected: the joint face is buried under 260mm of jacket from the front and
 38mm of FrontBoss from the rear, so no fastener is reachable once assembled.
 
+### The barrel comes off without disturbing the jacket
+
+**2 × M5 set screws tapped into the socket** at X 55 and X 75, entering from underneath and
+bearing on the EMT. The socket wall is 3.96mm, so an M5 gets full thread depth. They close a
+0.32mm radial gap (socket ID r15.09 against EMT OD r14.77) — dimple the EMT at both positions so
+the screws locate positively rather than relying on friction.
+
+The screws sit under the jacket, so the jacket carries **2 × ⌀7 access channels** straight up from
+its underside. A 2.5mm hex key reaches both screws with the barrel fully assembled — verified
+clear through jacket, socket and EMT. Slacken both and the barrel slides straight out forward;
+swept 150mm with no catch.
+
+X 55 and 75 were chosen because X 95 lands on one of the jacket's cooling holes.
+
 EMT is galvanised. Scuff and etch-prime it before painting or nothing will stick, and **do not
 weld or braze it** — heating zinc gives off fumes that will make you ill. It doesn't need welding
 here; it's a slip fit into the socket.
@@ -200,16 +214,25 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 
 ## Status
 
-Working design, not yet fabricated. Known open items:
+Working design, not yet fabricated. The geometry is resolved — every part has been checked against
+every other part with no interference, and every mechanism has been swept through its full range.
 
-- `Bot2` is 2 shells by design — two thin rails in the bottom corners, printed as one file
-- `Hatch` is 329.9 mm and only fits the bed laid diagonally (294 mm footprint, 5.7 mm margin)
-- Hinge, pintle and front-mount pin positions are inferred from the printed model rather than
-  measured from real hardware — **verify before drilling steel**
+Open items, all of which need hardware in hand rather than more CAD:
+
 - Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
   and check the return force by hand before committing to the anchor point
 - The barrel jacket's fit on the EMT is set by the centring ring alone; if it rattles, shim it or
   add a second ring partway along
+- Print tolerance on the ⌀38.90 jacket bore over the ⌀38.10 socket: FDM holes come out undersized,
+  so print a short test ring before committing 260 mm of filament
+
+Decided, not open:
+
+- **Pin positions stand as designed.** Hinge, pintle and front-mount pins are inferred from the
+  donor model rather than measured off real hardware, and that is accepted — the mounts are
+  tolerant enough that a few millimetres either way does not matter.
+- `Bot2` is 2 shells by design — two thin rails in the bottom corners, printed as one file
+- `Hatch` is 329.9 mm and only fits the bed laid diagonally (294 mm footprint, 5.7 mm margin)
 - The steel backplate cannot merge with any printed part — different material and process. The
   grip and buffer tube are already merged into `Grip_Assembly`.
 

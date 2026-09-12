@@ -551,3 +551,23 @@ rails, left deliberately).
 6. `Bot2` is 2 shells (two bottom rails) — left as-is deliberately, keeps printing simple.
 7. Hatch latch, feed tray detail.
 8. Deliverables not produced: 1:1 plotter template (single sheet, not tiled), STL exports.
+
+## REMOVABLE BARREL — M5 set screws in the socket
+The socket is **welded to the barrel plate**, so it is fixed and can be tapped. Wall is
+(38.10 − 30.18)/2 = **3.96mm**, enough for full M5 thread.
+
+- 2 × M5 tapped **at X 55 and X 75**, entering from underneath (tap drill ⌀4.2, Z −21…−15.05)
+- **Stop the tap hole at Z −15.05.** The socket ID is r15.09 and the EMT OD r14.77; drilling past
+  −15.05 cuts the EMT instead of leaving the screw to press on it.
+- The screws close a **0.32mm radial gap**. Dimple the EMT at both positions so they locate
+  positively instead of relying on friction.
+
+**X 95 lands on one of the jacket's cooling holes** — the jacket has no material underneath there.
+X 55 and 75 are solid.
+
+The screws are buried under the jacket, so the jacket gets **2 × ⌀7 access channels** straight up
+from its underside at the same X. Verified a 3.0mm driver shaft runs clear through jacket, socket
+and EMT to reach both screws with everything assembled. Barrel then slides straight out forward —
+swept 150mm, no catch.
+
+The jacket itself stays bonded to `FrontBoss`; it never has to come off to change the barrel.
