@@ -199,6 +199,31 @@ Hatch rotation **0.000 cm³ through 75°**.
 
 ---
 
+## SKIN FASTENING — 36 × M3 thread-forming into the tube wall
+**The panels have a 0.4mm clearance gap to the tube** (that is what `ENV` creates), so a screw
+pulled straight through would just flex a 3mm shell. Every fastener therefore has a **⌀8 boss on
+the panel's inner face** bridging that 0.4mm, with the ⌀3.4 clearance hole through it.
+
+Tube gets **⌀2.65 pilot holes**; M3 thread-forming screws cut their own thread in the 0.120" wall.
+No tap, no rivnut tool. Heads left proud — they read as the M2's rivet line.
+
+| Panel | X positions | Z or Y |
+|---|---|---|
+| `Side_L1` `Side_R1` | −525.1, −460.1, −285.7 | Z −24, +8 |
+| `Side_L2` `Side_R2` | −242.4, −122.9, −63.1 | Z −24, +8 |
+| `Top1` | −526.7, −413.5, −356.9 | Y ±18 |
+| `Bot1` | −516.3, −442.4, −294.6 | Y ±18 |
+
+Z −24 and +8 miss the CH slot (Z −12…−4) and the belt slot (Z ≥ +18); the X values miss the pivot
+pin (X −552), the backplate bosses (X −560…−547), the pintle tabs (X −384…−338), the air line
+(X −410) and the hinge tabs (X −22…0).
+
+**`Bot2` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
+them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond it.
+
+**Probing the top panel: the tube's top is at Z 27.05…30.10 over X −560…−310.** Probing at the
+Z +24 cut line reports zero viable positions, because the cut only exists from X −310 forward.
+
 ## PRINTED SKIN RULES
 
 **"Flat panels" means flat FOR PRINTING, not featureless.** Each piece lies flat on the bed with

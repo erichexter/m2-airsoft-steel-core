@@ -144,6 +144,25 @@ inside the printed jacket. Nothing of it shows.
 
 **Engine** — PolarStar F2, HPA. No battery bay needed; the air line exits through the tube floor.
 
+**Panels screw on — 36 × M3.** Thread-forming button-head screws through the panel into ⌀2.65
+pilot holes drilled in the tube wall. No tapping and no rivnut tool; the wall is 0.120" so a
+thread-former cuts a full-depth thread on the way in. Heads sit proud, reading as the M2's rivet
+line rather than being hidden.
+
+| Panel | Screws | Where |
+|---|---|---|
+| `Side_L1`, `Side_R1` | 6 each | X −525.1 / −460.1 / −285.7, at Z −24 and +8 |
+| `Side_L2`, `Side_R2` | 6 each | X −242.4 / −122.9 / −63.1, at Z −24 and +8 |
+| `Top1` | 6 | X −526.7 / −413.5 / −356.9, at Y ±18 |
+| `Bot1` | 6 | X −516.3 / −442.4 / −294.6, at Y ±18 |
+
+Every panel carries a **⌀8 boss on its inner face at each screw**, bridging the 0.4 mm clearance
+gap to the tube so the screw clamps against solid material instead of flexing a 3 mm shell.
+
+**`Bot2` is bonded, not screwed.** It is two thin rails sitting over the tube's bottom corner
+radii — there is no flat there to pull against. `FrontBoss` is bonded too, to the barrel jacket.
+The pilot holes are on the wrap template in `templates/`.
+
 See [docs/BUILD-NOTES.md](docs/BUILD-NOTES.md) for the full cut list, every coordinate, the weld
 plan, and the fabrication order.
 
@@ -183,8 +202,8 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 
 Working design, not yet fabricated. Known open items:
 
-- **No skin-to-tube fastening scheme anywhere** — no bolt bosses or captive nuts on any panel.
-  The jacket-to-FrontBoss joint is solved (bonded, see below), but the receiver panels are not.
+- `Bot2` is 2 shells by design — two thin rails in the bottom corners, printed as one file
+- `Hatch` is 329.9 mm and only fits the bed laid diagonally (294 mm footprint, 5.7 mm margin)
 - Hinge, pintle and front-mount pin positions are inferred from the printed model rather than
   measured from real hardware — **verify before drilling steel**
 - Shock cord for the charging handle return is specified by routing, not by rate — pick a cord
