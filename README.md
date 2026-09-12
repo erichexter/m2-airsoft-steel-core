@@ -2,6 +2,9 @@
 
 A welded steel structural core for a 3D-printed Browning M2 airsoft replica.
 
+**▶ [Three-minute walkthrough video](https://github.com/erichexter/m2-airsoft-steel-core/releases/tag/v1.0)**
+— cross-sections, what is steel, how it goes together.
+
 Instead of printing the receiver as a structural part, this design puts all the load into a
 single piece of **2" × 3" × 0.120" wall rectangular steel tube**. The printed parts become
 non-structural cosmetic skins that bolt and glue over it, plus a printed cradle that carries the
