@@ -19,11 +19,11 @@ parts are faceted.
 | # | Part | Faces | Status | Feasibility | Notes |
 |---|---|---:|---|---|---|
 | 1 | `Barrel_Jacket` | 17,422 | ✅ **done** → **60** | — | Revolution + regular hole pattern. 290× reduction. |
-| 2 | `Trigger` | 611 | ☐ todo | **good** | Butterfly paddle + the lever, which is already native boxes. Mostly prismatic. |
-| 3 | `Top1` | 1,169 | ☐ todo | **good** | Flat deck strip between the side panels. Largely a plate with cutouts. |
-| 4 | `Side_L2` | 1,913 | ☐ todo | fair | Forward side panel — flat, moderate surface detail. |
-| 5 | `Side_R2` | 2,289 | ☐ todo | fair | Mirror of the above. |
-| 6 | `Hatch` | 2,772 | ☐ todo | fair | Curved cover shell; the spine pocket and pin bore are simple, the outer form is not. |
+| 2 | `Top1` | 1,169 | ✅ **done** → **49** | — | All planes + 6 cylinders, no NURBS at all. Volume −0.9%. |
+| 3 | `Hatch` | 2,772 | ✅ **done** → **122** | — | Prismatic runs + straight ramps. Volume −1.4%. **Fixed a real interference** — see below. |
+| 4 | `Trigger` | 611 | ⚠ **partial** | mixed | The lever *is already native*; the butterfly paddle is sculpted artwork that defeated three reconstruction attempts. See below. |
+| 5 | `Side_L2` | 1,913 | ☐ todo | fair | Forward side panel — flat, moderate surface detail. |
+| 6 | `Side_R2` | 2,289 | ☐ todo | fair | Mirror of the above. |
 | 7 | `FrontBoss` | 1,705 | ☐ todo | fair | Front boss and sight base. Blocky but fiddly. |
 | 8 | `Side_L1` | 6,631 | ☐ todo | **hard** | Rear side panel — CH slot, rivet rows, raised panels. Most detail of any skin. |
 | 9 | `Side_R1` | 5,230 | ☐ todo | **hard** | Mirror, plus the ⌀6 pin drift hole. |
@@ -33,7 +33,51 @@ parts are faceted.
 **Already native, nothing to do:** core tube, all 11 weldments, `Cradle_F2_HopUp`, `CH_Carrier`,
 `CH_Shoe`, `Trigger_Switch_Carrier`, `Bot1`, `Bot2`.
 
-**Remaining faceted total:** 49,876 faces across 10 bodies.
+**Remaining faceted total:** 46,546 faces across 8 bodies (was 49,876 across 10).
+
+Converted so far: `Barrel_Jacket` 17,422→60, `Hatch` 2,772→122, `Top1` 1,169→49.
+**21,363 faces of donor mesh replaced by 231 native ones.**
+
+---
+
+## The hatch could not close — found by rebuilding it
+
+The steel hinge tabs are 1/8 in plate at Y ±19.18…22.35 with an arc top of r8 about
+the hinge pin at (X −9, Z 62.5), rising to Z 70.5. **The donor cover is solid straight
+through that corridor.** Fitted as drawn it fouls the tabs by roughly 12 mm and cannot
+shut. The donor's clearance slots only begin at X −18; the tabs start at X −22 and are
+already 66 mm tall by X −18.
+
+This never showed up in the earlier clash audit because **the boolean against the
+faceted donor reported "clear"** — a false negative. Probing the same corridor with
+small boxes and reading the volumes showed it 100% solid. Faceted-body booleans cannot
+be trusted; see `tools/reauthor/README.md`.
+
+The native cover cuts the clearance as an **r8.5 arc about the hinge pin**, not a plain
+slot — the tab has to clear at every angle of the swing, not just when shut. Verified:
+0.00000 cm³ overlap with both tabs.
+
+> The faceted `Hatch` still carries this fault. Print `Hatch_native.stl`.
+
+---
+
+## Trigger — the lever is native, the paddle is not
+
+The functional half was already native and stays exact: riser X −580…−568 (Y ±7,
+Z −6…32), arm X −568…−526 (Y ±6, Z −6…8), ⌀4.20 pivot bore on the Y axis at X −552,
+⌀6 spring peg, ⌀3 front anchor.
+
+The butterfly paddle resisted three separate reconstructions:
+
+| attempt | result |
+|---|---|
+| Loft, arc-length resampling | Sections twisted — no point correspondence between them |
+| Loft, angular resampling about the centroid | Filled the V notch; the sections are crescents, not star-shaped |
+| Two-view silhouette intersection | Over-fills the wings — 840 mm² against an actual 396 mm² |
+
+It is a compound-curved paddle with serrated thumb pads: the same class as
+`CH_Handle` and `Grip_Assembly`, and the same verdict. Every attempt looked worse
+beside the donor than the donor does. Left faceted at 611 faces, which is cheap.
 
 ---
 
@@ -75,6 +119,17 @@ Two wrong answers came from vertex occupancy before this worked.
 For the jacket this gave 4 holes per row at 90°, **alternate rows offset 45°**, pitch 25.5, ⌀26.
 An earlier occupancy read said 8 aligned rows of ⌀20 and looked obviously wrong beside the donor.
 
+### 2b. For plate and box parts, scan for prismatic runs first
+`tools/reauthor/scanx.js` plots cross-sectional area against station. Long stretches
+of identical area are constant-section runs — extrude those. Steps between them are
+where the profile changes. The hatch turned out to be five constant runs and two
+straight ramps; Top1 was six runs and six blind holes.
+
+**Straighten before authoring.** `snap.js` clusters measured coordinates onto shared
+values. The M2 was designed in 1918 out of flat plate — the wobble in the mesh is scan
+noise, not intent, and straight lines both read better and model smaller. Keep the
+round-number tolerance under 0.06 mm so real dimensions (12.70 = ½ in) survive.
+
 ### 3. Author from primitives
 Stack `createCylinderOrCone` segments for the profile, boolean the bores, pattern the holes.
 
@@ -114,3 +169,33 @@ receiver, and the receiver front is Y ±30 — so the flats sit flush with the s
 
 Kept **alongside** the faceted part (`Barrel_Jacket_native.stl` / `.stp`) rather than replacing it,
 until those are resolved or judged unnecessary.
+
+---
+
+## Hatch and Top1 — what was built
+
+| | Hatch faceted | Hatch native | Top1 faceted | Top1 native |
+|---|---|---|---|---|
+| Faces | 2,772 | **122** | 1,169 | **49** |
+| Volume | 516.81 cm³ | 509.83 | 472.87 cm³ | 468.63 |
+| Difference | — | −1.4% | — | −0.9% |
+| Symmetric difference vs donor | — | 2.2% | — | 1.3% |
+
+**Hatch**: main run X −333…−119, widening to the front block over −119…−108, the
+underside opening −101…−40, nose taper −32…−16, front sight aperture to −4.4. Three
+hinge knuckles (r3.47 about Y 24.5, Z 67.03) and the rear sight base as a truncated
+pyramid — which is what the donor actually is, a trapezoid in both elevations, not a
+dome.
+
+**Top1**: constant width Y ±25.8 throughout. Rear underside notches, a crowned main
+run, the tall rear-sight block X −495…−432.5 with straight ramps at both ends, and six
+⌀3.40 blind holes (Z 30.5…51.0) at X −526.7 / −413.5 / −356.9, Y ±18.
+
+Top1 is entirely planes and cylinders — no NURBS at all.
+
+### Still missing
+- Hatch: the small top-centre slot near the rear (X ≈ −325) is not reproduced.
+- Both: the donor's corner radii are replaced by straight chamfers, which is where
+  most of the ~1% volume difference comes from. This is deliberate — the M2 is a
+  plate-and-rivet design, and straight chamfers read closer to the real gun than
+  the mesh's rounded-over edges do.
