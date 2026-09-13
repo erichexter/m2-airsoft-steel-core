@@ -79,10 +79,12 @@ def build_side2(name, sign, rear_panel=True, boss=False):
     T.booleanOperation(acc, cyl((BIG[0], yh0, BIG[1]), (BIG[0], yh1, BIG[1]), BIG[2]),
                        BT.DifferenceBooleanType)
 
-    # rivet detail: blind dimples in the exposed outer face of the plate
-    yr0, yr1 = sign * 30.05, sign * 27.75
+    # Rivet detail: SPHERICAL dimples in the exposed outer face, R 3.125 about
+    # |Y| 31.035 - a d5.9 opening 2.1 mm deep. The first pass read the diameter
+    # deep inside the dimple and cut d1.50 pin holes instead, which is wrong in
+    # both size and shape.
     for (x, z) in RIVETS:
-        T.booleanOperation(acc, cyl((x, yr0, z), (x, yr1, z), 1.50), BT.DifferenceBooleanType)
+        T.booleanOperation(acc, sphere((x, sign * 31.035, z), 3.125), BT.DifferenceBooleanType)
 
     for b in list(comp.bRepBodies): b.deleteMe()
     nb = comp.bRepBodies.add(acc); nb.name = name.replace('_Native', '_native')

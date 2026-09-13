@@ -17,7 +17,8 @@ M, FF, FT = MAIN[0], FRONT_FULL[0], FRONT_T[0]
 N16, RL = NOSE16[0], REAR_LUG[0]
 
 segs = []
-segs.append(extrude_region(comp, -333.0, -119.0, M))      # main run, 214 mm
+segs.append(loft_regions(comp, [(-334.3, REAR[0]), (-332.0, M)]))  # rear end chamfer
+segs.append(extrude_region(comp, -332.0, -119.0, M))      # main run, 213 mm
 segs.append(loft_regions(comp, [(-119.0, M), (-108.0, FF)]))   # widen to the front block
 segs.append(extrude_region(comp, -108.0, -101.0, FF))
 segs.append(extrude_region(comp, -101.0,  -40.0, FT))     # underside opening

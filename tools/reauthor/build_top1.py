@@ -37,10 +37,17 @@ rear = extrude_region(comp, -30.0, 30.0,
 T.booleanOperation(acc, T.copy(front), BT.DifferenceBooleanType)
 T.booleanOperation(acc, T.copy(rear), BT.DifferenceBooleanType)
 
-# six blind d3.40 fastening holes, up from the underside
+# Six d8 bosses standing 0.35 mm proud of the underside at the fastener positions -
+# the same bridging bosses the side panels carry, landing the deck on the tube.
+# The first pass missed them and left the part 0.35 mm short in Z.
 for x in (-526.7, -413.5, -356.9):
     for y in (18.0, -18.0):
-        T.booleanOperation(acc, cyl((x, y, 30.0), (x, y, 51.0), 3.40), BT.DifferenceBooleanType)
+        T.booleanOperation(acc, cyl((x, y, 30.15), (x, y, 30.50), 8.0), BT.UnionBooleanType)
+
+# six blind d3.40 fastening holes, up through the boss from the underside
+for x in (-526.7, -413.5, -356.9):
+    for y in (18.0, -18.0):
+        T.booleanOperation(acc, cyl((x, y, 30.10), (x, y, 51.0), 3.40), BT.DifferenceBooleanType)
 
 for b in list(comp.bRepBodies): b.deleteMe()
 nb = comp.bRepBodies.add(acc); nb.name = 'Top1_native'

@@ -18,34 +18,47 @@ parts are faceted.
 
 | # | Part | Faces | Status | Volume | Notes |
 |---|---|---:|---|---:|---|
-| 1 | `Barrel_Jacket` | 17,422 | ✅ **60** | −27% | Revolution + regular hole pattern. 290× reduction. |
-| 2 | `Top1` | 1,169 | ✅ **49** | −0.9% | All planes + 6 cylinders, **no NURBS at all**. |
-| 3 | `Hatch` | 2,772 | ✅ **122** | −1.5% | Prismatic runs + straight ramps. **Fixed a real interference** — see below. |
-| 4 | `Side_L2` | 1,913 | ✅ **93** | −1.5% | Layered plate, 9 rivets at 18.31 pitch, 6 M3 bosses. |
-| 5 | `Side_R2` | 2,289 | ✅ **84** | −1.4% | Same, but a conical boss where the left has a rear panel. |
-| 6 | `Side_L1` | 6,631 | ✅ **279** | −1.2% | CH slot, 16 rivet heads, ⌀19 boss, five stepped tiers. |
-| 7 | `Side_R1` | 5,230 | ✅ **172** | −2.4% | Conical rivets, the ⌀6 pin drift hole, the top bracket. |
-| 8 | `FrontBoss` | 1,705 | ✅ **304** | −1.7% | Front sight hood and post, 12 rectangular standoff ribs. |
-| 9 | `Trigger` | 611 | ⚠ **partial** | — | The lever *is already native*; the butterfly paddle defeated three attempts. |
-| 10 | `CH_Handle` | 10,134 | ✖ not worth it | — | Organic knurled grip. Primitives would look worse than the donor. |
-| 11 | `Grip_Assembly` | 17,621 | ✖ not worth it | — | Spade grips — the most sculptural part on the gun. |
+| 1 | `Grip_Assembly` | 17,621 | ✅ **1,463** | −2.0% | Two handgrips are **exact revolves**; frame is a stack of plan sections. |
+| 2 | `Barrel_Jacket` | 17,422 | ✅ **60** | −27% | Revolution + regular hole pattern. 290× reduction. |
+| 3 | `CH_Handle` | 10,134 | ✅ **73** | +0.6% | Knob is an **exact revolve** — 3 faces. Plate, arm, 4 × ⌀8 nut pockets. |
+| 4 | `Side_L1` | 6,631 | ✅ **262** | −0.9% | CH slot, 16 domed rivets, ⌀19 boss, five stepped tiers. |
+| 5 | `Side_R1` | 5,230 | ✅ **162** | −2.7% | Domed rivets, the ⌀6 pin drift hole, the top bracket. |
+| 6 | `Hatch` | 2,772 | ✅ **138** | −1.2% | Prismatic runs + straight ramps. **Fixed a real interference** — see below. |
+| 7 | `Side_R2` | 2,289 | ✅ **75** | −1.6% | Spherical rivet dimples, conical boss where the left has a rear panel. |
+| 8 | `Side_L2` | 1,913 | ✅ **84** | −1.7% | Layered plate, 9 dimples at 18.31 pitch, 6 M3 bosses. |
+| 9 | `FrontBoss` | 1,705 | ✅ **304** | −1.7% | Front sight hood and post, 12 rectangular standoff ribs. |
+| 10 | `Top1` | 1,169 | ✅ **61** | −0.9% | Planes + cylinders only. Six ⌀8 bridging bosses under the deck. |
+| 11 | `Trigger` | 611 | ⚠ **partial** | — | The lever *is already native*; the butterfly paddle defeated three attempts. |
 
 **Already native, nothing to do:** core tube, all 11 weldments, `Cradle_F2_HopUp`, `CH_Carrier`,
 `CH_Shoe`, `Trigger_Switch_Carrier`, `Bot1`, `Bot2`.
 
 ### Where it landed
 
-**39,131 faces of donor mesh replaced by 1,163 native ones — a 34× reduction**, across all eight
-parts that were worth converting. Every one is a single watertight shell, within 2.4% of the donor
-volume, and clear of all 12 steel bodies.
+**66,886 faces of donor mesh replaced by 2,682 native ones — a 25× reduction**, across every part
+except the trigger's butterfly paddle. Each is a single watertight shell, and **every bounding box
+now matches its donor to better than 0.25 mm** in all three axes.
 
-What is left faceted is 28,366 faces in three parts, and all three are deliberate: the two grips
-and the charging-handle knob are sculpted artwork, and so is the trigger's butterfly paddle. The
-STL ships the same triangles either way — nothing is lost by leaving them.
+Volumes land within 2.7% except the jacket, which is a deliberate simplification. The whole printed
+set is 2,962 cm³ native against 3,229 cm³ faceted.
 
-Skin-to-skin overlap across the whole native set is **0.065 cm³**, all of it in the castellated
-joints where `Side_?2` interlocks with `Side_?1`: about 0.02 mm of average interference over a
-1,300 mm² joint. That is snapping noise, an order of magnitude under the layer height.
+Only 611 faces remain faceted, and only the paddle within that.
+
+### The two I wrongly wrote off
+
+The first version of this table marked `CH_Handle` and `Grip_Assembly` "not worth it — organic,
+knurled, the most sculptural parts on the gun." **Both are wrong.** Measured with the same
+first-hit-radius method used on the jacket:
+
+| | axis | agreement across rays |
+|---|---|---|
+| CH knob | Y at (X −286.80, Z 48.875) | **0.008 mm** over 64 rays |
+| Handgrips | Z at (X −613.81, Y ±62.23) | **0.006 mm** over 48 rays |
+
+They are not knurled at all. They are **turned** — bodies of revolution to eight microns, the
+easiest case there is. Each is now a single revolve of **3 faces**. What made them look organic in
+the browser was 10,000 triangles, which is exactly the trap this document already warned about for
+the side panels, and I walked into it twice more.
 
 ---
 
@@ -72,6 +85,8 @@ slot — the tab has to clear at every angle of the swing, not just when shut. V
 
 ## Trigger — the lever is native, the paddle is not
 
+> This is now the **only** faceted part left, and only its paddle.
+
 The functional half was already native and stays exact: riser X −580…−568 (Y ±7,
 Z −6…32), arm X −568…−526 (Y ±6, Z −6…8), ⌀4.20 pivot bore on the Y axis at X −552,
 ⌀6 spring peg, ⌀3 front anchor.
@@ -84,9 +99,11 @@ The butterfly paddle resisted three separate reconstructions:
 | Loft, angular resampling about the centroid | Filled the V notch; the sections are crescents, not star-shaped |
 | Two-view silhouette intersection | Over-fills the wings — 840 mm² against an actual 396 mm² |
 
-It is a compound-curved paddle with serrated thumb pads: the same class as
-`CH_Handle` and `Grip_Assembly`, and the same verdict. Every attempt looked worse
-beside the donor than the donor does. Left faceted at 611 faces, which is cheap.
+It is a compound-curved paddle with serrated thumb pads. Note that the same verdict was
+originally given to `CH_Handle` and `Grip_Assembly` and was **wrong for both** — they turned
+out to be exact revolves. The difference is that those two are round about an axis and this
+is not: the paddle's sections are crescents that change character along the sweep. Left
+faceted at 611 faces, which is cheap.
 
 ---
 
@@ -279,3 +296,94 @@ Found by clashing the finished native set against itself. Neither existed in the
 
 Both are the kind of thing that only shows up once the geometry is clean enough to boolean
 honestly. Against the faceted donors, these checks returned "clear".
+
+---
+
+## Rivets are round-head rivets
+
+Every raised disc on the gun is a **spherical dome**, not a flat-topped cylinder. Fitted against
+r² = R² − (Y − Yc)² off the donor mesh:
+
+| feature | centre \|Y\| | R | max deviation |
+|---|---:|---:|---:|
+| `Side_L1` rivet heads ×16 | 33.546 | 4.219 | 0.23 mm |
+| `Side_R1` rivet heads ×16 | 33.525 | 4.223 | 0.25 mm |
+| `Side_L1` upper studs ×4 | 28.953 | 3.380 | 0.10 mm |
+| `Side_L1` mid studs ×3 | 35.554 | 4.394 | 0.11 mm |
+| `Side_R1` tier studs ×2 / ×4 | 28.346 / 28.966 | 5.269 / 3.360 | 0.15 mm |
+| `Side_R1` bracket rivet | 44.529 | 5.138 | 0.29 mm |
+
+The two rear panels carry the *same* rivet, agreeing to 0.005 mm. The first pass built the left
+ones as flat cylinders and the right ones as cones, which is what made the two sides look different.
+
+**The inset holes are spherical too.** The forward panels' rivet detail is a ⌀5.9 spherical dimple
+2.1 mm deep (R 3.125 about \|Y\| 31.035); the first pass measured the diameter *deep inside* the
+dimple and cut ⌀1.50 pin holes — wrong in both size and shape. The small recesses on the rear
+panels are likewise spherical (R 2.95 on the left about \|Y\| 37.28, R 3.00 on the right about
+34.01), not flat-bottomed bores. The ⌀9.98 recesses genuinely are flat-bottomed cylinders.
+
+A dome is a whole sphere, so its far hemisphere sits *inside* the panel and can break out through
+the inboard face — `Side_R1` ended up 2.3 mm inside the tube before the parts were clipped back
+to the tube face at \|Y\| 25.40.
+
+---
+
+## Four truncations, found by auditing bounding boxes
+
+After fixing one shortfall by hand it was obvious to check them all. Comparing each native part's
+bounding box against its donor found four, every one a case of stopping at a round number instead
+of where the geometry ends:
+
+| part | axis | donor | first pass | short |
+|---|---|---:|---:|---:|
+| `Side_R1` | Y max | 49.70 | 46.20 | **3.50 mm** |
+| `Hatch` | X min | −334.34 | −333.00 | **1.34 mm** |
+| `Side_L1` | Y min | −62.30 | −61.50 | **0.80 mm** |
+| `Top1` | Z min | 30.15 | 30.50 | **0.35 mm** |
+
+- `Side_R1` — a domed rivet on the bracket's centre pad, lopped off by a tier ending at 46.2.
+- `Hatch` — a rear end chamfer over X −334.3…−332, asymmetric: it tapers on the −Y side and the
+  top while Y max stays 34.90.
+- `Side_L1` — the ⌀18.98 boss is flat-ended at \|Y\| 62.25, not 61.50.
+- `Top1` — the one that mattered: **six ⌀8 bridging bosses under the deck** at the M3 positions,
+  standing 0.35 mm proud. The same bosses the side panels carry, the ones that land the deck on the
+  tube. They had been omitted entirely and the holes drilled straight through a flat face.
+
+**Make the bounding-box audit routine.** It is cheap, it needs no Fusion, and it catches exactly
+the class of error that volume comparison hides — 0.35 mm of missing boss costs almost no volume.
+
+---
+
+## Grips and charging handle — what was built
+
+**CH_Handle**, 73 faces. One revolve for the knob (Y −171.45…−58, r 9.97 at the tip swelling to
+15.83 and back to 11.67), the mounting plate over Y −58…−48, and the flat arm X −386…−280 over
+Y −48…−38 carrying **four ⌀8 blind nut pockets** at X −370 / −340 / −310 / −290, Z −5, entered
+from the outboard face. Plus the ⌀19 boss at (X −293.6, Z −8.02).
+
+**Grip_Assembly**, 1,463 faces. Two revolved handgrips — barrel-shaped, r 12.81 at the base
+swelling to 15.87 and shouldered into a domed top at Z 72.1 — on a frame built from **33 horizontal
+plan sections**.
+
+An earlier attempt extruded the fore-aft *side* profile across the full width and trimmed it
+against one plan section per half. That was 10% light and it also filled in the slot the trigger
+passes through. The spine's plan changes shape the whole way up; it is not a slab with a constant
+outline. Sampling the plan every 1 mm, cutting bands at the real transitions and merging identical
+ones gives 33 bands and lands within 2%.
+
+The mounting tongue reaches into the receiver, so the grip is relieved against the tube, the
+backplate and its bosses, and against the **trigger swept through its 6° of travel** — otherwise it
+fouls partway through the pull rather than at rest.
+
+---
+
+## Two more lessons
+
+**Do not approximate a revolve with a stack of cone segments.** Forty-four segments through the
+measured radius profile is geometrically fine and renders as visible rings — it looks *knurled*,
+which is the one thing these turned parts are not. A single `revolveFeature` through a fitted
+spline is 3 faces and actually smooth.
+
+**When merging bands, put hole topology in the merge signature.** Merging two bands keeps the
+first one's profile. If a slot appears in only some bands of a group, merging silently fills it
+back in — which is how the trigger's clearance slot disappeared.

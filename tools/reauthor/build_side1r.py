@@ -51,21 +51,27 @@ def build_side1r(name, sign):
     for x in BRACKET_PADS:
         T.booleanOperation(acc, cyl((x, sign*34.50, BRACKET_Z), (x, sign*46.20, BRACKET_Z), 12.0),
                            BT.UnionBooleanType)
+    # domed rivet on the centre pad, standing proud of the bracket face. Truncating
+    # the part at |Y| 46.2 lopped this off and left the panel 3.5 mm short of the
+    # donor's 49.7 - it is the whole reason the right panel's Y extent was wrong.
+    T.booleanOperation(acc, dome(BRACKET_PADS[1], BRACKET_Z, 44.529, 5.138, sign),
+                       BT.UnionBooleanType)
     # The tier beneath the bracket stops at X -334.4, which is exactly where the top
     # cover begins. Past that the bracket overhangs the cover's skirt, so its underside
     # has to start outboard of it - the donor does the same thing.
     T.booleanOperation(acc, box(-334.4, -300.0, sign*34.50, sign*34.95, 44.0, 70.0),
                        BT.DifferenceBooleanType)
 
-    # conical rivet heads: d9.6 at the tier face tapering to d6.4
+    # Round-head rivets: spherical domes. Fitted off the donor at centre |Y| 33.525,
+    # R 4.223 - the same rivet the left panel carries, to within 0.005 mm.
     for (z, x0, pitch, n) in RIVET_ROWS:
         for i in range(n):
-            x = x0 + pitch * i
-            T.booleanOperation(acc, cyl((x, sign*34.50, z), (x, sign*37.40, z), 9.90, 6.40),
-                               BT.UnionBooleanType)
+            T.booleanOperation(acc, dome(x0 + pitch*i, z, 33.525, 4.223, sign), BT.UnionBooleanType)
 
+    # the six studs on the middle tier are domes too, in two sizes
     for (x, z, dia) in R1_D2:
-        T.booleanOperation(acc, cyl((x, sign*30.00, z), (x, sign*33.00, z), dia), BT.UnionBooleanType)
+        yc, R = (28.346, 5.269) if dia > 6.0 else (28.966, 3.360)
+        T.booleanOperation(acc, dome(x, z, yc, R, sign), BT.UnionBooleanType)
 
     for xx in M3_X:
         for zz in M3_Z:
@@ -77,6 +83,16 @@ def build_side1r(name, sign):
     # d6 pin drift hole and the small hole above it, right through
     for (x, z, dia) in R1_CUT:
         T.booleanOperation(acc, cyl((x, sign*24.0, z), (x, sign*48.0, z), dia), BT.DifferenceBooleanType)
+
+    # the two small inset recesses on the middle tier - spherical interior, R 3.00
+    # about |Y| 34.01. These were missed entirely on the first pass.
+    for z in (24.016, -21.900):
+        T.booleanOperation(acc, sphere((-545.57, sign*34.01, z), 3.00), BT.DifferenceBooleanType)
+
+    # A dome is a whole sphere; its far hemisphere sits inside the panel and can
+    # break out through the inboard face. Clip everything back to the tube face.
+    T.booleanOperation(acc, box(-600.0, -250.0, sign*25.40, sign*90.0, -90.0, 90.0),
+                       BT.IntersectionBooleanType)
 
     for b in list(comp.bRepBodies): b.deleteMe()
     nb = comp.bRepBodies.add(acc); nb.name = name.replace('_Native', '_native')

@@ -83,6 +83,52 @@ def cyl(p0, p1, d, d2=None):
         c.Point3D.create(p0[0]/10., p0[1]/10., p0[2]/10.), d/20.,
         c.Point3D.create(p1[0]/10., p1[1]/10., p1[2]/10.), (d if d2 is None else d2)/20.)
 
+def sphere(centre, radius):
+    """radius in mm."""
+    return tbm().createSphere(
+        c.Point3D.create(centre[0]/10., centre[1]/10., centre[2]/10.), radius/10.)
+
+def dome(x, z, y_centre, radius, sign=1.0):
+    """A rivet head. The sphere centre sits *inside* the panel, so unioning it
+    leaves only the spherical cap standing proud - which is what a round-head
+    rivet actually is. y_centre is given as |Y|."""
+    return sphere((x, sign * y_centre, z), radius)
+
+def revolve_profile(comp, plane, pts3d, axis_p0, axis_p1, smooth=True):
+    """A true surface of revolution. pts3d are model-space points tracing the
+    OUTER profile; axis_p0/axis_p1 are two points on the axis, in the same plane.
+    Closing the profile back along the axis gives the end faces.
+
+    Use this rather than a stack of cone segments: a 44-segment stack renders as
+    visible rings and reads as knurling, which is exactly what these turned parts
+    are not."""
+    sk = comp.sketches.add(plane); sk.isLightBulbOn = False
+    col = c.ObjectCollection.create()
+    for p in pts3d:
+        col.add(sk.modelToSketchSpace(c.Point3D.create(p[0]/10.0, p[1]/10.0, p[2]/10.0)))
+    lines = sk.sketchCurves.sketchLines
+    if smooth:
+        crv = sk.sketchCurves.sketchFittedSplines.add(col)
+        p_start, p_end = crv.startSketchPoint, crv.endSketchPoint
+    else:
+        segs = [lines.addByTwoPoints(col.item(i), col.item(i+1)) for i in range(col.count-1)]
+        p_start, p_end = segs[0].startSketchPoint, segs[-1].endSketchPoint
+    a0 = sk.modelToSketchSpace(c.Point3D.create(axis_p0[0]/10.0, axis_p0[1]/10.0, axis_p0[2]/10.0))
+    a1 = sk.modelToSketchSpace(c.Point3D.create(axis_p1[0]/10.0, axis_p1[1]/10.0, axis_p1[2]/10.0))
+    l1 = lines.addByTwoPoints(p_end, a1)
+    axl = lines.addByTwoPoints(a1, a0)
+    lines.addByTwoPoints(a0, p_start)
+    if sk.profiles.count == 0:
+        raise RuntimeError('revolve profile did not close')
+    best, ba = None, -1
+    for pr in sk.profiles:
+        a = pr.areaProperties(f.CalculationAccuracy.LowCalculationAccuracy).area
+        if a > ba: ba, best = a, pr
+    ri = comp.features.revolveFeatures.createInput(
+        best, axl, f.FeatureOperations.NewBodyFeatureOperation)
+    ri.setAngleExtent(False, c.ValueInput.createByReal(2 * 3.14159265358979))
+    return comp.features.revolveFeatures.add(ri).bodies.item(0)
+
 def cleanup(comp):
     for s in list(comp.sketches): s.deleteMe()
     for p in list(comp.constructionPlanes): p.deleteMe()

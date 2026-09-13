@@ -18,6 +18,10 @@ snap.js        straighten: heavy RDP, then cluster coordinates onto shared value
                and `discs` (rivet heads) so the build can cut/add them as real
                cylinders - a circle that goes through RDP comes back a triangle.
 ascii.js       print a profile as an ASCII occupancy map so you can see it
+discprofile.js measure a raised/recessed feature's diameter along its axis and fit
+               a sphere, so a DOME can be told from a cylinder or a cone
+revprof.js     first-hit radius on an (axis, theta) grid - proves whether a part is
+               a body of revolution, and gives its radius profile if it is
 sections.js    many sections at once, for the rare part that really is lofted
 silhouette.js  rasterised projection outline (useful, but see the warning below)
 _lib.py        Fusion side: sketch a region on any plane, extrude it, loft between
@@ -53,6 +57,19 @@ then feed the snapped regions to `extrude_region` / `loft_regions` in Fusion.
   section stays the same *kind* of shape along the run.
 - **Snapping must not eat real dimensions.** An early pass rounded 12.70 — half an
   inch, the tube notch — up to 13. Keep the round-number tolerance under 0.06 mm.
+- **Audit bounding boxes against the donor.** Four parts were built short because a
+  run was stopped at a round number instead of where the geometry ends. Volume
+  comparison hides this — 0.35 mm of missing boss costs almost no volume — but a
+  bbox diff catches it instantly, and it needs no CAD package.
+- **Check whether a round feature is a DOME before building it.** Every raised disc
+  on this gun is a spherical rivet head, and the recessed ones are spherical dimples.
+  Fit r² = R² − (s − c)²; a real sphere fits to under 0.3 mm. Remember a dome is a
+  whole sphere, so its far half sits inside the part and can break out the back.
+- **Never approximate a revolve with a stack of cone segments.** It is geometrically
+  fine and renders as visible rings — it looks knurled. One `revolveFeature` through
+  a fitted spline is 3 faces and actually smooth.
+- **Put hole topology in any band-merge signature.** Merging bands keeps the first
+  one's profile, so a slot that appears in only some of them is silently filled in.
 
 ## The build scripts
 

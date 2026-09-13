@@ -93,7 +93,8 @@ d.regions=d.regions.map(r=>{
   const o=fix(r.outer), h=keep.map(fix);
   return {outer:o, holes:h, net:+(area(o)-h.reduce((s,x)=>s+area(x),0)).toFixed(2)};});
 d.circles=circles; d.discs=discs;
-d.outer=d.regions[0].outer; d.holes=d.regions[0].holes;
+if(d.regions.length){ d.outer=d.regions[0].outer; d.holes=d.regions[0].holes; }
+else { d.outer=[]; d.holes=[]; }
 d.areaNet=+d.regions.reduce((s,r)=>s+r.net,0).toFixed(1);
 fs.writeFileSync(file.replace('.json','_s.json'), JSON.stringify(d));
 console.log(file.padEnd(20)+' -> '+d.regions.length+' region(s) '+d.regions.map(r=>r.outer.length+'pts').join(',')+
