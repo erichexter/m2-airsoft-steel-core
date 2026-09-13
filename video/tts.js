@@ -59,8 +59,11 @@ function tts(text, file) {
   });
 }
 
+const only = process.argv[3] ? process.argv[3].split(',') : null;
+
 (async () => {
   for (const b of blocks) {
+    if (only && !only.includes(b.name)) continue;
     const text = clean(b.text);
     if (!text) continue;
     const file = path.join(OUT, b.name + '.mp3');

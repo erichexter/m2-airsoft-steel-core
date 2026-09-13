@@ -35,7 +35,8 @@ frame boundary. Not worth correcting.
   **ping-ponged** (forward then reversed) so they loop seamlessly when stretched
   to fill a narration block. Turntables loop naturally and are not ping-ponged.
 - `drawtext` on Windows needs the font path escaped as `C\:/Windows/Fonts/...`.
-  Avoid apostrophes in title text — they terminate the filter string.
+  Avoid apostrophes **and colons** in title text — both terminate the filter
+  string. A subtitle reading "1:1 scale" fails to parse; "full scale" works.
 - Mesh-derived bodies (jacket, grip, handle) carry **face-level** appearances that
   override `body.appearance`, so they cannot be recoloured in bulk. Iterating
   20k faces to fix that hangs Fusion. This is why the metal/plastic story is told

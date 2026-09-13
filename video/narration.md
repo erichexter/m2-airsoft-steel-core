@@ -5,9 +5,10 @@ Target ~2:40. Each block is one TTS render; filenames match `vo/NN_name.mp3`.
 ---
 
 ## 01_hook  (over: hero turntable)
-This is a one-to-one Browning M2, and almost all of it is 3D printed. But the part
-doing the work isn't printed at all. It's a single piece of steel tube — and that one
-change turns a display piece into something you can actually pick up by the barrel.
+This is an airsoft M2 replica. One to one scale, shoots six millimetre plastic BBs, and
+almost all of it is 3D printed. But the part doing the work isn't printed at all. It's
+a single piece of steel tube — and that one change turns a display piece into something
+you can actually pick up by the barrel.
 
 ## 02_problem  (over: hero turntable continuing, then printed-only)
 A printed receiver this size has a problem. It flexes. The model this is based on
@@ -27,10 +28,12 @@ inside the tube for the cover hinge, so hinge load never touches plastic. Eleven
 of steel, all of it standard imperial stock you can buy in twelve-inch lengths.
 
 ## 05_section  (over: cross-section sweep)
-In section you can see how it works. The steel box runs the full length. The engine
-cradle drops in through the top opening. The printed panels sit four tenths of a
-millimetre off the steel and screw to it — thirty-six M3 thread-forming screws straight
-into the tube wall, no tapping, no rivnut tool.
+In section you can see how it works. The steel box runs the full length. It's designed
+around a PolarStar F2 engine running the direct attach combo, so the hop-up and the
+engine are one unit — that's what the printed cradle holds, and the whole thing drops
+in through the top opening. The printed panels sit four tenths of a millimetre off the
+steel and screw to it: thirty-six M3 thread-forming screws straight into the tube wall.
+No tapping, no rivnut tool.
 
 ## 06_charging  (over: charging handle detail + travel)
 The charging handle works. Three printed parts sandwich the receiver wall and ride in

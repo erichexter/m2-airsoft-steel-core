@@ -21,13 +21,16 @@ the title is the first thing it sees.
 ## Description
 
 ```
-A 1:1 Browning M2 airsoft replica, mostly 3D printed — but the part carrying the load
-is a single piece of steel tube.
+This is an airsoft M2 replica — full scale, shoots 6 mm plastic BBs, and mostly 3D
+printed. But the part carrying the load is a single piece of steel tube.
 
 A printed receiver this size flexes. The model this is based on solves it with a
 four-foot wooden dowel down the middle. This replaces that with one length of 2" x 3"
 x 0.120" wall rectangular steel tube, 23" long. Everything structural welds or bolts
 to it, and the printed parts stop being the gun and become skins over it.
+
+Built around a PolarStar F2 engine running the direct-attach combo, so the hop-up and
+the engine are a single unit — that is what the printed cradle is shaped to hold.
 
 ~11.2 lb of steel, ~3.6 lb of PLA, ~17 lb finished. All the steel is standard imperial
 stock you can buy in 12" lengths.
@@ -42,15 +45,15 @@ https://github.com/erichexter/m2-airsoft-steel-core
 
 CHAPTERS
 0:00 What it is
-0:14 Why a printed receiver flexes
-0:32 The steel core
-0:47 Everything that is metal
-1:09 In section
-1:26 Charging handle
-1:39 Trigger
-1:57 Barrel — 1" EMT conduit
-2:21 The perforated jacket
-2:29 Files and licence
+0:18 Why a printed receiver flexes
+0:37 The steel core
+0:51 Everything that is metal
+1:13 In section
+1:41 Charging handle
+1:54 Trigger
+2:12 Barrel — 1" EMT conduit
+2:36 The perforated jacket
+2:43 Files and licence
 
 CREDIT
 Skin geometry is derived from "M2 Browning 0.50 cal Machine Gun (1:1 Scale)" by
@@ -72,7 +75,7 @@ transport varies — check yours before building or carrying one.
 
 ```
 airsoft, airsoft replica, m2 browning, ma deuce, 3d printing, 3d printed airsoft,
-polarstar f2, hpa airsoft, diy airsoft, fusion 360, steel fabrication, welding,
+polarstar f2, direct attach combo, hpa airsoft, diy airsoft, fusion 360, steel fabrication, welding,
 emt conduit, maker project, prop building, cosplay prop
 ```
 
@@ -87,7 +90,7 @@ emt conduit, maker project, prop building, cosplay prop
 | Licence | Standard YouTube licence (the CC BY-NC-SA on the files is separate) |
 | Comments | on |
 
-Do not crop or trim the outro — the attribution card at 2:45 satisfies the CC BY
+Do not crop or trim the outro — the attribution card near the end satisfies the CC BY
 requirement on the derived skin geometry.
 
 ## If it gets flagged

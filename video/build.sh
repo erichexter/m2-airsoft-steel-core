@@ -21,7 +21,7 @@ seg() { # seg <n> <clip> <voclip> <big> <small>
 }
 
 echo "building segments"
-seg 01 hero    01_hook     "M2 .50 cal — steel core"        "a 3D-printed replica not held together by plastic"
+seg 01 hero    01_hook     "Airsoft M2 replica — steel core" "full scale, 6 mm BBs, mostly 3D printed"
 seg 02 explode 02_problem  "The problem"                    "a printed receiver this size flexes"
 
 # 03 is the reveal: full gun crossfading to steel only
@@ -36,7 +36,7 @@ ffmpeg -y -loglevel error -stream_loop -1 -i clips/hero.mp4 -stream_loop -1 -i c
 printf "  %-4s %-9s %6.1fs  %s\n" "03" "reveal" "$D3" "One piece of steel"
 
 seg 04 steel   04_steel    "Everything that is metal"       "11.2 lb, all standard imperial stock"
-seg 05 section 05_section  "In section"                     "36 x M3 thread-forming into the tube wall"
+seg 05 section 05_section  "In section"                     "PolarStar F2 with the direct-attach combo hop-up"
 seg 06 ch      06_charging "Charging handle"                "150 mm of travel, spring returned"
 seg 07 trig    07_trigger  "Trigger"                        "pivots on a pin through both tube walls"
 seg 08 barrel  08_barrel   "Barrel is 1 inch EMT conduit"   "2 set screws, hex key reaches through the jacket"
