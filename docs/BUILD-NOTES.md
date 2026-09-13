@@ -604,3 +604,47 @@ and EMT to reach both screws with everything assembled. Barrel then slides strai
 swept 150mm, no catch.
 
 The jacket itself stays bonded to `FrontBoss`; it never has to come off to change the barrel.
+
+## NATIVE REAUTHORING — proven on the barrel jacket
+`Barrel_Jacket_Native` is authored from primitives, not converted from mesh.
+
+| | faceted | native |
+|---|---|---|
+| faces | 17,422 | **57** (13 planar, 39 cylindrical, 5 conical) |
+| STEP | ~1 MB | 382 KB |
+| editable | no | hole count, diameter, pitch and profile are all variables |
+
+**305x fewer faces**, and it is real analytic geometry — the holes are true cylinders, the
+flanges true cones.
+
+### How the pattern was measured
+Vertex-occupancy does not work: a smooth cylindrical band has vertices only at its edges, so
+empty bins read as holes. Two wrong answers came out of that before ray-casting gave the truth.
+
+**Ray-cast inward from r=60 on an (x, theta) grid and record the FIRST-hit radius.** Hit near
+r=39.6 means wall; anything deeper means a hole. Counting hits alone is useless — every ray
+crosses the far wall, so everything reads as material.
+
+Measured result: **4 holes per row at 90 degrees, alternate rows offset 45 degrees**, pitch
+25.5mm, 7 rows from X 88, d26. Staggered, not aligned — an earlier read said 8 aligned rows of
+d20 and looked visibly wrong against the donor.
+
+### Profile, measured off the donor
+Rear flange r50.80 to X 38, taper to r41.35 by X 41, r41.35 to X 82, taper to r39.60 by X 90,
+main tube r39.60 to X 272, muzzle flange r41.40 X 272..284. Bore r19.45 over the socket to X 46,
+then r29.13; centring ring r15.10 at X 273..285.
+
+**Do not forget the barrel-plate pocket** (Y +/-25.8, Z -46.5..30.5 over X 24.3..26.75). Without
+it the native jacket fouls `Barrel_Plate_1-4` by 3.9 cm3.
+
+### What is NOT worth reauthoring
+The jacket worked because it is a body of revolution with a regular hole pattern. The rest are
+not:
+
+- `Grip_Assembly` (17,621), `CH_Handle` (10,134) - organic knurled handles. Primitives would
+  look worse than the donor.
+- `Side_L1` (6,631), `Side_R1`, `Top1`, `Hatch`, `FrontBoss` - flat panels carrying the M2's
+  rivet and rib detail. The rivets are a trivial pattern; the panel outlines and raised detail
+  are freeform and would take days to approximate badly.
+
+Reauthoring those means re-drawing HappyBattleSheep's artwork, which is the thing worth keeping.
