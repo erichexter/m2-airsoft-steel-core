@@ -16,27 +16,36 @@ parts are faceted.
 
 ## Status
 
-| # | Part | Faces | Status | Feasibility | Notes |
-|---|---|---:|---|---|---|
-| 1 | `Barrel_Jacket` | 17,422 | ✅ **done** → **60** | — | Revolution + regular hole pattern. 290× reduction. |
-| 2 | `Top1` | 1,169 | ✅ **done** → **49** | — | All planes + 6 cylinders, no NURBS at all. Volume −0.9%. |
-| 3 | `Hatch` | 2,772 | ✅ **done** → **122** | — | Prismatic runs + straight ramps. Volume −1.4%. **Fixed a real interference** — see below. |
-| 4 | `Trigger` | 611 | ⚠ **partial** | mixed | The lever *is already native*; the butterfly paddle is sculpted artwork that defeated three reconstruction attempts. See below. |
-| 5 | `Side_L2` | 1,913 | ☐ todo | fair | Forward side panel — flat, moderate surface detail. |
-| 6 | `Side_R2` | 2,289 | ☐ todo | fair | Mirror of the above. |
-| 7 | `FrontBoss` | 1,705 | ☐ todo | fair | Front boss and sight base. Blocky but fiddly. |
-| 8 | `Side_L1` | 6,631 | ☐ todo | **hard** | Rear side panel — CH slot, rivet rows, raised panels. Most detail of any skin. |
-| 9 | `Side_R1` | 5,230 | ☐ todo | **hard** | Mirror, plus the ⌀6 pin drift hole. |
-| 10 | `CH_Handle` | 10,134 | ✖ **not worth it** | poor | Organic knurled grip. Primitives would look worse than the donor. |
-| 11 | `Grip_Assembly` | 17,621 | ✖ **not worth it** | poor | Spade grips — organic, knurled, the most sculptural part on the gun. |
+| # | Part | Faces | Status | Volume | Notes |
+|---|---|---:|---|---:|---|
+| 1 | `Barrel_Jacket` | 17,422 | ✅ **60** | −27% | Revolution + regular hole pattern. 290× reduction. |
+| 2 | `Top1` | 1,169 | ✅ **49** | −0.9% | All planes + 6 cylinders, **no NURBS at all**. |
+| 3 | `Hatch` | 2,772 | ✅ **122** | −1.5% | Prismatic runs + straight ramps. **Fixed a real interference** — see below. |
+| 4 | `Side_L2` | 1,913 | ✅ **93** | −1.5% | Layered plate, 9 rivets at 18.31 pitch, 6 M3 bosses. |
+| 5 | `Side_R2` | 2,289 | ✅ **84** | −1.4% | Same, but a conical boss where the left has a rear panel. |
+| 6 | `Side_L1` | 6,631 | ✅ **279** | −1.2% | CH slot, 16 rivet heads, ⌀19 boss, five stepped tiers. |
+| 7 | `Side_R1` | 5,230 | ✅ **172** | −2.4% | Conical rivets, the ⌀6 pin drift hole, the top bracket. |
+| 8 | `FrontBoss` | 1,705 | ✅ **304** | −1.7% | Front sight hood and post, 12 rectangular standoff ribs. |
+| 9 | `Trigger` | 611 | ⚠ **partial** | — | The lever *is already native*; the butterfly paddle defeated three attempts. |
+| 10 | `CH_Handle` | 10,134 | ✖ not worth it | — | Organic knurled grip. Primitives would look worse than the donor. |
+| 11 | `Grip_Assembly` | 17,621 | ✖ not worth it | — | Spade grips — the most sculptural part on the gun. |
 
 **Already native, nothing to do:** core tube, all 11 weldments, `Cradle_F2_HopUp`, `CH_Carrier`,
 `CH_Shoe`, `Trigger_Switch_Carrier`, `Bot1`, `Bot2`.
 
-**Remaining faceted total:** 46,546 faces across 8 bodies (was 49,876 across 10).
+### Where it landed
 
-Converted so far: `Barrel_Jacket` 17,422→60, `Hatch` 2,772→122, `Top1` 1,169→49.
-**21,363 faces of donor mesh replaced by 231 native ones.**
+**39,131 faces of donor mesh replaced by 1,163 native ones — a 34× reduction**, across all eight
+parts that were worth converting. Every one is a single watertight shell, within 2.4% of the donor
+volume, and clear of all 12 steel bodies.
+
+What is left faceted is 28,366 faces in three parts, and all three are deliberate: the two grips
+and the charging-handle knob are sculpted artwork, and so is the trigger's butterfly paddle. The
+STL ships the same triangles either way — nothing is lost by leaving them.
+
+Skin-to-skin overlap across the whole native set is **0.065 cm³**, all of it in the castellated
+joints where `Side_?2` interlocks with `Side_?1`: about 0.02 mm of average interference over a
+1,300 mm² joint. That is snapping noise, an order of magnitude under the layer height.
 
 ---
 
@@ -81,20 +90,26 @@ beside the donor than the donor does. Left faceted at 611 faces, which is cheap.
 
 ---
 
-## Why most of these are marginal
+## What I got wrong about the panels
 
-The jacket converted cleanly because it is a **body of revolution with a regular hole pattern** —
-primitives reproduce that exactly, and the result is arguably better than the donor because it is
-parametric.
+An earlier version of this document said the side panels were marginal — that their rivet rows and
+raised ribs were freeform artwork that boxes and cylinders would only make worse, and that each
+would take days.
 
-The panels are not like that. They carry the M2's rivet rows, raised ribs and panel outlines —
-freeform surface detail that *is* HappyBattleSheep's artwork. Approximating it with boxes and
-cylinders would take days per panel and produce something that looks worse. The rivets alone are
-a trivial pattern; the rest is not.
+That was wrong, and measuring them properly is what showed it. The rivets are a **linear pattern**:
+nine at 18.31 mm on `Side_L2`, and two rows of eight at 36.85 and 28.30 on the rear panels. The
+raised "ribs" are **flat tiers at constant depth**. The panel outlines are straight lines with
+chamfered corners and castellated interlocking tabs. The only genuinely freeform things on the gun
+are the two grips, the charging-handle knob, and the trigger paddle.
 
-Judge each on the same test the jacket passed: **is it a revolution, an extrusion, or a
-plate with prismatic features?** If yes, convert. If its character comes from sculpted surface,
-leave it faceted — the STL ships the triangles either way.
+The test still holds — **is it a revolution, an extrusion, or a plate with prismatic features?** —
+but you have to run the scan before answering it. Eyeballing a dense mesh makes everything look
+organic, because tessellation looks organic.
+
+The other half of the correction came from Eric: *map it to normal straight lines, this thing was
+designed in the early 1900s, it's not complicated.* That is exactly right, and it is why `snap.js`
+exists. The wobble in the donor mesh is scan noise on top of what was originally flat plate, and
+straightening it produces geometry that is both smaller and closer to the real gun.
 
 ---
 
@@ -199,3 +214,68 @@ Top1 is entirely planes and cylinders — no NURBS at all.
   most of the ~1% volume difference comes from. This is deliberate — the M2 is a
   plate-and-rivet design, and straight chamfers read closer to the real gun than
   the mesh's rounded-over edges do.
+
+---
+
+## The panels — what was built
+
+All four side panels are plates normal to Y, built as stacked constant-depth tiers with the
+holes cut as real cylinders rather than snapped polygons.
+
+### Side_L2 / Side_R2 (forward)
+
+| tier | \|Y\| | content |
+|---|---|---|
+| plate | 25.85 … 30.00 | outline, CH-side castellations, 9 rivet dimples |
+| raised panel | 30.00 … 38.00 | front panel; the left also has a rear panel to 40.50 |
+| outer tier | 38.00 … 44.00 | two regions, chamfered to 49.09 |
+| bosses | 25.40 … 25.85 | 6 × ⌀8 bridging to the tube face |
+
+Rivets: 9 × ⌀1.50 at Z −39.80, pitch **18.306**, from X −169.55. Fasteners: 6 × ⌀3.40 at
+X −242.40 / −122.90 / −63.10, Z +8.00 / −24.00, plus one ⌀7.52 at X −115.98, Z 0.
+
+**The two are not mirrors.** The left carries a raised rear panel (1,180 mm², 12.3 cm³); the right
+has a conical boss at X −222.7, Z 31.0 instead. That is the whole 12 cm³ difference between them.
+
+### Side_L1 / Side_R1 (rear)
+
+Five tiers from the plate at \|Y\| 25.85–30 out to 46.5 (left) or 46.2 (right). The charging-handle
+slot is **198.3 × 10.18 mm** at Z −13.04…−2.86, and it runs through *both* panels — the carrier
+sandwiches the tube, so both skins need the clearance.
+
+Two rivet rows, generated arithmetically rather than read back off the mesh (the read missed a head
+and gave different diameters row to row):
+
+- Z −55.50, from X −541.84, pitch 36.852, 8 heads
+- Z +56.30, from X −541.84, pitch 28.298, 8 heads
+
+Left-only: the ⌀19 boss at X −293.8, Z −29.6 standing 15 mm proud. Right-only: the ⌀6 pin drift
+hole at X −552, Z 1, and the raised bracket on the top edge — which is **three ⌀12 pads on a flat
+bar**, not the wavy outline the mesh traces.
+
+The donor drafts continuously through these tiers; the native version steps. That is the deliberate
+trade and it is where the 4–6% symmetric difference comes from — the M2's side plate is stamped
+sheet with stepped panels, and straight steps read closer to the real gun than a smooth taper does.
+
+### FrontBoss
+
+Six prismatic runs along X, from the twelve plain rectangular standoff ribs on the rear face
+(X −13.35…−3.0) out to the sight hood and post (X 8…19). Entirely planar — 304 faces, of which most
+are the hood's polygonal arc.
+
+---
+
+## Two more interferences, both mine
+
+Found by clashing the finished native set against itself. Neither existed in the donor:
+
+- **Hatch nose into the FrontBoss ribs, 0.375 cm³.** I held the nose at full width (Y ±30) to
+  X −12; the standoff ribs start at X −13.35. The donor narrows between −14 and −12. Fixed by
+  narrowing at −13.50.
+- **Side_R1 bracket into the hatch skirt, 0.095 cm³.** The tier under that bracket stops at
+  X −334.4, which is exactly where the top cover starts. Past that the bracket overhangs the
+  cover, so its underside has to begin outboard of it — the donor does the same. Fixed by trimming
+  the overhang back to \|Y\| 34.95.
+
+Both are the kind of thing that only shows up once the geometry is clean enough to boolean
+honestly. Against the faceted donors, these checks returned "clear".
