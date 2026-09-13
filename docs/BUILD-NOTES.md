@@ -456,6 +456,39 @@ spring; there is only 230mm of clear tube behind the carrier. Route the cord at 
 clear of the cradle (reaches Y −18), the F2 (Y ±12.7), the hinge tab (Z −20 up) and the pintle
 tabs (Z −35 down). That is the only end-to-end clear path.
 
+### THE DONOR PARTS ARE STILL FACETED — and cannot be converted automatically
+11 bodies are faceted STL conversions totalling **67,497 faces**. Everything designed
+from scratch is native: the tube is 135 faces with 73 real cylinders, the weldments are
+4-32 faces each. So **the STEP a fabricator receives is clean** — only the cosmetic
+printed parts are faceted, and those ship as STL anyway.
+
+| | bodies | faces |
+|---|---|---|
+| faceted (donor-derived) | 11 | 67,497 |
+| native (designed here) | 26 | ~900 |
+
+**Do not waste time on `PrismaticMeshConvertMethodType`.** Tested exhaustively against
+`FacetedMeshConvertMethodType`:
+
+- Prismatic with no face groups -> identical output
+- Prismatic + `meshGenerateFaceGroupsFeatures`, Fast (29 groups) -> identical output
+- Prismatic + face groups, **Accurate** (36 groups) -> identical output
+
+592 faces, all planar, zero cylinders, every time — on both a 592-face trigger and a
+20,730-face barrel. Fusion generates the face groups correctly and the convert ignores
+them. Prismatic almost certainly requires the **Product Design Extension**, which the
+docs only flag for Organic.
+
+Two API traps found on the way: `meshGenerateFaceGroupsFeatures.createInput()` takes a
+**single MeshBody, not a list**, and the method property is
+`meshGenerateFaceGroupsMethodType` (0 = Fast, 1 = Accurate) — a wrong name silently
+swallowed by a bare `except` leaves it on Fast.
+
+**Rebuilding these means re-authoring the M2's panel and rivet detail by hand.** That is
+not a conversion, it is modelling a new part, and the result would no longer be
+HappyBattleSheep's artwork — which is the whole point of the skins. Worth doing only to
+change the surface detail or to drive the panels parametrically.
+
 ### Fusion gotchas learned here
 - **An exception anywhere in a script rolls back everything that script did.** A mesh convert that
   succeeded was silently undone by a trailing `isLightBulbOn` error on the consumed mesh. Wrap

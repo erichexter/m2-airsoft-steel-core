@@ -217,8 +217,12 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 
 ## Status
 
-Working design, not yet fabricated. The geometry is resolved — every part has been checked against
-every other part with no interference, and every mechanism has been swept through its full range.
+Working design, not yet fabricated. Every part has been checked against every other part with no
+interference, and every mechanism swept through its full range.
+
+**The donor-derived parts are still faceted STL conversions** — 11 bodies, 67,497 faces. Everything
+designed here is native geometry, so the tube STEP a fabricator receives is clean (135 faces, 73
+real cylinders). Fusion cannot convert the rest automatically; see the build notes.
 
 Open items, all of which need hardware in hand rather than more CAD:
 
