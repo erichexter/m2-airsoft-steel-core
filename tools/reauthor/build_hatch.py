@@ -23,9 +23,11 @@ segs.append(extrude_region(comp, -108.0, -101.0, FF))
 segs.append(extrude_region(comp, -101.0,  -40.0, FT))     # underside opening
 segs.append(extrude_region(comp,  -40.0,  -32.0, FF))
 segs.append(loft_regions(comp, [(-32.0, FF), (-16.0, N16)]))   # nose taper
-segs.append(extrude_region(comp, -16.0, -12.0, N16))
+segs.append(extrude_region(comp, -16.0, -13.50, N16))
 for r in NOSE10:
-    segs.append(extrude_region(comp, -12.0, -4.4, r))     # nose + front sight aperture
+    # narrows at -13.50, not -12: the FrontBoss standoff ribs start at X -13.35, and
+    # a full-width nose held to -12 walks straight into them
+    segs.append(extrude_region(comp, -13.50, -4.4, r))    # nose + front sight aperture
 for i, b in enumerate(segs):
     print('  seg %d: faces=%-3d vol=%7.2f solid=%s' % (i, b.faces.count, b.volume, b.isSolid))
 

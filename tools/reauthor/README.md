@@ -14,6 +14,9 @@ profile.js     exact cross-section at one station, chained into loops, holes
                classified by containment, corners preserved (RDP)
 snap.js        straighten: heavy RDP, then cluster coordinates onto shared values.
                The M2 is a 1918 sheet-and-plate design; mesh wobble is scan noise.
+               Also splits ROUND loops out of the profile into `circles` (holes)
+               and `discs` (rivet heads) so the build can cut/add them as real
+               cylinders - a circle that goes through RDP comes back a triangle.
 ascii.js       print a profile as an ASCII occupancy map so you can see it
 sections.js    many sections at once, for the rare part that really is lofted
 silhouette.js  rasterised projection outline (useful, but see the warning below)
@@ -50,3 +53,26 @@ then feed the snapped regions to `extrude_region` / `loft_regions` in Fusion.
   section stays the same *kind* of shape along the run.
 - **Snapping must not eat real dimensions.** An early pass rounded 12.70 — half an
   inch, the tube notch — up to 13. Keep the round-number tolerance under 0.06 mm.
+
+## The build scripts
+
+Worked examples, one per part, all run the same way: `exec` `_lib.py`, then the
+part's profile data, then the build.
+
+```
+build_top1.py       simplest - six prismatic runs and six blind holes
+build_hatch.py      prismatic runs, straight ramps, swept hinge clearance
+build_side2.py      layered plate, one function building both hands via a sign flip
+build_side1.py      five stepped tiers, rivet heads, d19 boss
+build_side1r.py     same, plus arithmetic rivet rows and a trimmed overhang
+build_frontboss.py  six runs including twelve rectangular standoff ribs
+```
+
+Two habits worth keeping:
+
+- **Generate regular patterns arithmetically, don't read them back.** Reading the
+  rear rivet rows off the mesh missed a head and gave different diameters row to
+  row. Two lines of `start + pitch * i` is exact and self-documenting.
+- **Build mirrored parts from one function with a sign parameter.** `Side_L2` and
+  `Side_R2` differ in exactly two features; a shared builder makes that explicit
+  instead of letting the pair drift.
