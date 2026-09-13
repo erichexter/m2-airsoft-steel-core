@@ -220,9 +220,11 @@ bead, and the socket has only 0.64 mm of clearance on the EMT. DOM has a clean I
 Working design, not yet fabricated. Every part has been checked against every other part with no
 interference, and every mechanism swept through its full range.
 
-**The donor-derived parts are still faceted STL conversions** — 11 bodies, 67,497 faces. Everything
-designed here is native geometry, so the tube STEP a fabricator receives is clean (135 faces, 73
-real cylinders). Fusion cannot convert the rest automatically; see the build notes.
+**The donor-derived parts are faceted STL conversions.** Everything designed here is native
+geometry, so the tube STEP a fabricator receives is clean (135 faces, 73 real cylinders). The
+barrel jacket has been reauthored natively — **17,422 faces down to 60** — and the rest are
+tracked in [docs/NATIVE-REBUILD.md](docs/NATIVE-REBUILD.md). Fusion cannot convert them
+automatically; see the build notes.
 
 Open items, all of which need hardware in hand rather than more CAD:
 
