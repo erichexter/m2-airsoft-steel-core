@@ -6,11 +6,13 @@ import adsk.core as c, adsk.fusion as f
 BT = f.BooleanTypes
 T = tbm()
 
+# The window opens at X 8.75 in the donor, not 8.00 - a run boundary put in the
+# wrong place opens it a millimetre early.
 RUNS = [(FB_RIBS, -13.35, -3.00),
         (FB_B,     -3.00,  0.00),
         (FB_C,      0.00,  3.50),
-        (FB_D,      3.50,  8.00),
-        (FB_E,      8.00, 19.00),
+        (FB_D,      3.50,  8.75),
+        (FB_E,      8.75, 19.00),
         (FB_F,     19.00, 24.80)]
 
 COMPONENT, PART = '20_Print_Receiver', 'PR-17-Front-Sight-Boss'
@@ -50,6 +52,13 @@ for (ey0, ey1) in EARS:
     T.booleanOperation(acc, box(-13.35, -3.00, ey0, ey1, 59.0, 66.0), BT.UnionBooleanType)
 T.booleanOperation(acc, cyl((PIN_X, -34.0, PIN_Z), (PIN_X, 34.0, PIN_Z), PIN_DIA),
                    BT.DifferenceBooleanType)
+
+# The opening between the inner ears does not stop dead at the rib run - it tapers
+# shut over X -3.4..-2.0 (7.3 mm tall at -3.2, 4.4 at -2.5, gone by -2.0). FB_B is
+# solid across that span, so the gap was being closed off a millimetre early.
+T.booleanOperation(acc, T.copy(extrude_region(comp, -18.0, 18.0,
+    {'outer': [(66.50, -3.50), (59.20, -3.50), (62.85, -2.00)],
+     'holes': [], 'net': 0.5 * 7.30 * 1.50}, 'y')), BT.DifferenceBooleanType)
 
 # countersunk screw hole low on the front face, both sides: d5.96 countersink
 # closing to a d1.5 pilot by |Y| 28
@@ -91,6 +100,13 @@ T.booleanOperation(acc, cyl((14.50,  30.0, 38.90), (14.50,  42.0, 38.90), 12.0),
 for (bx, bz) in BOSS_DOMES:
     for sy in (-1.0, 1.0):
         T.booleanOperation(acc, dome(bx, bz, BOSS_YC, BOSS_R, sy), BT.UnionBooleanType)
+
+# The lug on the bottom edge is a CIRCULAR ARC in the donor - R 8.00 about
+# (X 1.00, Z -33.40), least-squares fit to 0.00 mm - and the prismatic runs step it
+# into a staircase. Trimming the corners back to that arc was tried and REJECTED:
+# it splits the part into seven shells, because in this reconstruction those very
+# corners are what hold the lug on. A stepped edge is cosmetic; a seven-shell part
+# is not printable. Left stepped.
 
 nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'FRONTBOSS', 108.08)

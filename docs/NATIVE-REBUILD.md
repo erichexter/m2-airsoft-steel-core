@@ -311,8 +311,31 @@ Two passes were needed on the ear as well. Filling the gap only ±3.6 mm about t
 2.4 mm slot running out of it at X −5.40…−3.00, because the rib run is X −13.35…−3.0 and the donor
 ear is solid over all of it bar the round hole. Fill the whole run, then drill.
 
-Verified against the donor section by section: the ear hole is `X −12.32…−5.67, Z 59.17…65.83` on
-both sides, matching to the hundredth, and the YZ section at the mounting hole matches too.
+### Census the holes, do not spot-check them
+
+Three rounds of this part were "fixed" by checking the one feature that had been complained about.
+What finally worked was `tools/reauthor/holediff.js` — walk both solids in parallel sections on an
+axis, match every hole to its nearest counterpart, and report what is MISSING, EXTRA or the wrong
+SIZE. Run it on all three axes. It found in one pass what three rounds of eyeballing had missed:
+
+- **Two junk slots, 0.70 mm and 0.65 mm tall, plus two of 0.00 mm.** Mesh tessellation noise that
+  the profile extractor had faithfully copied as real features — and they were what rendered as
+  stripes. **Drop any hole under a millimetre in either direction.**
+- **The window opened a millimetre early**, at X 8.00 instead of the donor's 8.75 — a run boundary
+  in the wrong place.
+- **The opening between the inner ears tapers shut** over X −3.4…−2.0 rather than stopping dead at
+  the rib run, so it was being closed off early.
+
+Sample the sections **off** the run boundaries, or every boundary reports a false difference.
+
+Verified section by section: the ear hole is `X −12.32…−5.67, Z 59.17…65.83` on both sides,
+matching to the hundredth, and the YZ section at the mounting hole matches too.
+
+**One thing is deliberately left wrong.** The lug on the bottom edge is a circular arc in the donor
+(R 8.00 about X 1.00, Z −33.40, fitted to 0.00 mm) and the prismatic runs step it into a staircase.
+Trimming the corners back to that arc splits the part into **seven shells** — in this
+reconstruction those corners are what hold the lug on. A stepped edge is cosmetic; a seven-shell
+part does not print.
 
 ---
 
