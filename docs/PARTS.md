@@ -49,7 +49,31 @@ physical side.
 | `60_Print_Trigger` | trigger group |
 | `70_Print_Engine` | engine cradle |
 
-Everything under `00_Ref` is hidden by default except the PolarStar.
+Everything under `00_Ref` is hidden by default except the PolarStar, which stays
+visible because the engine has to fit.
+
+### Getting the browser into this order
+
+**Fusion lists components in creation order, not alphabetically**, and there is no
+API to reorder them — `Occurrence` has no index setter, and neither does anything
+else. Numbering the names does nothing on its own; the `00_Ref` components were the
+original ones and stayed scattered through the list at indices 0, 1, 4, 6, 8, 10 and 14
+while the newer ones piled up at the bottom.
+
+The only lever is creation order itself. `tools/reauthor/reorder.py` uses it:
+
+1. rename every component out of the way (`~old~…`) to free the real names
+2. create fresh components **in the order you want** — new ones append
+3. `moveToComponent` the bodies across
+4. delete the empties
+
+It refuses to run if any component it would empty is not at an identity transform,
+because moving a body out of a transformed component moves the geometry with it.
+`00_Ref_FCU` *is* transformed and holds child occurrences rather than bodies, so it
+is skipped and simply stays at the top.
+
+Re-run it any time the order drifts. 58 bodies moved, 22 spot-checked for volume,
+shell count and solidity afterwards — nothing shifted.
 
 ---
 
