@@ -7,8 +7,8 @@
 //   M2_tube_wrap.svg        one sheet, 1:1, for a plotter or copy shop
 //   M2_tube_wrap_tiled.html multi-page letter tiling with registration marks
 //
-// The tube perimeter is unrolled with the seam on the TOP face centreline,
-// running: top(right half) - right - bottom - left - top(left half).
+// The tube perimeter is unrolled with the seam on the BOTTOM face centreline,
+// running: bottom(right half) - right - top - left - bottom(left half).
 
 const fs = require('fs');
 const path = require('path');
@@ -110,10 +110,20 @@ let pages = '';
 for (let r = 0; r < rows; r++) {
   for (let c = 0; c < cols; c++) {
     const ox = c * (TW - OVER), oy = r * (TH - OVER);
+    // Every sheet carries its own 100 mm bar. The tiled set is the one printed at
+    // home, on the printer most likely to quietly "fit to page" - and a scale error
+    // is the one mistake that ruins the whole template. Checking a bar on sheet 1
+    // only is not enough either: duplex and n-up settings can scale sheets unevenly.
+    //
+    // The strip sits in the top ${OVER}mm, which for row 1 is blank margin and for
+    // every row below is inside the vertical overlap with the row above - so the
+    // white backing never hides a cut line that is not also printed on another sheet.
     pages += `<div class="page"><svg xmlns="http://www.w3.org/2000/svg" width="${TW}mm" height="${TH}mm" viewBox="${ox} ${oy} ${TW} ${TH}">
 <style>${STYLE}</style>
 <g>${drawing()}</g>
-<text class="note" x="${ox + 3}" y="${oy + 5}">sheet r${r + 1}c${c + 1} of ${rows}x${cols} — overlap ${OVER}mm, trim on the grey crop marks and tape</text>
+<rect x="${ox + 2}" y="${oy + 1}" width="252" height="9.5" fill="#fff"/>
+${calibration(ox + 6, oy + 8)}
+<text class="note" x="${ox + 114}" y="${oy + 8.5}">sheet r${r + 1}c${c + 1} of ${rows}x${cols} — overlap ${OVER}mm, trim on the grey crop marks and tape</text>
 </svg>
 <div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
 </div>`;
