@@ -23,6 +23,12 @@ COMPONENT, PART = '40_Print_Grip', 'PR-31-Spade-Grips'
 comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
+# Stack the plan sections as prisms. Lofting between them instead was tried, to
+# smooth the terrace at each band boundary, and it was worse on every measure:
+# -6.1% on volume against -2.0% (a loft cuts the corner where a mid-band prism
+# averages it), two shells instead of one, two new clashes into the deck and the
+# bottom rail, and 415 NURBS faces where the prisms give planes. The visible
+# stepping is the honest cost of a construction that is other-wise more accurate.
 acc = None
 nseg = 0
 for (z0, z1, regions) in BANDS:

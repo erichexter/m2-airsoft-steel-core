@@ -381,6 +381,13 @@ The mounting tongue reaches into the receiver, so the grip is relieved against t
 backplate and its bosses, and against the **trigger swept through its 6° of travel** — otherwise it
 fouls partway through the pull rather than at rest.
 
+**Lofting between the plan sections was tried and rejected.** The prisms leave a visible terrace
+at every band boundary, so the obvious fix is to sweep between adjacent profiles instead. Measured,
+it was worse on every count: **−6.1% on volume against −2.0%** (a loft cuts the corner where a
+mid-band prism averages it), **two shells instead of one**, two new clashes into `PR-15-Top-Deck`
+and `PR-18-Bottom-Rear`, and 415 NURBS faces where the prisms give planes. The stepping is the
+honest cost of the more accurate construction, and it stays.
+
 **The buffer tube is a plain cylinder** — ⌀34.78, measured to 0.015 mm across 64 rays, with a
 chamfer back to ⌀27.48 at the end face and a 3.3 mm wedge slot across it. It was first made by
 *intersecting* the plan-section stack with a cylinder, which left the stack's stepped
