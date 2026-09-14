@@ -283,8 +283,27 @@ sheet with stepped panels, and straight steps read closer to the real gun than a
 ### FrontBoss
 
 Six prismatic runs along X, from the twelve plain rectangular standoff ribs on the rear face
-(X −13.35…−3.0) out to the sight hood and post (X 8…19). Entirely planar — 304 faces, of which most
-are the hood's polygonal arc.
+(X −13.35…−3.0) out to the sight hood and post (X 8…19). 309 faces.
+
+**Transverse features cannot survive a prismatic reconstruction.** Anything running side to side
+along Y gets sliced by each X run at a different chord and extruded flat, so a round feature comes
+out as a staircase. Three separate things on this part were wrong because of it:
+
+- **The ⌀6.65 hinge pin bore was a square gap.** The ears are built as rib slabs that stop at
+  Z 59.4 and resume at Z 65.7, so the "bore" was simply the rectangular space between two slabs —
+  a jagged square where a diameter should be. Fixed by filling that gap across the bore's footprint
+  in each of the four ears (Y −30…−22.35, −19.18…−18, 18…19.18, 22.35…30) and then drilling it:
+  **369.0 mm² of bore wall against 368.9 mm² expected** for a ⌀6.65 hole through 17.66 mm of ear.
+- **Three ⌀6.6 domed bosses were stepped pyramids.** Round-head rivets, same as the side panels,
+  fitted at R 3.38 about |Y| 28.95. With no dome covering the view, the thin internal slots behind
+  them showed through and read as striped squares.
+- **A profile was sampled straight through a boss.** `FB_E` was taken at X 13.5, inside a boss
+  footprint, so straightening smeared the boss's |Y| 32.1 across the whole outline and the flange
+  ran out to X 19 where the donor stops at 7.8 — 11 mm of phantom material. **Sample prismatic
+  runs at a station clear of every local feature**, or the feature contaminates the whole run.
+
+The countersunk screw hole low on the front face (⌀5.96 closing to a ⌀1.5 pilot by |Y| 28) is on
+both sides and was missing entirely.
 
 ---
 

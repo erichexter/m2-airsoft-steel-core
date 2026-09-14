@@ -117,7 +117,7 @@ Light grey in the renders.
 | <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 84 | 133.95 | `Side_L2` |
 | <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 61 | 468.72 | `Top1` |
 | <img src="img/part-PR-16-Top-Cover.png" width="150"> | `PR-16-Top-Cover` | 138 | 510.84 | `Hatch` |
-| <img src="img/part-PR-17-Front-Sight-Boss.png" width="150"> | `PR-17-Front-Sight-Boss` | 304 | 106.29 | `FrontBoss` |
+| <img src="img/part-PR-17-Front-Sight-Boss.png" width="150"> | `PR-17-Front-Sight-Boss` | 309 | 106.33 | `FrontBoss` |
 | <img src="img/part-PR-18-Bottom-Rear.png" width="150"> | `PR-18-Bottom-Rear` | 181 | 279.13 | `Bot1` |
 | <img src="img/part-PR-19-Bottom-Front-L.png" width="150"> | `PR-19-Bottom-Front-L` | 30 | 3.65 | half of `Bot2` |
 | <img src="img/part-PR-19-Bottom-Front-R.png" width="150"> | `PR-19-Bottom-Front-R` | 30 | 3.65 | half of `Bot2` |
