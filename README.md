@@ -8,6 +8,10 @@
 
 A welded steel structural core for a 3D-printed Browning M2 airsoft replica.
 
+![The assembled replica](docs/img/01-assembly.png)
+
+*Blue is steel you weld, brass is hardware you buy, grey is 3D printed.*
+
 **▶ [Three-minute walkthrough video](https://github.com/erichexter/m2-airsoft-steel-core/releases/tag/v1.0)**
 — cross-sections, what is steel, how it goes together.
 
@@ -72,6 +76,23 @@ Two reported conditions, both understood and both fine:
   X ≈ −583, Y ≈ ±10, where the trigger's clearance slot cuts through the spine and the cut
   surface meets itself. The part has **no holes** and is one closed shell; slicers handle
   touching edges without complaint.
+
+---
+
+## What it looks like
+
+| | |
+|---|---|
+| ![Steel core](docs/img/02-steel-core.png) | **The steel.** One 2×3 tube plus eleven welded pieces. Everything else hangs off this. |
+| ![Receiver skins](docs/img/04-receiver-skins.png) | **The printed receiver skins.** Nine parts that clothe the tube and carry no load. |
+| ![Trigger group](docs/img/05-trigger-group.png) | **Trigger.** Butterfly on a ⌀4 pin through both tube walls; the switch sits *above* the tail, so pressing down closes it. |
+| ![Charging handle](docs/img/06-charging-handle.png) | **Charging handle.** The carrier sandwiches the tube wall through the existing slot; four ⌀8 nut pockets in the arm. |
+| ![Barrel mount](docs/img/07-barrel-mount.png) | **Barrel.** 1" EMT in a welded socket, two set screws, reachable through the jacket perforations. |
+| ![Grips and backplate](docs/img/08-grip-backplate.png) | **Grips.** Bolted, not welded — the backplate comes off to service the trigger. |
+| ![Engine cradle](docs/img/09-engine-cradle.png) | **Engine.** PolarStar F2 with the direct-attach combo, in a printed cradle. |
+
+Every image above is rendered straight from the model by `tools/reauthor/render_docs.py`,
+so they cannot drift from the geometry.
 
 ---
 

@@ -21,6 +21,9 @@ cylinders, so bores cannot be snapped to and must be found by probing. Face coun
 
 ## STEEL CUT LIST
 
+![Everything you cut and weld: the 2×3 tube plus eleven pieces.](img/02-steel-core.png)
+*Everything you cut and weld: the 2×3 tube plus eleven pieces.*
+
 | # | Part | Stock | Cut size | Qty | Wt |
 |---|---|---|---|---|---|
 | 1 | Core tube | 2" × 3" × 0.120" wall rect tube | 22-7/8" | 1 | 6.37 lb |
@@ -105,6 +108,9 @@ plates laser-only. Blind pockets would be a milling op and were rejected.
 
 ## Weldments
 
+![The weldments in side view — tab positions along the tube.](img/03-steel-core-side.png)
+*The weldments in side view — tab positions along the tube.*
+
 - **Pintle tabs** ×2 — 1/2" plate, X −384…−338, Y ±15.7…28.4, **Z −92…−35**, ⌀12 bore at
   X −361 / Z −79. Tapered profile matching the printed lug (measured Y ±16…28).
   The top 11.1mm sits inside the tube and **cuts its own notch** through the bottom wall and up
@@ -124,6 +130,7 @@ plates laser-only. Blind pockets would be a milling op and were rejected.
   through-slots for the rear locating tabs. Basis for the trigger mount; bolt pattern TBD.
 
 ### Barrel = 1" EMT conduit, passing INSIDE the socket
+
 EMT: OD 1.163" (29.54mm), wall 0.042", ID 1.079".
 Socket 1-1/2" × 0.156": OD 38.10mm, **ID 30.18mm** → EMT passes through with **0.64mm**
 diametral clearance. Up to **101mm of engagement**.
@@ -199,7 +206,12 @@ Hatch rotation **0.000 cm³ through 75°**.
 
 ---
 
+> Every part rendered individually, with its catalogue name: **[PARTS.md](PARTS.md)**.
+
 ## SKIN FASTENING — 36 × M3 thread-forming into the tube wall
+
+![The nine printed receiver skins that bolt to the tube.](img/04-receiver-skins.png)
+*The nine printed receiver skins that bolt to the tube.*
 **The panels have a 0.4mm clearance gap to the tube** (that is what `ENV` creates), so a screw
 pulled straight through would just flex a 3mm shell. Every fastener therefore has a **⌀8 boss on
 the panel's inner face** bridging that 0.4mm, with the ⌀3.4 clearance hole through it.
@@ -302,6 +314,9 @@ Disassembly, each step verified by sweeping the part clear of everything:
 3. undo 4 × M5 — the backplate lifts off and brings the switch carrier with it
 
 ### TRIGGER — press DOWN, tail rises, switch sits ABOVE the tail
+
+![Butterfly, switch carrier, microswitch and the ⌀4 pin. The switch sits ABOVE the tail.](img/05-trigger-group.png)
+*Butterfly, switch carrier, microswitch and the ⌀4 pin. The switch sits ABOVE the tail.*
 **Direction matters and I got it backwards once.** Pressing the butterfly down at the rear swings
 the tail *up*, because the press point is behind and above the pivot. The switch therefore sits
 **above** the tail, not below it. If the switch is under the tail the mechanism can never fire.
@@ -392,6 +407,9 @@ The socket leaves **88.8mm exposed** ahead of the front skin. It was positioned 
 full-length printed shroud was going to hide it; the jacket now covers it, so that is moot.
 
 ### CHARGING HANDLE — slide + spring return, 150mm travel, IN THE EXISTING SLOT
+
+![Handle, carrier and shoe. The carrier sandwiches the tube wall through the existing slot.](img/06-charging-handle.png)
+*Handle, carrier and shoe. The carrier sandwiches the tube wall through the existing slot.*
 **Design the carrier to fit the slot; do not enlarge the slot to fit the donor part.** The
 upstream `charging.stl` has a shoe 17.6mm tall, and I once cut a 214 × 19mm aperture in the left
 wall to pass it. That was wrong — the donor shoe is discarded anyway (the handle bolts to a
@@ -586,6 +604,9 @@ rails, left deliberately).
 8. Deliverables not produced: 1:1 plotter template (single sheet, not tiled), STL exports.
 
 ## REMOVABLE BARREL — M5 set screws in the socket
+
+![Socket welded to the front plate; the 1" EMT drops in and is held by two set screws.](img/07-barrel-mount.png)
+*Socket welded to the front plate; the 1" EMT drops in and is held by two set screws.*
 The socket is **welded to the barrel plate**, so it is fixed and can be tapped. Wall is
 (38.10 − 30.18)/2 = **3.96mm**, enough for full M5 thread.
 

@@ -93,6 +93,13 @@ leaves its neighbours alone.
 `naming.py` + `reorganize.py` are the one-shot that applied the naming convention
 to the whole model.
 
+`render_docs.py` regenerates every image in `docs/img/` — nine assembly views and
+one shot of each of the 32 parts. It colour-codes by class for the renders (steel
+blue, hardware brass, printed grey) and puts the model's appearance back afterwards.
+**Re-run it after any rebuild** so the pictures cannot drift from the geometry. It
+takes a couple of minutes; run the assembly views and the part views as separate
+calls or the Fusion MCP call times out (the renders still complete).
+
 ```
 build_top1.py       simplest - six prismatic runs and six blind holes
 build_hatch.py      prismatic runs, straight ramps, swept hinge clearance
