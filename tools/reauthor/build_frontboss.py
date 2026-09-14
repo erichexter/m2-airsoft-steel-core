@@ -42,20 +42,29 @@ PIN_X, PIN_Z, PIN_DIA = -9.00, 62.50, 6.65
 # two slabs. Fill that gap across the bore's footprint in each ear, then drill it
 # round. The four ears sit at these Y bands (measured off the donor at X -9).
 EARS = ((-30.00, -22.35), (-19.18, -18.00), (18.00, 19.18), (22.35, 30.00))
+# Fill the gap across the ENTIRE rib run (X -13.35..-3.0), not just around the
+# bore: the donor ear is solid from Z 43.6 right up to 66.8 with nothing but the
+# round hole in it. Filling only +/-3.6 about the bore left a 2.4 mm slot running
+# out of it at X -5.40..-3.00.
 for (ey0, ey1) in EARS:
-    T.booleanOperation(acc, box(PIN_X - 3.6, PIN_X + 3.6, ey0, ey1, 59.0, 66.0),
-                       BT.UnionBooleanType)
+    T.booleanOperation(acc, box(-13.35, -3.00, ey0, ey1, 59.0, 66.0), BT.UnionBooleanType)
 T.booleanOperation(acc, cyl((PIN_X, -34.0, PIN_Z), (PIN_X, 34.0, PIN_Z), PIN_DIA),
                    BT.DifferenceBooleanType)
 
 # countersunk screw hole low on the front face, both sides: d5.96 countersink
 # closing to a d1.5 pilot by |Y| 28
-SCR_X, SCR_Z, SCR_PILOT, SCR_CSK = 14.72, -38.20, 1.50, 5.96
-T.booleanOperation(acc, cyl((SCR_X, -34.0, SCR_Z), (SCR_X, 34.0, SCR_Z), SCR_PILOT),
-                   BT.DifferenceBooleanType)
+# The front mounting hole is a BLIND countersunk pilot, one per side - NOT a
+# through hole. Measured on the donor: d5.96 at the |Y| 30.0 face closing to d1.4
+# by |Y| 28.0 and bottoming at 27.8. Drilling it straight through, as the first
+# attempt did, cut a slot clean across the part and through the window behind it.
+SCR_X, SCR_Z = 14.72, -38.20
+SCR_FACE, SCR_TIP = 30.05, 27.80
+SCR_CSK, SCR_PILOT = 5.96, 1.40
 for sy in (-1.0, 1.0):
-    T.booleanOperation(acc, cyl((SCR_X, sy*30.2, SCR_Z), (SCR_X, sy*27.9, SCR_Z),
+    T.booleanOperation(acc, cyl((SCR_X, sy*SCR_FACE, SCR_Z), (SCR_X, sy*28.0, SCR_Z),
                                 SCR_CSK, SCR_PILOT), BT.DifferenceBooleanType)
+    T.booleanOperation(acc, cyl((SCR_X, sy*28.0, SCR_Z), (SCR_X, sy*SCR_TIP, SCR_Z),
+                                SCR_PILOT), BT.DifferenceBooleanType)
 
 # Domed bosses on both outer faces. These are round-head rivets exactly like the
 # ones on the side panels — fitted to a sphere off the donor at R 3.34 about

@@ -302,8 +302,17 @@ out as a staircase. Three separate things on this part were wrong because of it:
   ran out to X 19 where the donor stops at 7.8 — 11 mm of phantom material. **Sample prismatic
   runs at a station clear of every local feature**, or the feature contaminates the whole run.
 
-The countersunk screw hole low on the front face (⌀5.96 closing to a ⌀1.5 pilot by |Y| 28) is on
-both sides and was missing entirely.
+**The front mounting hole is BLIND, one per side.** Measured on the donor: ⌀5.96 at the |Y| 30.0
+face, closing to ⌀1.4 by |Y| 28.0 and bottoming at 27.8 — a pilot for a self-tapping screw.
+Drilling it straight through instead cut a slot clean across the part and out through the window
+behind it. **Check how deep a hole actually goes before assuming it is a through hole.**
+
+Two passes were needed on the ear as well. Filling the gap only ±3.6 mm about the bore left a
+2.4 mm slot running out of it at X −5.40…−3.00, because the rib run is X −13.35…−3.0 and the donor
+ear is solid over all of it bar the round hole. Fill the whole run, then drill.
+
+Verified against the donor section by section: the ear hole is `X −12.32…−5.67, Z 59.17…65.83` on
+both sides, matching to the hundredth, and the YZ section at the mounting hole matches too.
 
 ---
 
