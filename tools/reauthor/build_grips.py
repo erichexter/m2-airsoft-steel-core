@@ -14,7 +14,10 @@ BT = f.BooleanTypes
 T = tbm()
 
 GRIP_X, GRIP_Y = -613.81, 62.23
-REAR_BOSS = (-645.5, -628.0, 34.80)   # x0, x1, dia - round, on the centre axis
+# Buffer tube, measured off the donor: a true cylinder r 17.389 (spread 0.015 mm
+# over 64 rays) from X -642.17 forward, chamfered back to r 13.741 at the end face.
+BUF_END_X, BUF_CHAMFER_X, BUF_JOIN_X = -645.20, -642.17, -626.00
+BUF_DIA, BUF_END_DIA = 34.78, 27.48
 
 COMPONENT, PART = '40_Print_Grip', 'PR-31-Spade-Grips'
 comp, KEEP = begin_part(root, COMPONENT, PART)
@@ -32,12 +35,25 @@ for (z0, z1, regions) in BANDS:
             T.booleanOperation(acc, b, BT.UnionBooleanType)
 print('  frame: %d banded plan sections, vol %.2f' % (nseg, acc.volume))
 
-# The rear of the spine is a round boss, not the square end the plan sections give.
-rx0, rx1, rdia = REAR_BOSS
-keep = box(rx1, -520.0, -90.0, 90.0, -90.0, 90.0)
-T.booleanOperation(keep, cyl((rx0, 0.0, 0.0), (rx1, 0.0, 0.0), rdia), BT.UnionBooleanType)
-T.booleanOperation(acc, keep, BT.IntersectionBooleanType)
-print('  after rear boss trim: %.2f' % acc.volume)
+# The buffer tube is a PLAIN CYLINDER. Earlier this was made by intersecting the
+# plan-section stack with a cylinder, which left the stack's stepped approximation
+# showing through instead of a clean turned part. Cut the stack off behind the
+# frame and add the real thing: d34.78 measured to 0.015 mm across 64 rays, with a
+# chamfered end and a wedge slot across the face.
+#
+# Do this BEFORE the handgrips are added - they reach back to X -629.7, so a blanket
+# cut behind X -628 is only safe while they are not there yet.
+T.booleanOperation(acc, box(-700.0, -628.0, -95.0, 95.0, -95.0, 95.0), BT.DifferenceBooleanType)
+T.booleanOperation(acc, cyl((BUF_CHAMFER_X, 0.0, 0.0), (BUF_JOIN_X, 0.0, 0.0), BUF_DIA),
+                   BT.UnionBooleanType)
+T.booleanOperation(acc, cyl((BUF_END_X, 0.0, 0.0), (BUF_CHAMFER_X, 0.0, 0.0),
+                            BUF_END_DIA, BUF_DIA), BT.UnionBooleanType)
+# wedge slot across the end face: 3.3 mm at the face, closing to nothing at X -643.45
+slot = extrude_region(comp, -25.0, 25.0,
+    {'outer': [(1.65, BUF_END_X - 0.2), (-1.65, BUF_END_X - 0.2), (0.0, -643.45)],
+     'holes': [], 'net': 0.5 * 3.3 * abs(-643.45 - (BUF_END_X - 0.2))}, 'y')
+T.booleanOperation(acc, T.copy(slot), BT.DifferenceBooleanType)
+print('  buffer tube: d%.2f cylinder + chamfer + end slot -> %.2f cm3' % (BUF_DIA, acc.volume))
 
 for sy in (+1.0, -1.0):
     pts = [(GRIP_X + r, sy * GRIP_Y, z) for (z, r) in GRIP]

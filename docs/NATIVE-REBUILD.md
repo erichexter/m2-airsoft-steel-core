@@ -24,7 +24,7 @@ parts are faceted.
 
 | # | Part | Faces | Status | Volume | Notes |
 |---|---|---:|---|---:|---|
-| 1 | `Grip_Assembly` | 17,621 | ✅ **1,463** | −2.0% | Two handgrips are **exact revolves**; frame is a stack of plan sections. |
+| 1 | `Grip_Assembly` | 17,621 | ✅ **1,549** | −2.0% | Handgrips and buffer tube are **exact revolves**; frame is a stack of plan sections. |
 | 2 | `Barrel_Jacket` | 17,422 | ✅ **60** | −27% | Revolution + regular hole pattern. 290× reduction. |
 | 3 | `CH_Handle` | 10,134 | ✅ **73** | +0.6% | Knob is an **exact revolve** — 3 faces. Plate, arm, 4 × ⌀8 nut pockets. |
 | 4 | `Side_L1` | 6,631 | ✅ **262** | −0.9% | CH slot, 16 domed rivets, ⌀19 boss, five stepped tiers. |
@@ -380,6 +380,13 @@ ones gives 33 bands and lands within 2%.
 The mounting tongue reaches into the receiver, so the grip is relieved against the tube, the
 backplate and its bosses, and against the **trigger swept through its 6° of travel** — otherwise it
 fouls partway through the pull rather than at rest.
+
+**The buffer tube is a plain cylinder** — ⌀34.78, measured to 0.015 mm across 64 rays, with a
+chamfer back to ⌀27.48 at the end face and a 3.3 mm wedge slot across it. It was first made by
+*intersecting* the plan-section stack with a cylinder, which left the stack's stepped
+approximation showing through instead of a turned surface. Cut the stack off behind the frame and
+add the real cylinder. Order matters: the handgrips reach back to X −629.7, so the blanket cut
+behind X −628 is only safe before they are unioned in.
 
 ---
 

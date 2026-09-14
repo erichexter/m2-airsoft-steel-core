@@ -98,7 +98,7 @@ Light grey in the renders.
 | <img src="img/part-PR-19-Bottom-Front-L.png" width="150"> | `PR-19-Bottom-Front-L` | 30 | 3.65 | half of `Bot2` |
 | <img src="img/part-PR-19-Bottom-Front-R.png" width="150"> | `PR-19-Bottom-Front-R` | 30 | 3.65 | half of `Bot2` |
 | <img src="img/part-PR-21-Barrel-Jacket.png" width="150"> | `PR-21-Barrel-Jacket` | 60 | 638.00 | `Barrel_Jacket` |
-| <img src="img/part-PR-31-Spade-Grips.png" width="150"> | `PR-31-Spade-Grips` | 1,463 | 330.61 | `Grip_Assembly` |
+| <img src="img/part-PR-31-Spade-Grips.png" width="150"> | `PR-31-Spade-Grips` | 1,549 | 330.82 | `Grip_Assembly` |
 | <img src="img/part-PR-41-CH-Handle.png" width="150"> | `PR-41-CH-Handle` | 73 | 116.82 | `CH_Handle` |
 | <img src="img/part-PR-42-CH-Carrier.png" width="150"> | `PR-42-CH-Carrier` | 33 | 13.27 | `CH_Carrier` |
 | <img src="img/part-PR-43-CH-Shoe.png" width="150"> | `PR-43-CH-Shoe` | 8 | 3.96 | `CH_Shoe` |
