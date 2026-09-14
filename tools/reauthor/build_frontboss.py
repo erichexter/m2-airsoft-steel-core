@@ -6,12 +6,15 @@ import adsk.core as c, adsk.fusion as f
 BT = f.BooleanTypes
 T = tbm()
 
-# The window opens at X 8.75 in the donor, not 8.00 - a run boundary put in the
-# wrong place opens it a millimetre early.
+# Two separate things happen between X 7.9 and X 8.75, and collapsing them into one
+# run put an 18 mm slab of phantom flange on each side: the wide flange ENDS at
+# X 7.90 (|Y| drops 44.78 -> 30.00), and the window only opens at X 8.75. They need
+# their own runs.
 RUNS = [(FB_RIBS, -13.35, -3.00),
         (FB_B,     -3.00,  0.00),
         (FB_C,      0.00,  3.50),
-        (FB_D,      3.50,  8.75),
+        (FB_D,      3.50,  7.90),
+        (FB_D2,     7.90,  8.75),
         (FB_E,      8.75, 19.00),
         (FB_F,     19.00, 24.80)]
 
@@ -101,12 +104,19 @@ for (bx, bz) in BOSS_DOMES:
     for sy in (-1.0, 1.0):
         T.booleanOperation(acc, dome(bx, bz, BOSS_YC, BOSS_R, sy), BT.UnionBooleanType)
 
-# The lug on the bottom edge is a CIRCULAR ARC in the donor - R 8.00 about
-# (X 1.00, Z -33.40), least-squares fit to 0.00 mm - and the prismatic runs step it
-# into a staircase. Trimming the corners back to that arc was tried and REJECTED:
-# it splits the part into seven shells, because in this reconstruction those very
-# corners are what hold the lug on. A stepped edge is cosmetic; a seven-shell part
-# is not printable. Left stepped.
+# The scallop in the bottom edge is a CIRCLE - R 8.00 about (X 1.00, Z -33.40),
+# least-squares fit to the donor outline at 0.00 mm - cut through the two walls at
+# |Y| 25.8..30.0. The prismatic runs approximated it with a four-step staircase.
+#
+# Fill the band beside it in the walls, then cut the real cylinder. Filling first is
+# what makes this work: trimming the staircase back to the arc without filling just
+# splits the part, because the staircase corners are load-bearing in this
+# reconstruction.
+SCALLOP_X, SCALLOP_Z, SCALLOP_R = 1.00, -33.40, 8.00
+for (wy0, wy1) in ((-30.0, -25.8), (25.8, 30.0)):
+    T.booleanOperation(acc, box(3.0, 9.2, wy0, wy1, -41.6, -25.2), BT.UnionBooleanType)
+T.booleanOperation(acc, cyl((SCALLOP_X, -50.0, SCALLOP_Z), (SCALLOP_X, 50.0, SCALLOP_Z),
+                            SCALLOP_R * 2), BT.DifferenceBooleanType)
 
 nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'FRONTBOSS', 108.08)

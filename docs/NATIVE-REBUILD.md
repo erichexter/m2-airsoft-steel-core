@@ -331,11 +331,29 @@ Sample the sections **off** the run boundaries, or every boundary reports a fals
 Verified section by section: the ear hole is `X −12.32…−5.67, Z 59.17…65.83` on both sides,
 matching to the hundredth, and the YZ section at the mounting hole matches too.
 
-**One thing is deliberately left wrong.** The lug on the bottom edge is a circular arc in the donor
-(R 8.00 about X 1.00, Z −33.40, fitted to 0.00 mm) and the prismatic runs step it into a staircase.
-Trimming the corners back to that arc splits the part into **seven shells** — in this
-reconstruction those corners are what hold the lug on. A stepped edge is cosmetic; a seven-shell
-part does not print.
+### Fill before you trim
+
+The scallop in the bottom edge is a **circle**, R 8.00 about (X 1.00, Z −33.40) — a least-squares
+fit to the donor outline lands on it at 0.00 mm — cut through the two walls at |Y| 25.8…30.0. The
+prismatic runs approximated it with a four-step staircase, and that staircase is the single most
+visible defect this part had.
+
+Trimming the staircase back to the arc **splits the part into seven shells**: in this
+reconstruction the staircase corners are load-bearing. The fix is to go the other way — **fill the
+band beside it first, then cut the real cylinder.** 250 faces, one shell, and the boundary now sits
+at radius 8.00 at every point.
+
+### A run boundary in the wrong place is an 18 mm slab
+
+Between X 7.9 and X 8.75 two separate things happen: the wide flange **ends** (|Y| drops 44.78 →
+30.00) and the window **opens**. Collapsing both into one run left an 18 mm slab of phantom flange
+standing out each side — and "fixing" the window boundary alone made it 0.85 mm worse. They need
+their own runs. The flange's taper is an arc too, R 4.95 about (X 2.843, |Y| 44.134); trimming it
+to the chord instead took 1.2 mm too much out of the middle.
+
+**Probe the solid, do not read outlines.** Deciding whether a feature was a boss or a void from the
+boundary path got it backwards twice. Point-sample material on a grid and compare to the donor;
+129 stations across this scallop now agree exactly.
 
 ---
 
