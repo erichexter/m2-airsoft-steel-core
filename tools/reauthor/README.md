@@ -70,11 +70,28 @@ then feed the snapped regions to `extrude_region` / `loft_regions` in Fusion.
   a fitted spline is 3 faces and actually smooth.
 - **Put hole topology in any band-merge signature.** Merging bands keeps the first
   one's profile, so a slot that appears in only some of them is silently filled in.
+- **`feature.bodies.item(0)` is wrong in a direct-design document.** It hands back
+  the component's FIRST body, not the one the feature just made. That looks right
+  only while each part sits alone in an empty component — the moment several parts
+  share one, builds start swallowing their neighbours. Take the last body instead.
+- **Fusion returns a fresh wrapper object on every access**, so `occurrence is
+  target` is always False. Comparing identity instead of name silently hid every
+  body and produced 29 empty STL exports that all reported success.
+- **Anything that looks a body up by name breaks on a rename**, silently. Count
+  what you matched and print the count.
+- **Relief cuts want a little clearance, but not much.** Zero leaves coincident
+  faces that tessellate non-manifold; 0.25 mm severed a thin mounting tongue into
+  its own shell. 0.05 mm, plus `drop_debris()` to sweep up the wafers, worked.
 
 ## The build scripts
 
 Worked examples, one per part, all run the same way: `exec` `_lib.py`, then the
-part's profile data, then the build.
+part's profile data, then the build. Each writes straight into its catalogue
+component under its catalogue name (see `docs/PARTS.md`), so rebuilding one part
+leaves its neighbours alone.
+
+`naming.py` + `reorganize.py` are the one-shot that applied the naming convention
+to the whole model.
 
 ```
 build_top1.py       simplest - six prismatic runs and six blind holes

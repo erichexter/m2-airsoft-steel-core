@@ -209,16 +209,16 @@ No tap, no rivnut tool. Heads left proud — they read as the M2's rivet line.
 
 | Panel | X positions | Z or Y |
 |---|---|---|
-| `Side_L1` `Side_R1` | −525.1, −460.1, −285.7 | Z −24, +8 |
-| `Side_L2` `Side_R2` | −242.4, −122.9, −63.1 | Z −24, +8 |
-| `Top1` | −526.7, −413.5, −356.9 | Y ±18 |
-| `Bot1` | −516.3, −442.4, −294.6 | Y ±18 |
+| `PR-12-Side-Rear-R` `PR-11-Side-Rear-L` | −525.1, −460.1, −285.7 | Z −24, +8 |
+| `PR-14-Side-Front-R` `PR-13-Side-Front-L` | −242.4, −122.9, −63.1 | Z −24, +8 |
+| `PR-15-Top-Deck` | −526.7, −413.5, −356.9 | Y ±18 |
+| `PR-18-Bottom-Rear` | −516.3, −442.4, −294.6 | Y ±18 |
 
 Z −24 and +8 miss the CH slot (Z −12…−4) and the belt slot (Z ≥ +18); the X values miss the pivot
 pin (X −552), the backplate bosses (X −560…−547), the pintle tabs (X −384…−338), the air line
 (X −410) and the hinge tabs (X −22…0).
 
-**`Bot2` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
+**`PR-19-Bottom-Front-L` / `-R` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
 them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond it.
 
 **Probing the top panel: the tube's top is at Z 27.05…30.10 over X −560…−310.** Probing at the
@@ -268,7 +268,7 @@ centroid fan just produces degenerate triangles, which is what a naive hole-fill
 to **split the long edge** at the intruding vertices. 4 splits closed it; volume unchanged at
 304.6 cm³.
 
-The donor grip **includes its own backplate** — it overlapped the steel `Backplate_1-8` by
+The donor grip **includes its own backplate** — it overlapped the steel `ST-02-Backplate` by
 9.04 cm³ over the full height, because on a real M2 the backplate is part of the grip assembly.
 The printed grip is relieved around the steel (−25.7 cm³) exactly as the skins are: steel carries
 load, plastic is cosmetic. The buffer tube is relieved for the trigger arm's swept envelope
@@ -293,11 +293,11 @@ rear locating tab instead. Freeing an upper pair would mean trimming the carrier
 risks disconnecting it from the wall rails at Z 13…23.5.
 
 **The pivot pin cannot retain the backplate** — pin at X −552, backplate at X −563.18…−560, 8mm
-apart and never intersecting. What the pin *does* need is drift access: a **⌀6 hole in `Side_R1`
+apart and never intersecting. What the pin *does* need is drift access: a **⌀6 hole in `PR-11-Side-Rear-L`
 at X −552, Z +1**, otherwise the side skin traps it.
 
 Disassembly, each step verified by sweeping the part clear of everything:
-1. drift the pin out through the `Side_R1` hole
+1. drift the pin out through the `PR-11-Side-Rear-L` hole
 2. draw the trigger straight back, lever sliding out through the backplate slot
 3. undo 4 × M5 — the backplate lifts off and brings the switch carrier with it
 
@@ -317,7 +317,7 @@ to Z +10.0, switch actuator free at Z +10.4 (**0.4mm gap**), body Z +10.4…+20.
   5.0 deg -> presses 0.65mm   FIRES
   5.5 deg -> presses 0.75mm   hard stop engages, inside the 1.0mm OT
 
-**`Trigger_Switch_Carrier` registers off the tube itself**, so the switch lands in the right place
+**`PR-52-Trigger-Switch-Carrier` registers off the tube itself**, so the switch lands in the right place
 without measuring: a narrow ceiling pad at Y ±18 bearing on the interior roof (**measured at
 Z +27.0**, not the +20.95 I first assumed — the rear of the tube is uncut), and wide rails at
 Y ±22.0 on the flat part of the side walls. **The pad must be narrower than the rails** — the
@@ -336,7 +336,7 @@ to be inside the tube — only its wires do.**
 **Pivot is a ⌀4.2 pin through BOTH tube side walls at X −552, Z +6.** Anchoring in the steel beats
 any bracket, and it puts the spring inside where there is room.
 
-- `Trigger` — the donor butterfly plus an integral lever: a drop behind the backplate
+- `PR-51-Trigger-Butterfly` — the donor butterfly plus an integral lever: a drop behind the backplate
   (X −578…−569, Z +2…+30) then a run forward through the backplate (X −572…−534, Z +2…+10).
   Pivot bore at X −552 Z +6, ⌀3 peg hole in the tail at X −534 for the return spring.
 - `Trigger_Switch_Mount` — printed, bolts to the backplate's inner face with the 2 × M4 at
@@ -372,18 +372,18 @@ The jacket-to-thin-barrel step is at **X ≈ 285**; X 285…298 is a smooth pris
 vertices, which is why it cuts cleanly there.
 
 **The jacket's rear runs to X 24.80, not 26.75.** Trimming it to the barrel plate's front face
-(26.35) + 0.4 left a **1.95mm gap** to `FrontBoss`, which ends at X 24.80 — the 1/4" plate showed
-through all the way round. **Trim the jacket to FrontBoss, not to the plate.**
+(26.35) + 0.4 left a **1.95mm gap** to `PR-17-Front-Sight-Boss`, which ends at X 24.80 — the 1/4" plate showed
+through all the way round. **Trim the jacket to PR-17-Front-Sight-Boss, not to the plate.**
 
 To extend it: the jacket's section is **constant over X 26.75…29.00** (2.235 cm³ at every slice),
 so take a 1.95mm slice and translate it back — an exact extrusion without needing a sketch. Then
 pocket it Y ±25.8, Z −46.5…30.5 to clear the plate. Adds 4.47 cm³.
 
 **Bond the joint, don't bolt it.** The butt gives **1,615 mm² of contact** (70% of the jacket's
-2,295 mm² rear face — `FrontBoss` is only Y ±30 against the jacket's Y ±39.6, so they don't fully
+2,295 mm² rear face — `PR-17-Front-Sight-Boss` is only Y ±30 against the jacket's Y ±39.6, so they don't fully
 overlap). That is several times what epoxy needs, and the ⌀38.90 bore over the socket already
 locates it radially across 87mm. 23 bolt positions were found viable in the top band, but **every
-one is unreachable once assembled** — 260mm of jacket in front, 38mm of FrontBoss behind.
+one is unreachable once assembled** — 260mm of jacket in front, 38mm of PR-17-Front-Sight-Boss behind.
 
 EMT is galvanised: etch-prime before paint, and never weld or braze it (zinc fumes). It doesn't
 need welding — it's a slip fit.
@@ -405,11 +405,11 @@ section is X −536…−352 = 184mm. Neck 34mm + 150mm travel = 184mm, an exact
 An earlier version had a 1/4" rod on two welded tabs — deleted, it was a complicated part for no
 benefit and cost 0.128 lb of steel and two weldments.
 
-- `CH_Shoe`    X −386…−352, **Y −22…−14**, Z −16…0 — inside the tube, 16mm tall behind an 8mm
+- `PR-43-CH-Shoe`    X −386…−352, **Y −22…−14**, Z −16…0 — inside the tube, 16mm tall behind an 8mm
                slot so it cannot pull out. 2 × M4 heat-set inserts.
-- `CH_Carrier` neck Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**; pad X −386…**−280**,
+- `PR-42-CH-Carrier` neck Y −30…−22, **Z −11.5…−4.5 (7mm in an 8mm slot)**; pad X −386…**−280**,
                Y −38…−30, Z −13…+3. 2 × M4 clearance to the shoe, 4 × M6 clearance to the handle.
-- `CH_Handle`  donor arm outboard of Y −48, unioned to a **full-length foot** X −386…−280,
+- `PR-41-CH-Handle`  donor arm outboard of Y −48, unioned to a **full-length foot** X −386…−280,
                Y −48…−38, Z −13…+3. **4 × M6 heat-set inserts in the foot.**
 
 Clamped stack is skin-outer-face (Y −30.0) to tube-inner-face (Y −22.35) = **7.65mm**, neck spans
@@ -424,7 +424,7 @@ X so its 8mm edge is vertical, pass it through the slot, rotate home → 2 × M4
 
 ### The pad must cantilever forward — the slot and the handle do not line up
 Two measured facts that force the design:
-- **`Side_L1` is open only over X −540…−350.** Forward of that the panel is solid, so the neck
+- **`PR-12-Side-Rear-R` is open only over X −540…−350.** Forward of that the panel is solid, so the neck
   cannot go forward — it has to stay inside that window.
 - **The donor handle only has material to bolt into over X −320…−262** (probe Y −70…−46). Its
   arm root is forward of the panel opening entirely.
@@ -444,7 +444,7 @@ STL exports as two shells.
 **The pad's top must not exceed Z +3.** The left skin's outer surface steps outboard above
 Z ≈ +3.3; a pad reaching Z +4 buries 0.7mm into the panel at every stroke position.
 
-**The skin already has the slot.** `Side_L1` is open over the slot footprint — the corpus models
+**The skin already has the slot.** `PR-12-Side-Rear-R` is open over the slot footprint — the corpus models
 it as a through-feature, so no channel needs cutting. Verify rather than assume: a cut that
 removes 0.00 cm³ means either it was already open or the boolean silently failed.
 
@@ -516,19 +516,19 @@ Manual deletions "keep coming back" because regenerating from source discards th
 - **Tube clearance envelope `ENV`**: `bx(-26.85, 0, -0.80, 59.1, 5.16, 7.70)` — X −564…+27,
   Y ±25.8, Z −46.5…+30.5. **It must span the WHOLE tube including the locating tabs at both
   ends**, not just the tube body. It was X −561…+21 while the front tabs reached X +26.35, and
-  the ~5mm of tab past the envelope drove FrontBoss into the steel by 0.5795 cm³.
+  the ~5mm of tab past the envelope drove PR-17-Front-Sight-Boss into the steel by 0.5795 cm³.
   **Whenever the tube's extents change, ENV changes with them** — query
   `tube.boundingBox` and check it rather than assuming.
 - **Feed way**: no skin material above the tube in X −334.3 … −13.3. Deletes `Top2` entirely and
-  ends `Top1` at X −334.3 — the top deck only exists *behind* the hatch.
+  ends `PR-15-Top-Deck` at X −334.3 — the top deck only exists *behind* the hatch.
 - **Pintle lug**: X −395 … −325, everything **below Z −67**. The steel tabs are the lug.
   Cut only below −67, not −50 — the shoulder Z −50…−67 is real side-panel geometry.
 - **Front trim**: X 26…41, Y ±14, Z −36…−22 — strands left forward of the barrel plate.
 - **Front ring trim**: cylinder r19.8 on the barrel axis, X +19.5…+27.0. Removes two floating
-  concentric rings (r15.1 and r19.4) left in FrontBoss when the socket bore went through.
+  concentric rings (r15.1 and r19.4) left in PR-17-Front-Sight-Boss when the socket bore went through.
   Socket OD is r19.05, so the trim clears the steel by 0.75mm.
 - **Pin bore**: ⌀6.35 at X −9, Z +62.5 cut from **every** skin so one pin passes through
-  FrontBoss lug → tab → hatch boss → tab → FrontBoss lug.
+  PR-17-Front-Sight-Boss lug → tab → hatch boss → tab → PR-17-Front-Sight-Boss lug.
 
 **Every piece must be a single shell, and volume must conserve.** Always print
 `sum of parts == union volume, LOST 0.00`. A silent bug once dropped the receiver's top shoulders
@@ -565,13 +565,13 @@ collapses it, but puts the visible face vertical where it cannot be ironed:
 | Piece | Flat (+Z up, ironable) | On end (min support) |
 |---|---|---|
 | Hatch | 33.6% | 4.2% |
-| Bot1 | 31.7% | 3.4% |
-| Top1 | 22.0% | 4.6% |
-| Bot2 | 21.3% | 0.4% |
-| Side_L1 | 11.3% | 2.3% |
+| PR-18-Bottom-Rear | 31.7% | 3.4% |
+| PR-15-Top-Deck | 22.0% | 4.6% |
+| PR-19-Bottom-Front | 21.3% | 0.4% |
+| PR-12-Side-Rear-R | 11.3% | 2.3% |
 
 Flat-and-ironable is the chosen orientation; the cost is 20–30% of surface needing support on
-several pieces. All parts pass watertight with correct normals and 1 shell (except Bot2's two
+several pieces. All parts pass watertight with correct normals and 1 shell (PR-19-Bottom-Front's two
 rails, left deliberately).
 
 ## Still open
@@ -581,7 +581,7 @@ rails, left deliberately).
 3. **Verify the three inferred pin positions** against real hardware before drilling steel.
 4. **CH slot width** — the 8mm is a guess, not measured. Carrier/handle not modelled.
 5. **Torsion cross-strap** over the 139mm U-channel run (top + both walls cut).
-6. `Bot2` is 2 shells (two bottom rails) — left as-is deliberately, keeps printing simple.
+6. `PR-19-Bottom-Front` was 2 shells (two bottom rails) and is now split into `-L` and `-R`.
 7. Hatch latch, feed tray detail.
 8. Deliverables not produced: 1:1 plotter template (single sheet, not tiled), STL exports.
 
@@ -603,10 +603,10 @@ from its underside at the same X. Verified a 3.0mm driver shaft runs clear throu
 and EMT to reach both screws with everything assembled. Barrel then slides straight out forward —
 swept 150mm, no catch.
 
-The jacket itself stays bonded to `FrontBoss`; it never has to come off to change the barrel.
+The jacket itself stays bonded to `PR-17-Front-Sight-Boss`; it never has to come off to change the barrel.
 
 ## NATIVE REAUTHORING — proven on the barrel jacket
-`Barrel_Jacket_Native` is authored from primitives, not converted from mesh.
+`PR-21-Barrel-Jacket` is authored from primitives, not converted from mesh.
 
 | | faceted | native |
 |---|---|---|
@@ -635,15 +635,15 @@ main tube r39.60 to X 272, muzzle flange r41.40 X 272..284. Bore r19.45 over the
 then r29.13; centring ring r15.10 at X 273..285.
 
 **Do not forget the barrel-plate pocket** (Y +/-25.8, Z -46.5..30.5 over X 24.3..26.75). Without
-it the native jacket fouls `Barrel_Plate_1-4` by 3.9 cm3.
+it the native jacket fouls `ST-04-Barrel-Plate` by 3.9 cm3.
 
 ### What is NOT worth reauthoring
 The jacket worked because it is a body of revolution with a regular hole pattern. The rest are
 not:
 
-- `Grip_Assembly` (17,621), `CH_Handle` (10,134) - organic knurled handles. Primitives would
+- `PR-31-Spade-Grips` (17,621), `PR-41-CH-Handle` (10,134) - organic knurled handles. Primitives would
   look worse than the donor.
-- `Side_L1` (6,631), `Side_R1`, `Top1`, `Hatch`, `FrontBoss` - flat panels carrying the M2's
+- `PR-12-Side-Rear-R` (6,631), `PR-11-Side-Rear-L`, `PR-15-Top-Deck`, `PR-16-Top-Cover`, `PR-17-Front-Sight-Boss` - flat panels carrying the M2's
   rivet and rib detail. The rivets are a trivial pattern; the panel outlines and raised detail
   are freeform and would take days to approximate badly.
 

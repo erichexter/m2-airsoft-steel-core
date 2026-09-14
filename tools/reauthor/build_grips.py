@@ -16,13 +16,8 @@ T = tbm()
 GRIP_X, GRIP_Y = -613.81, 62.23
 REAR_BOSS = (-645.5, -628.0, 34.80)   # x0, x1, dia - round, on the centre axis
 
-occ = None
-for o in root.occurrences:
-    if o.name.startswith('Grip_Native'): occ = o
-if occ is None:
-    occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = 'Grip_Native'
-comp = occ.component
-for b in list(comp.bRepBodies): b.deleteMe()
+COMPONENT, PART = '40_Print_Grip', 'PR-31-Spade-Grips'
+comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
 acc = None
@@ -54,16 +49,24 @@ for sy in (+1.0, -1.0):
 # The mounting tongue reaches into the receiver, where the backplate and the tube
 # already are. Relieve it against the steel so the grip actually seats - the donor
 # has no material in that corridor either.
-RELIEVE = ('CoreBox_cut', 'Backplate_1-8', 'BP_Boss_L_1-2', 'BP_Boss_R_1-2')
+# Match on the catalogue prefixes, not hard-coded body names: renaming the model
+# once made these lookups miss silently and the relief cuts quietly did nothing.
+# 0.25 mm severed the thin mounting tongue into its own shell; 0.05 is enough to
+# stop faces landing exactly coincident (which tessellates non-manifold) without
+# cutting anything free.
+RELIEF_CLEARANCE = 0.05
+RELIEVE = ('ST-01-Core-Tube', 'ST-02-Backplate',
+           'ST-03-Backplate-Boss-L', 'ST-03-Backplate-Boss-R')
+relieved = 0
 for occ2 in root.allOccurrences:
-    if occ2.name.split(':')[0] not in ('Core_Box_2x3_11ga', 'Steel_Weldments'): continue
+    if occ2.name.split(':')[0] not in ('10_Steel_Core', '11_Steel_Weldments'): continue
     for sb in occ2.bRepBodies:
         if sb.name not in RELIEVE: continue
         try:
-            T.booleanOperation(acc, T.copy(sb), BT.DifferenceBooleanType)
+            relieve(acc, sb, RELIEF_CLEARANCE); relieved += 1
         except Exception as e:
             print('  ! relief against %s failed: %s' % (sb.name, str(e)[:50]))
-print('  after steel relief: %.2f cm3' % acc.volume)
+print('  after steel relief: %.2f cm3  (%d bodies)' % (acc.volume, relieved))
 
 # The butterfly trigger sits between the handgrips and pivots through about 5.5 deg
 # on the pin at (X -552, Z 1). Relieve against its SWEPT path, not just where it
@@ -71,10 +74,11 @@ print('  after steel relief: %.2f cm3' % acc.volume)
 # be unioned (ASM_EDGECOIN_PROBLEM), so subtract each position on its own.
 import math
 PIVOT_X, PIVOT_Z = -552.0, 1.0
+swept = 0
 for occ2 in root.allOccurrences:
-    if occ2.name.split(':')[0] != 'Trigger_Group': continue
+    if occ2.name.split(':')[0] != '60_Print_Trigger': continue
     for sb in occ2.bRepBodies:
-        if sb.name.startswith('REF_'):
+        if sb.name.startswith('HW-'):
             try: T.booleanOperation(acc, T.copy(sb), BT.DifferenceBooleanType)
             except: pass
             continue
@@ -85,11 +89,14 @@ for occ2 in root.allOccurrences:
                 m.setToRotation(math.radians(deg), c.Vector3D.create(0, 1, 0),
                                 c.Point3D.create(PIVOT_X/10.0, 0.0, PIVOT_Z/10.0))
                 T.transform(tb, m)
-            try: T.booleanOperation(acc, tb, BT.DifferenceBooleanType)
+            try:
+                T.booleanOperation(acc, tb, BT.DifferenceBooleanType); swept += 1
             except: pass
-print('  after trigger sweep relief: %.2f cm3' % acc.volume)
+print('  after trigger sweep relief: %.2f cm3  (%d bodies)' % (acc.volume, swept))
+before = acc.shells.count
+drop_debris(acc)
+if acc.shells.count != before:
+    print('  dropped %d debris shell(s) left by the relief cuts' % (before - acc.shells.count))
 
-for b in list(comp.bRepBodies): b.deleteMe()
-nb = comp.bRepBodies.add(acc); nb.name = 'Grip_Assembly_native'
-cleanup(comp)
+nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'GRIP_ASSEMBLY', 337.40)

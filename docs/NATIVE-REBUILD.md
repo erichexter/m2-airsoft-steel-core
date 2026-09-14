@@ -1,5 +1,11 @@
 # Native rebuild — tracker
 
+> **Names in this document are the donor's**, because it is about converting donor
+> geometry. The parts have since been renamed to a single catalogue — see
+> **[PARTS.md](PARTS.md)**. Watch out: the donor's `Side_L*` are physically on the
+> **right** of the gun, and the catalogue names follow the physical side.
+
+
 Replacing the donor-derived **faceted** bodies with **native analytic** geometry authored from
 primitives. Faceted bodies are STL conversions: thousands of triangular planar faces, no real
 cylinders, slow booleans, bloated STEP, nothing editable.

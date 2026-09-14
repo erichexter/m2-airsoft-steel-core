@@ -28,14 +28,8 @@ BRACKET_Z = 57.90
 BRACKET_BAR = (-351.30, -307.00, 55.40, 60.40)   # x0, x1, z0, z1
 
 
-def build_side1r(name, sign):
-    occ = None
-    for o in root.occurrences:
-        if o.name.startswith(name): occ = o
-    if occ is None:
-        occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = name
-    comp = occ.component
-    for b in list(comp.bRepBodies): b.deleteMe()
+def build_side1r(comp_name, part, sign):
+    comp, keep = begin_part(root, comp_name, part)
     cleanup(comp)
 
     segs = [extrude_region(comp, sign*a, sign*b, reg, 'y') for reg, a, b in TIERS]
@@ -94,11 +88,8 @@ def build_side1r(name, sign):
     T.booleanOperation(acc, box(-600.0, -250.0, sign*25.40, sign*90.0, -90.0, 90.0),
                        BT.IntersectionBooleanType)
 
-    for b in list(comp.bRepBodies): b.deleteMe()
-    nb = comp.bRepBodies.add(acc); nb.name = name.replace('_Native', '_native')
-    cleanup(comp)
-    return nb
+    return finish_part(comp, keep, acc, part)
 
 
-nb = build_side1r('Side_R1_Native', +1.0)
+nb = build_side1r('20_Print_Receiver', 'PR-11-Side-Rear-L', +1.0)
 report(nb, 'SIDE_R1', 207.00)

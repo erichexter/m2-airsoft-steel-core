@@ -1,5 +1,11 @@
 # M2 Airsoft — Steel Core Conversion
 
+> **Part names.** Every part has one name, used identically in Fusion, in `stl/`, and in
+> these notes — `ST-` you weld, `HW-` you buy, `PR-` you print. See **[docs/PARTS.md](docs/PARTS.md)**
+> for the full catalogue and the old-name mapping. Note that **L and R are the physical
+> sides of the gun**, and the donor mesh names had them backwards.
+
+
 A welded steel structural core for a 3D-printed Browning M2 airsoft replica.
 
 **▶ [Three-minute walkthrough video](https://github.com/erichexter/m2-airsoft-steel-core/releases/tag/v1.0)**
@@ -23,13 +29,23 @@ For scale: a real M2HB is 84 lb; commercial airsoft M2 replicas run 33–44 lb.
 ## What's here
 
 ```
+docs/PARTS.md              Parts catalogue — every name, in one place. START HERE
+docs/BUILD-NOTES.md        Full build notes: cut list, coordinates, weld plan, gotchas
+docs/NATIVE-REBUILD.md     How the donor meshes were reauthored as native geometry
+
+stl/PR-*.stl               The 18 printed parts, ready to slice
+stl/ST-*.stl               Steel parts — for checking the cut list, not for printing
+stl/donor/                 Original donor meshes, kept for reference and attribution
+
+cad/10_Steel_Core.stp      One STEP per component group
+cad/20_Print_Receiver.stp    …
 cad/M2_core_tube_RFQ.stp   Core tube alone — upload this for a laser-cut quote
 cad/M2_steel_core.stp      Full steel assembly + engine cradle
 cad/RFQ-core-tube.md       Stock spec, feature table, vendor notes
-stl/                       Printed parts, ready to slice
+
 source/                    Fusion 360 archive (.f3d)
 tools/stlcheck.js          Printability checker — run it on the STLs
-docs/BUILD-NOTES.md        Full build notes: cut list, coordinates, weld plan, gotchas
+tools/reauthor/            Mesh-to-native toolchain and the per-part build scripts
 LICENSE                    CC BY-NC-SA 4.0
 ```
 
@@ -39,15 +55,23 @@ derived as described under ATTRIBUTION, and the cradle.
 ### Checking the prints
 
 ```
-node tools/stlcheck.js stl/*.stl
+node tools/stlcheck.js stl/PR-*.stl
 ```
 
 Reports triangle count, watertightness (open and non-manifold edges), degenerate facets,
 connected shells, bounding box against the bed, normal orientation, and overhang burden for each
-axis-aligned orientation. All current parts pass watertight with correct normals.
+axis-aligned orientation. All 18 printed parts are closed — **zero open edges** — with correct
+normals and a single shell.
 
-**It only tests axis-aligned orientations.** `Hatch.stl` is 329.9mm and reports as not fitting;
-it does fit laid diagonally (294mm footprint on a 300mm bed, 5.7mm margin).
+Two reported conditions, both understood and both fine:
+
+- **`PR-16-Top-Cover.stl` "does not fit the bed".** The checker only tests axis-aligned
+  orientations. The cover is 329.9 mm long and does fit laid diagonally — a 294 mm footprint
+  on a 300 mm bed, 5.7 mm of margin.
+- **`PR-31-Spade-Grips.stl` reports 3 non-manifold edges.** They are three 2 mm verticals at
+  X ≈ −583, Y ≈ ±10, where the trigger's clearance slot cuts through the spine and the cut
+  surface meets itself. The part has **no holes** and is one closed shell; slicers handle
+  touching edges without complaint.
 
 ---
 
@@ -72,7 +96,7 @@ trigger away permanently: the mechanism sits at X −580…−526, well behind t
 
 Disassembly, verified by sweeping each part clear:
 
-1. Drift the ⌀4 pivot pin out through the **⌀6 hole in `Side_R1`** at X −552, Z +1
+1. Drift the ⌀4 pivot pin out through the **⌀6 hole in `PR-11-Side-Rear-L`** at X −552, Z +1
 2. Draw the trigger straight back — the lever slides out through the backplate slot
 3. Undo 4 × M5 and the backplate lifts off, **bringing the switch carrier with it**
 
@@ -85,9 +109,9 @@ three printed parts sandwich the receiver wall and the slot itself is the track:
 
 | Part | Where |
 |---|---|
-| `CH_Shoe` | inside the tube, Y −22…−14, 16 mm tall behind an 8 mm slot so it can't pull out |
-| `CH_Carrier` | 7 mm neck through the slot, pad outside the panel at Y −38…−30 |
-| `CH_Handle` | full-length foot bolting to the pad, 1,696 mm² of flat contact |
+| `PR-43-CH-Shoe` | inside the tube, Y −22…−14, 16 mm tall behind an 8 mm slot so it can't pull out |
+| `PR-42-CH-Carrier` | 7 mm neck through the slot, pad outside the panel at Y −38…−30 |
+| `PR-41-CH-Handle` | full-length foot bolting to the pad, 1,696 mm² of flat contact |
 
 The shoe and carrier clamp a 7.65 mm stack — skin plus steel wall — across an 8 mm neck, leaving
 **0.35 mm of running clearance**. Two M4 bolts hold the sandwich; four **M6** into heat-set
@@ -130,13 +154,13 @@ bored ⌀38.90 over the steel socket and ⌀30.20 for the EMT, with a centring r
 so it can't flop about on the conduit. Stood on end it fits a 300mm bed with 38mm to spare.
 Forward of the jacket the EMT is bare.
 
-It runs back to **X 24.80** so it meets `FrontBoss` flush — its rear is pocketed to clear the 1/4"
+It runs back to **X 24.80** so it meets `PR-17-Front-Sight-Boss` flush — its rear is pocketed to clear the 1/4"
 barrel plate, which would otherwise show through. **Bond that joint with epoxy; it needs no
 fasteners.** The butt gives **1,615 mm² of face-to-face contact**, several times what an epoxy lap
 joint requires, and the jacket is already located by the ⌀38.90 bore over the steel socket across
 87mm of engagement — so it cannot shift radially and only the axial pull needs carrying. Bolts
 were considered and rejected: the joint face is buried under 260mm of jacket from the front and
-38mm of FrontBoss from the rear, so no fastener is reachable once assembled.
+38mm of PR-17-Front-Sight-Boss from the rear, so no fastener is reachable once assembled.
 
 ### The barrel comes off without disturbing the jacket
 
@@ -168,16 +192,16 @@ line rather than being hidden.
 
 | Panel | Screws | Where |
 |---|---|---|
-| `Side_L1`, `Side_R1` | 6 each | X −525.1 / −460.1 / −285.7, at Z −24 and +8 |
-| `Side_L2`, `Side_R2` | 6 each | X −242.4 / −122.9 / −63.1, at Z −24 and +8 |
-| `Top1` | 6 | X −526.7 / −413.5 / −356.9, at Y ±18 |
-| `Bot1` | 6 | X −516.3 / −442.4 / −294.6, at Y ±18 |
+| `PR-12-Side-Rear-R`, `PR-11-Side-Rear-L` | 6 each | X −525.1 / −460.1 / −285.7, at Z −24 and +8 |
+| `PR-14-Side-Front-R`, `PR-13-Side-Front-L` | 6 each | X −242.4 / −122.9 / −63.1, at Z −24 and +8 |
+| `PR-15-Top-Deck` | 6 | X −526.7 / −413.5 / −356.9, at Y ±18 |
+| `PR-18-Bottom-Rear` | 6 | X −516.3 / −442.4 / −294.6, at Y ±18 |
 
 Every panel carries a **⌀8 boss on its inner face at each screw**, bridging the 0.4 mm clearance
 gap to the tube so the screw clamps against solid material instead of flexing a 3 mm shell.
 
-**`Bot2` is bonded, not screwed.** It is two thin rails sitting over the tube's bottom corner
-radii — there is no flat there to pull against. `FrontBoss` is bonded too, to the barrel jacket.
+**`PR-19-Bottom-Front-L` / `-R` are bonded, not screwed.** They are two thin rails sitting over the tube's bottom corner
+radii — there is no flat there to pull against. `PR-17-Front-Sight-Boss` is bonded too, to the barrel jacket.
 The pilot holes are on the wrap template in `templates/`.
 
 See [docs/BUILD-NOTES.md](docs/BUILD-NOTES.md) for the full cut list, every coordinate, the weld
@@ -240,10 +264,11 @@ Decided, not open:
 - **Pin positions stand as designed.** Hinge, pintle and front-mount pins are inferred from the
   donor model rather than measured off real hardware, and that is accepted — the mounts are
   tolerant enough that a few millimetres either way does not matter.
-- `Bot2` is 2 shells by design — two thin rails in the bottom corners, printed as one file
-- `Hatch` is 329.9 mm and only fits the bed laid diagonally (294 mm footprint, 5.7 mm margin)
+- `PR-19-Bottom-Front` used to be one body containing two disconnected rails; it is now
+  two parts, `-L` and `-R`, which is what a slicer made of it anyway
+- `PR-16-Top-Cover` is 329.9 mm and only fits the bed laid diagonally (294 mm footprint, 5.7 mm margin)
 - The steel backplate cannot merge with any printed part — different material and process. The
-  grip and buffer tube are already merged into `Grip_Assembly`.
+  grip and buffer tube are already merged into `PR-31-Spade-Grips`.
 
 ---
 

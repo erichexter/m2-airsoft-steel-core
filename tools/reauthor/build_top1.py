@@ -4,13 +4,8 @@ import adsk.core as c, adsk.fusion as f
 BT = f.BooleanTypes
 T = tbm()
 
-occ = None
-for o in root.occurrences:
-    if o.name.startswith('Top1_Native'): occ = o
-if occ is None:
-    occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = 'Top1_Native'
-comp = occ.component
-for b in list(comp.bRepBodies): b.deleteMe()
+COMPONENT, PART = '20_Print_Receiver', 'PR-15-Top-Deck'
+comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
 segs = [
@@ -49,7 +44,5 @@ for x in (-526.7, -413.5, -356.9):
     for y in (18.0, -18.0):
         T.booleanOperation(acc, cyl((x, y, 30.10), (x, y, 51.0), 3.40), BT.DifferenceBooleanType)
 
-for b in list(comp.bRepBodies): b.deleteMe()
-nb = comp.bRepBodies.add(acc); nb.name = 'Top1_native'
-cleanup(comp)
+nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'TOP1', 472.87)

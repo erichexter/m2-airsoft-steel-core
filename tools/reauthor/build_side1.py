@@ -40,14 +40,8 @@ BOSS = (-293.80, -29.60, 18.98, 44.47, 62.25)   # x, z, dia, |Y| in, |Y| out
 BOSS_CHAMFER = 1.50
 
 
-def build_side1(name, sign):
-    occ = None
-    for o in root.occurrences:
-        if o.name.startswith(name): occ = o
-    if occ is None:
-        occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = name
-    comp = occ.component
-    for b in list(comp.bRepBodies): b.deleteMe()
+def build_side1(comp_name, part, sign):
+    comp, keep = begin_part(root, comp_name, part)
     cleanup(comp)
 
     segs = []
@@ -109,11 +103,8 @@ def build_side1(name, sign):
     T.booleanOperation(acc, box(-600.0, -250.0, sign*25.40, sign*90.0, -90.0, 90.0),
                        BT.IntersectionBooleanType)
 
-    for b in list(comp.bRepBodies): b.deleteMe()
-    nb = comp.bRepBodies.add(acc); nb.name = name.replace('_Native', '_native')
-    cleanup(comp)
-    return nb
+    return finish_part(comp, keep, acc, part)
 
 
-nb = build_side1('Side_L1_Native', -1.0)
+nb = build_side1('20_Print_Receiver', 'PR-12-Side-Rear-R', -1.0)
 report(nb, 'SIDE_L1', 331.48)

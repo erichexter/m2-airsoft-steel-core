@@ -4,13 +4,8 @@ import adsk.core as c, adsk.fusion as f
 BT = f.BooleanTypes
 T = tbm()
 
-occ = None
-for o in root.occurrences:
-    if o.name.startswith('Hatch_Native'): occ = o
-if occ is None:
-    occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = 'Hatch_Native'
-comp = occ.component
-for b in list(comp.bRepBodies): b.deleteMe()
+COMPONENT, PART = '20_Print_Receiver', 'PR-16-Top-Cover'
+comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
 M, FF, FT = MAIN[0], FRONT_FULL[0], FRONT_T[0]
@@ -61,7 +56,5 @@ for (y0, y1) in ((18.90, 22.65), (-22.65, -18.90)):
     T.booleanOperation(slot, cyl((-9.0, y0, 62.5), (-9.0, y1, 62.5), 17.0), BT.UnionBooleanType)
     T.booleanOperation(acc, slot, BT.DifferenceBooleanType)
 
-for b in list(comp.bRepBodies): b.deleteMe()
-nb = comp.bRepBodies.add(acc); nb.name = 'Hatch_native'
-cleanup(comp)
+nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'HATCH', 516.81)

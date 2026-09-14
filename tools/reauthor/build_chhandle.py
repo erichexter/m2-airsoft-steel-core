@@ -11,13 +11,8 @@ T = tbm()
 AXIS_X, AXIS_Z = -286.80, 48.875     # the knob's axis of revolution
 BOSS = (-293.60, -8.02, 19.00, -71.0, -48.5)   # x, z, dia, y0, y1
 
-occ = None
-for o in root.occurrences:
-    if o.name.startswith('CH_Handle_Native'): occ = o
-if occ is None:
-    occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = 'CH_Handle_Native'
-comp = occ.component
-for b in list(comp.bRepBodies): b.deleteMe()
+COMPONENT, PART = '50_Print_Charging', 'PR-41-CH-Handle'
+comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
 # knob: one true revolve of the measured radius profile
@@ -42,7 +37,5 @@ T.booleanOperation(acc, cyl((bx, by0, bz), (bx, by1, bz), bd), BT.UnionBooleanTy
 for (x, z, dia) in CH_POCKETS:
     T.booleanOperation(acc, cyl((x, -37.9, z), (x, -47.0, z), dia), BT.DifferenceBooleanType)
 
-for b in list(comp.bRepBodies): b.deleteMe()
-nb = comp.bRepBodies.add(acc); nb.name = 'CH_Handle_native'
-cleanup(comp)
+nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'CH_HANDLE', 116.17)

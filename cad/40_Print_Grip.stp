@@ -9,8 +9,8 @@ FILE_DESCRIPTION(
 /* implementation_level */ '2;1');
 
 FILE_NAME(
-/* name */ 'Grip_Assembly_native.stp',
-/* time_stamp */ '2026-09-13T18:49:02-05:00',
+/* name */ '40_Print_Grip.stp',
+/* time_stamp */ '2026-09-13T20:18:31-05:00',
 /* author */ (''),
 /* organization */ (''),
 /* preprocessor_version */ 'ST-DEVELOPER v20.1',
@@ -25,7 +25,7 @@ DATA;
 #11=SHAPE_REPRESENTATION_RELATIONSHIP('SRR','None',#52559,#12);
 #12=ADVANCED_BREP_SHAPE_REPRESENTATION('',(#14),#52551);
 #13=STYLED_ITEM('',(#52568),#14);
-#14=MANIFOLD_SOLID_BREP('Grip_Assembly_native',#26904);
+#14=MANIFOLD_SOLID_BREP('PR-31-Spade-Grips',#26904);
 #15=(
 BOUNDED_CURVE()
 B_SPLINE_CURVE(5,(#41085,#41086,#41087,#41088,#41089,#41090,#41091,#41092,
@@ -57615,15 +57615,16 @@ SOLID_ANGLE_UNIT()
 #52558=PRODUCT_DEFINITION_SHAPE('',$,#52561);
 #52559=SHAPE_REPRESENTATION('',(#26917),#52551);
 #52560=PRODUCT_DEFINITION_CONTEXT('part definition',#52565,'design');
-#52561=PRODUCT_DEFINITION('Grip_Native','Grip_Native',#52562,#52560);
+#52561=PRODUCT_DEFINITION('40_Print_Grip','40_Print_Grip',#52562,#52560);
 #52562=PRODUCT_DEFINITION_FORMATION('',$,#52567);
-#52563=PRODUCT_RELATED_PRODUCT_CATEGORY('Grip_Native','Grip_Native',(#52567));
+#52563=PRODUCT_RELATED_PRODUCT_CATEGORY('40_Print_Grip','40_Print_Grip',
+(#52567));
 #52564=APPLICATION_PROTOCOL_DEFINITION('international standard',
 'automotive_design',2009,#52565);
 #52565=APPLICATION_CONTEXT(
 'Core Data for Automotive Mechanical Design Process');
 #52566=PRODUCT_CONTEXT('part definition',#52565,'mechanical');
-#52567=PRODUCT('Grip_Native','Grip_Native',$,(#52566));
+#52567=PRODUCT('40_Print_Grip','40_Print_Grip',$,(#52566));
 #52568=PRESENTATION_STYLE_ASSIGNMENT((#52569));
 #52569=SURFACE_STYLE_USAGE(.BOTH.,#52570);
 #52570=SURFACE_SIDE_STYLE('',(#52571));

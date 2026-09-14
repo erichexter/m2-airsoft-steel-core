@@ -20,14 +20,8 @@ RIBB_OUT, TIP_OUT = 44.00, 49.09
 BOSS_IN = 25.40
 
 
-def build_side2(name, sign, rear_panel=True, boss=False):
-    occ = None
-    for o in root.occurrences:
-        if o.name.startswith(name): occ = o
-    if occ is None:
-        occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = name
-    comp = occ.component
-    for b in list(comp.bRepBodies): b.deleteMe()
+def build_side2(comp_name, part, sign, rear_panel=True, boss=False):
+    comp, keep = begin_part(root, comp_name, part)
     cleanup(comp)
 
     def Y(a, b):
@@ -86,13 +80,10 @@ def build_side2(name, sign, rear_panel=True, boss=False):
     for (x, z) in RIVETS:
         T.booleanOperation(acc, sphere((x, sign * 31.035, z), 3.125), BT.DifferenceBooleanType)
 
-    for b in list(comp.bRepBodies): b.deleteMe()
-    nb = comp.bRepBodies.add(acc); nb.name = name.replace('_Native', '_native')
-    cleanup(comp)
-    return nb
+    return finish_part(comp, keep, acc, part)
 
 
-nbL = build_side2('Side_L2_Native', -1.0, rear_panel=True,  boss=False)
+nbL = build_side2('20_Print_Receiver', 'PR-14-Side-Front-R', -1.0, rear_panel=True,  boss=False)
 report(nbL, 'SIDE_L2', 136.23)
-nbR = build_side2('Side_R2_Native', +1.0, rear_panel=False, boss=True)
+nbR = build_side2('20_Print_Receiver', 'PR-13-Side-Front-L', +1.0, rear_panel=False, boss=True)
 report(nbR, 'SIDE_R2', 124.12)

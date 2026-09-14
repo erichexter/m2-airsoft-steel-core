@@ -13,13 +13,8 @@ RUNS = [(FB_RIBS, -13.35, -3.00),
         (FB_E,      8.00, 19.00),
         (FB_F,     19.00, 24.80)]
 
-occ = None
-for o in root.occurrences:
-    if o.name.startswith('FrontBoss_Native'): occ = o
-if occ is None:
-    occ = root.occurrences.addNewComponent(c.Matrix3D.create()); occ.component.name = 'FrontBoss_Native'
-comp = occ.component
-for b in list(comp.bRepBodies): b.deleteMe()
+COMPONENT, PART = '20_Print_Receiver', 'PR-17-Front-Sight-Boss'
+comp, KEEP = begin_part(root, COMPONENT, PART)
 cleanup(comp)
 
 segs = []
@@ -32,7 +27,5 @@ acc = T.copy(segs[0])
 for b in segs[1:]:
     T.booleanOperation(acc, T.copy(b), BT.UnionBooleanType)
 
-for b in list(comp.bRepBodies): b.deleteMe()
-nb = comp.bRepBodies.add(acc); nb.name = 'FrontBoss_native'
-cleanup(comp)
+nb = finish_part(comp, KEEP, acc, PART)
 report(nb, 'FRONTBOSS', 108.08)
