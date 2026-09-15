@@ -9,8 +9,17 @@ node tools/makewrap.js wrap.json templates
 | | |
 |---|---|
 | `wrap.json` | the source data — unrolled outlines, fold lines, extents |
-| `M2_tube_wrap.svg` | one sheet, 1:1, **619.5 × 273.5 mm** including margin |
+| `M2_tube_wrap.pdf` | **plotter-ready**, one page, media declared as exactly 619.52 × 273.53 mm |
+| `M2_tube_wrap.svg` | the same drawing as vector source, for editing |
+| `M2_tube_wrap_plot.html` | what the PDF is rendered from — print this if you'd rather not use the PDF |
 | `M2_tube_wrap_tiled.html` | the same drawing across **6 letter pages**, 12 mm overlap |
+
+The PDF is regenerated from `M2_tube_wrap_plot.html` with:
+
+```
+chrome --headless --no-pdf-header-footer \
+       --print-to-pdf=templates/M2_tube_wrap.pdf templates/M2_tube_wrap_plot.html
+```
 
 ## Printing it
 
@@ -32,11 +41,29 @@ before you cut anything** — it is printed on all six, because duplex and n-up
 settings can scale sheets unevenly. Then trim each sheet on the grey corner crop
 marks, overlap 12 mm, and tape.
 
-### Copy shop or plotter — one sheet
+### Plotter — one sheet
 
-Send `M2_tube_wrap.svg`. It is **619.5 × 273.5 mm**, so it needs a 24" roll, A1, or
-ARCH D — it will *not* fit ARCH C (610 mm is 9.5 mm short). Ask for **100%, no
-scaling, no fit-to-media**, and measure the calibration bar when you collect it.
+Plot `M2_tube_wrap.pdf`. Its media size is declared as exactly 619.52 × 273.53 mm,
+so there is nothing for the driver to decide. Two settings still matter:
+
+- **Sizing / scaling: Actual size — 100%.** Not "Fit to page", not "Shrink oversized
+  pages", not "Scale to roll width". A plotter driver handed a page that is not a
+  standard size will scale it to one unless told otherwise, and 619.52 mm is not a
+  standard size.
+- **Rotate / autorotate: off.** Autorotate is harmless on its own, but it is usually
+  bundled with fit-to-media in the same driver preset.
+
+Feed it at least **630 mm** of roll — 24" (610 mm) is **9.5 mm too narrow** to take
+the sheet across the roll, so on a 24" machine plot it *along* the roll instead.
+36" (914 mm) takes it either way. A1 (594 × 841) works in landscape.
+
+Measure the 100 mm bar on the plot before cutting. The PDF itself is 1:1 to within
+0.0004 mm over that bar — anything you measure past about 0.5 mm came from the
+driver, not the file.
+
+If your workflow wants vector rather than PDF, `M2_tube_wrap.svg` is the same
+drawing — but note that an application handed a bare SVG picks its own paper size
+and then scales to fit it, which is exactly the failure the PDF exists to prevent.
 
 ## Using it
 

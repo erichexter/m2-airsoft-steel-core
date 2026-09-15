@@ -98,6 +98,21 @@ ${calibration(MARGIN, MARGIN - 6)}
 </svg>`;
 fs.writeFileSync(path.join(outdir, 'M2_tube_wrap.svg'), single);
 
+// ---------- single sheet, print-ready for a wide-format plotter ----------
+// Same drawing, wrapped so the MEDIA SIZE is declared as exactly the sheet size with
+// zero margin. Plotter drivers and browsers given a bare SVG pick their own paper and
+// then scale to fit it; declaring the page removes that decision from them entirely.
+// This is what M2_tube_wrap.pdf is rendered from.
+fs.writeFileSync(path.join(outdir, 'M2_tube_wrap_plot.html'),
+`<!doctype html><meta charset="utf-8"><title>M2 tube wrap — ${W.toFixed(2)} x ${H.toFixed(2)} mm</title>
+<style>
+  @page { size: ${W.toFixed(2)}mm ${H.toFixed(2)}mm; margin: 0; }
+  html,body { margin:0; padding:0; }
+  svg { display:block; }
+  @media screen { body { background:#666; } svg { background:#fff; } }
+</style>
+${single}`);
+
 // ---------- tiled for letter ----------
 const PW = 279.4, PH = 215.9;            // letter, landscape
 const PM = 8;                            // printer margin
