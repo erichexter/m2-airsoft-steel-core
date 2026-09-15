@@ -4,3 +4,4 @@ Thumbs.db
 
 # upstream model pack - third-party, download from thingiverse.com/thing:7248430
 source/model.zip
+dist/

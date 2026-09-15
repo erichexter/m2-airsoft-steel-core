@@ -12,7 +12,8 @@ node tools/makewrap.js wrap.json templates
 | `M2_tube_wrap.pdf` | **plotter-ready**, one page, media declared as exactly 619.52 × 273.53 mm |
 | `M2_tube_wrap.svg` | the same drawing as vector source, for editing |
 | `M2_tube_wrap_plot.html` | what the PDF is rendered from — print this if you'd rather not use the PDF |
-| `M2_tube_wrap_tiled.html` | the same drawing across **6 letter pages**, 12 mm overlap |
+| `M2_tube_wrap_letter.pdf` | the same drawing across **6 letter pages**, 12 mm overlap |
+| `M2_tube_wrap_tiled.html` | what the letter PDF is rendered from |
 
 The PDF is regenerated from `M2_tube_wrap_plot.html` with:
 

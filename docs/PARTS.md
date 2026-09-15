@@ -130,7 +130,11 @@ Light grey in the renders.
 | <img src="img/part-PR-52-Trigger-Switch-Carrier.png" width="150"> | `PR-52-Trigger-Switch-Carrier` | 52 | 23.10 | `Trigger_Switch_Carrier` |
 | <img src="img/part-PR-61-Engine-Cradle.png" width="150"> | `PR-61-Engine-Cradle` | 30 | 181.08 | `Cradle_F2_HopUp` |
 
-**18 printed parts, 2,724 cm³** — about 3.4 kg in PLA at 100% infill, less in practice.
+**18 printed parts, 3,498 cm³** — about 4.3 kg in PLA at 100% infill, considerably less
+in practice. (The rows above sum to 3,498.38 and each one agrees with its STL; the
+4.3 kg follows at 1.24 g/cm³. An earlier total of 2,724 cm³ / 3.4 kg here was simply
+wrong — `tools/makepack.py` now sums the table itself rather than trusting a figure
+typed underneath it.)
 
 `Bot2` was one body containing two disconnected rails; it is now two parts, which is
 what a slicer would have made of it anyway.
