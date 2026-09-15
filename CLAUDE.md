@@ -107,6 +107,15 @@ itself.
   actually fetching them unauthenticated.
 - After a part build, confirm volume against the donor, **one watertight shell**, and no
   clash with the other bodies.
+- **Check the face it prints on**, with `tools/bedcheck.js <stl> [axis] [min|max]`. A part
+  can be watertight, correctly sized and clash-free and still be unprintable: the skins
+  each sat on six ⌀8 fastener pads with 98% of the bed face floating 0.45 mm above them.
+  Nothing else in the toolchain looks at that, because every other check is about whether
+  the geometry is *right* rather than whether it can be *made*.
+- **When a change moves a mating face, re-run the clash check and attribute every hit.**
+  Filling that 0.45 mm gap created six new interferences with the parts that butted
+  against those faces. Deciding new-versus-pre-existing is not a judgement call: intersect,
+  then test whether the overlap lies entirely inside the band you altered.
 
 ## Regenerating the derived artifacts
 

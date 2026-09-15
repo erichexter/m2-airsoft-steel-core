@@ -212,9 +212,28 @@ Hatch rotation **0.000 cm³ through 75°**.
 
 ![The nine printed receiver skins that bolt to the tube.](img/04-receiver-skins.png)
 *The nine printed receiver skins that bolt to the tube.*
-**The panels have a 0.4mm clearance gap to the tube** (that is what `ENV` creates), so a screw
-pulled straight through would just flex a 3mm shell. Every fastener therefore has a **⌀8 boss on
-the panel's inner face** bridging that 0.4mm, with the ⌀3.4 clearance hole through it.
+**The panels bed directly on the tube.** Every fastener has a ⌀3.4 clearance hole; the screw pulls
+the panel's inner face flat against the steel wall, with no gap to bridge.
+
+> **This used to be a 0.4mm clearance gap** (an artifact of what `ENV` creates) with a **⌀8 boss on
+> the panel's inner face** at every fastener to bridge it — the reasoning being that a screw pulled
+> across that gap would just flex a 3mm shell.
+>
+> **The inner face is the face these parts print on**, visible side up so the outside can be ironed.
+> So each panel landed on the bed sitting on nothing but those bosses. Measured: `PR-13` rested on
+> **2.46 cm² while 216.69 cm² floated 0.45mm above it** — and 2.46 cm² is exactly six bosses,
+> 6 × (⌀8 disc − ⌀3.4 hole). 98% of the bed face was held in the air by six pads, and the slicer
+> supported all of it.
+>
+> The gap is now filled instead (`tools/reauthor/flatten_mating.py`). The bosses are absorbed
+> flush, the panel beds on the steel across its whole area — a better joint than six pads — and
+> `tools/bedcheck.js` reports **92.7–99.9% of every bed face on the bed**. Verified 0.000 mm³ of
+> penetration into the tube on all eight skins.
+>
+> The top and bottom strips had to follow: they ran to |Y| 25.80 to butt against panel faces at
+> 25.85, so moving those faces to the tube wall at 25.40 made them overlap by 0.40 each side. They
+> are trimmed to **|Y| 25.35**, keeping the original 0.05 clearance. A strip now spans the tube's
+> full width and stops just shy of the panel beside it.
 
 Tube gets **⌀2.65 pilot holes**; M3 thread-forming screws cut their own thread in the 0.120" wall.
 No tap, no rivnut tool. Heads left proud — they read as the M2's rivet line.
@@ -229,6 +248,23 @@ No tap, no rivnut tool. Heads left proud — they read as the M2's rivet line.
 Z −24 and +8 miss the CH slot (Z −12…−4) and the belt slot (Z ≥ +18); the X values miss the pivot
 pin (X −552), the backplate bosses (X −560…−547), the pintle tabs (X −384…−338), the air line
 (X −410) and the hinge tabs (X −22…0).
+
+### Four interferences found while checking the above — not yet fixed
+
+Pairwise-intersecting the eight skins against all 210 bodies turned these up. All four **predate
+the mating-face work** — each was confirmed by checking that the overlap extends outside the
+0.45 mm band that work added, so none of them is a consequence of it. They are small, and they are
+recorded here rather than silently patched because two of them are design questions, not slips:
+
+| | | |
+|---|---|---|
+| `PR-11-Side-Rear-L` ↔ `PR-13-Side-Front-L` | 34.6 mm³ | the lengthwise seam at X −265; the two panels overlap X −275…−265 |
+| `PR-12-Side-Rear-R` ↔ `PR-14-Side-Front-R` | 37.6 mm³ | the same seam, other side |
+| `PR-12-Side-Rear-R` ↔ `HW-03-Trigger-Pin-4mm` | 20.1 mm³ | the panel fouls the ⌀4 pivot pin — **this one blocks assembly** |
+| `PR-15-Top-Deck` ↔ `PR-31-Spade-Grips` | 6.6 mm³ | deck corner into the grip spine |
+
+The two seam overlaps may well be intentional lap joints that were never given clearance; the
+trigger pin one is not intentional.
 
 **`PR-19-Bottom-Front-L` / `-R` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
 them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond it.

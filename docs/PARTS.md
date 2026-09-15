@@ -111,16 +111,16 @@ Light grey in the renders.
 
 | | part | faces | cm³ | was called |
 |:-:|---|---:|---:|---|
-| <img src="img/part-PR-11-Side-Rear-L.png" width="150"> | `PR-11-Side-Rear-L` | 162 | 201.43 | `Side_R1` |
-| <img src="img/part-PR-12-Side-Rear-R.png" width="150"> | `PR-12-Side-Rear-R` | 262 | 328.35 | `Side_L1` |
-| <img src="img/part-PR-13-Side-Front-L.png" width="150"> | `PR-13-Side-Front-L` | 75 | 122.16 | `Side_R2` |
-| <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 84 | 133.95 | `Side_L2` |
-| <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 61 | 468.72 | `Top1` |
+| <img src="img/part-PR-11-Side-Rear-L.png" width="150"> | `PR-11-Side-Rear-L` | 142 | 216.25 | `Side_R1` |
+| <img src="img/part-PR-12-Side-Rear-R.png" width="150"> | `PR-12-Side-Rear-R` | 246 | 343.43 | `Side_L1` |
+| <img src="img/part-PR-13-Side-Front-L.png" width="150"> | `PR-13-Side-Front-L` | 63 | 131.91 | `Side_R2` |
+| <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 72 | 143.70 | `Side_L2` |
+| <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 49 | 464.67 | `Top1` |
 | <img src="img/part-PR-16-Top-Cover.png" width="150"> | `PR-16-Top-Cover` | 138 | 510.84 | `Hatch` |
 | <img src="img/part-PR-17-Front-Sight-Boss.png" width="150"> | `PR-17-Front-Sight-Boss` | 250 | 106.67 | `FrontBoss` |
-| <img src="img/part-PR-18-Bottom-Rear.png" width="150"> | `PR-18-Bottom-Rear` | 181 | 279.13 | `Bot1` |
-| <img src="img/part-PR-19-Bottom-Front-L.png" width="150"> | `PR-19-Bottom-Front-L` | 30 | 3.65 | half of `Bot2` |
-| <img src="img/part-PR-19-Bottom-Front-R.png" width="150"> | `PR-19-Bottom-Front-R` | 30 | 3.65 | half of `Bot2` |
+| <img src="img/part-PR-18-Bottom-Rear.png" width="150"> | `PR-18-Bottom-Rear` | 169 | 279.17 | `Bot1` |
+| <img src="img/part-PR-19-Bottom-Front-L.png" width="150"> | `PR-19-Bottom-Front-L` | 30 | 3.15 | half of `Bot2` |
+| <img src="img/part-PR-19-Bottom-Front-R.png" width="150"> | `PR-19-Bottom-Front-R` | 30 | 3.15 | half of `Bot2` |
 | <img src="img/part-PR-21-Barrel-Jacket.png" width="150"> | `PR-21-Barrel-Jacket` | 60 | 638.00 | `Barrel_Jacket` |
 | <img src="img/part-PR-31-Spade-Grips.png" width="150"> | `PR-31-Spade-Grips` | 1,549 | 330.82 | `Grip_Assembly` |
 | <img src="img/part-PR-41-CH-Handle.png" width="150"> | `PR-41-CH-Handle` | 73 | 116.82 | `CH_Handle` |
@@ -130,11 +130,13 @@ Light grey in the renders.
 | <img src="img/part-PR-52-Trigger-Switch-Carrier.png" width="150"> | `PR-52-Trigger-Switch-Carrier` | 52 | 23.10 | `Trigger_Switch_Carrier` |
 | <img src="img/part-PR-61-Engine-Cradle.png" width="150"> | `PR-61-Engine-Cradle` | 30 | 181.08 | `Cradle_F2_HopUp` |
 
-**18 printed parts, 3,498 cm³** — about 4.3 kg in PLA at 100% infill, considerably less
-in practice. (The rows above sum to 3,498.38 and each one agrees with its STL; the
-4.3 kg follows at 1.24 g/cm³. An earlier total of 2,724 cm³ / 3.4 kg here was simply
-wrong — `tools/makepack.py` now sums the table itself rather than trusting a figure
-typed underneath it.)
+**18 printed parts, 3,543 cm³** — about 4.4 kg in PLA at 100% infill, considerably less
+in practice. The rows above sum to 3,542.77 and each one agrees with its STL; the
+4.4 kg follows at 1.24 g/cm³.
+
+> Do not hand-maintain this total. It has been wrong twice — 2,724 cm³ once, then
+> 3,498 after the mating faces were flattened added 44 cm³ of fill. `tools/makepack.py`
+> sums the table itself, so run it and copy what it prints.
 
 `Bot2` was one body containing two disconnected rails; it is now two parts, which is
 what a slicer would have made of it anyway.
