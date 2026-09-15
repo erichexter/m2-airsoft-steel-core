@@ -17,6 +17,15 @@ const QUANT = 1e4;                // vertex weld tolerance -> 0.0001mm
 
 function readBinarySTL(file) {
   const buf = fs.readFileSync(file);
+  // An LFS pointer is a 131-byte text file, and it is what you get from "Download ZIP",
+  // from raw.githubusercontent.com, or from cloning without git-lfs installed. Left to
+  // the generic path it reports "truncated: header claims 828596793 triangles", which
+  // sends you looking for a broken export instead of a missing download.
+  if (buf.subarray(0, 40).toString('latin1').startsWith('version https://git-lfs')) {
+    throw new Error('this is a Git LFS pointer, not an STL — ' +
+                    'run "git lfs install && git lfs pull", or download the file ' +
+                    'from the GitHub file page rather than from Download ZIP');
+  }
   if (buf.length < 84) throw new Error('too short to be a binary STL');
   const n = buf.readUInt32LE(80);
   if (buf.length < 84 + n * 50) throw new Error('truncated: header claims ' + n + ' triangles');
@@ -139,9 +148,14 @@ const files = process.argv.slice(2);
 if (!files.length) { console.error('usage: node stlcheck.js <file.stl> [...]'); process.exit(1); }
 
 let problems = 0;
+// Kept separate from `problems`: a file that cannot be read at all is a different
+// thing from a part that merely needs turning on the bed. Two of the 18 printed parts
+// raise advisory conditions that are understood and documented in the README, so
+// exiting non-zero on those would cry wolf every single run.
+let unreadable = 0;
 for (const f of files) {
   let r;
-  try { r = analyse(f); } catch (e) { console.log(`\n${path.basename(f)}\n  FAILED: ${e.message}`); problems++; continue; }
+  try { r = analyse(f); } catch (e) { console.log(`\n${path.basename(f)}\n  FAILED: ${e.message}`); problems++; unreadable++; continue; }
   const size = [r.hi[0] - r.lo[0], r.hi[1] - r.lo[1], r.hi[2] - r.lo[2]];
   const watertight = r.open === 0 && r.nonmanifold === 0;
   const best = r.over[0];
@@ -166,4 +180,9 @@ for (const f of files) {
   if (!watertight || r.vol < 0 || !anyFits) problems++;
 }
 console.log('');
-console.log(files.length + ' file(s), ' + problems + ' with problems');
+console.log(files.length + ' file(s), ' + problems + ' with problems' +
+            (unreadable ? ', ' + unreadable + ' could not be read at all' : ''));
+// Exit non-zero only when a file could not be read - an LFS pointer, a truncated
+// export, something that is not an STL. It used to exit 0 even then, so a script
+// calling it passed while holding 131 bytes of text.
+if (unreadable) process.exit(1);

@@ -56,6 +56,40 @@ LICENSE                    CC BY-NC-SA 4.0
 The STEP and STL files contain **only original work** — the steel design, the printed skins
 derived as described under ATTRIBUTION, and the cradle.
 
+### Getting the STLs
+
+**The STLs, STEPs and renders are stored in Git LFS, and two of the obvious ways to
+download them silently give you 131-byte text pointers instead of models.** Verified
+against this repo:
+
+| how | what you get |
+|---|---|
+| **Code → Download ZIP** | ❌ pointers — all 40 STLs come to **5 KB total** |
+| `raw.githubusercontent.com/…` | ❌ pointer |
+| **Download button on the file's page** | ✅ the real STL |
+| `github.com/erichexter/m2-airsoft-steel-core/raw/main/stl/<name>.stl` | ✅ the real STL |
+| `git clone` **with git-lfs installed** | ✅ everything |
+
+A pointer file is 131 bytes of text beginning `version https://git-lfs…`. If a
+download is that size, that is what happened.
+
+To get the whole set at once, install [git-lfs](https://git-lfs.com) *first*, then:
+
+```
+git lfs install
+git clone https://github.com/erichexter/m2-airsoft-steel-core.git
+```
+
+Cloning **without** git-lfs installed also gives you pointers. If that has already
+happened, `git lfs install && git lfs pull` fixes it in place. Either way, check
+before slicing:
+
+```
+node tools/stlcheck.js stl/PR-*.stl
+```
+
+which fails loudly on a pointer file rather than letting a slicer choke on it.
+
 ### Checking the prints
 
 ```
