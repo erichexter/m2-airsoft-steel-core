@@ -58,8 +58,14 @@ derived as described under ATTRIBUTION, and the cradle.
 
 ### Getting the STLs
 
-**The STLs, STEPs and renders are stored in Git LFS, and two of the obvious ways to
-download them silently give you 131-byte text pointers instead of models.** Verified
+**Easiest: grab the print pack from the
+[latest release](https://github.com/erichexter/m2-airsoft-steel-core/releases/latest).**
+`M2-steel-core-print-pack-v1.1.zip` has the 18 printed parts and both tube templates
+in one download — no clone, no git-lfs, nothing to configure.
+
+That matters because **the STLs, STEPs and renders are stored in Git LFS, and two of
+the obvious ways to download them silently give you 131-byte text pointers instead of
+models.** Release assets are served directly and sidestep it entirely. Verified
 against this repo:
 
 | how | what you get |
