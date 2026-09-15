@@ -60,8 +60,9 @@ derived as described under ATTRIBUTION, and the cradle.
 
 **Easiest: grab the print pack from the
 [latest release](https://github.com/erichexter/m2-airsoft-steel-core/releases/latest).**
-`M2-steel-core-print-pack-v1.1.zip` has the 18 printed parts and both tube templates
-in one download — no clone, no git-lfs, nothing to configure.
+The print pack ZIP there has the 18 printed parts and both tube templates in one
+download — no clone, no git-lfs, nothing to configure. Always take the **latest**
+release; earlier packs are left up for reference but are superseded.
 
 That matters because **the STLs, STEPs and renders are stored in Git LFS, and two of
 the obvious ways to download them silently give you 131-byte text pointers instead of
