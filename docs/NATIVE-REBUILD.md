@@ -32,7 +32,7 @@ parts are faceted.
 | 6 | `Hatch` | 2,772 | ✅ **138** | −1.2% | Prismatic runs + straight ramps. **Fixed a real interference** — see below. |
 | 7 | `Side_R2` | 2,289 | ✅ **75** | −1.6% | Spherical rivet dimples, conical boss where the left has a rear panel. |
 | 8 | `Side_L2` | 1,913 | ✅ **84** | −1.7% | Layered plate, 9 dimples at 18.31 pitch, 6 M3 bosses. |
-| 9 | `FrontBoss` | 1,705 | ✅ **304** | −1.7% | Front sight hood and post, 12 rectangular standoff ribs. |
+| 9 | `FrontBoss` | 1,705 | ✅ **250** | −1.3% | Front sight hood and post, 12 rectangular standoff ribs. |
 | 10 | `Top1` | 1,169 | ✅ **61** | −0.9% | Planes + cylinders only. Six ⌀8 bridging bosses under the deck. |
 | 11 | `Trigger` | 611 | ⚠ **partial** | — | The lever *is already native*; the butterfly paddle defeated three attempts. |
 
@@ -41,12 +41,18 @@ parts are faceted.
 
 ### Where it landed
 
-**66,886 faces of donor mesh replaced by 2,682 native ones — a 25× reduction**, across every part
+**66,886 faces of donor mesh replaced by 2,714 native ones — a 25× reduction**, across every part
 except the trigger's butterfly paddle. Each is a single watertight shell, and **every bounding box
 now matches its donor to better than 0.25 mm** in all three axes.
 
-Volumes land within 2.7% except the jacket, which is a deliberate simplification. The whole printed
-set is 2,962 cm³ native against 3,229 cm³ faceted.
+Volumes land within 2.7% except the jacket, which is a deliberate simplification. Those ten parts
+are **2,957 cm³ native against 3,230 cm³ faceted** — recomputed from the meshes, donor totals taken
+from `stl/donor/`.
+
+**That is the ten reauthored parts, not the printed set.** All 18 printed parts together are
+**3,498 cm³** — see `docs/PARTS.md`. The other eight were already native and never went through this
+process, so they appear in neither figure above. An earlier version of this line said "the whole
+printed set", which made a number covering ten parts look like it covered eighteen.
 
 Only 611 faces remain faceted, and only the paddle within that.
 
