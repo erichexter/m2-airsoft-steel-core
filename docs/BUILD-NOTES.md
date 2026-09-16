@@ -291,6 +291,41 @@ them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond
 **Probing the top panel: the tube's top is at Z 27.05…30.10 over X −560…−310.** Probing at the
 Z +24 cut line reports zero viable positions, because the cut only exists from X −310 forward.
 
+## CLEARANCE: where printed parts meet welded steel
+
+Measured by inflating each steel body until it touches the printed part. **19 interfaces
+sit under 0.20 mm.** They are two different things and only one of them is a problem:
+
+**Face bedding — 0.00 mm is correct.** The printed face lies flat *on* steel. Thin in
+exactly one axis.
+
+| `PR-11` → tube | 295.00 × 0.60 × 69.28 |
+|---|---|
+| `PR-15` → cover spine | 0.60 × 25.00 × 3.18 |
+| `PR-52` → backplate | 0.60 × 40.00 × 39.50 |
+
+**Enveloping fits — 0.00 mm is unbuildable.** Printed material wraps *around* steel, so
+it needs room for FDM tolerance and weld distortion both.
+
+| | extents | clearance |
+|---|---|---|
+| `PR-11` → pintle tab | 47.20 × 3.55 × 32.50 | ≤ 0.02 mm |
+| `PR-18` → pintle tab | 47.20 × 10.30 × 20.85 | ≤ 0.02 mm |
+| `PR-16` → cover spine | 329.90 × 26.20 × 3.72 | ≤ 0.10 mm — **fixed, now 0.50** |
+| `PR-31` → trigger pin | 1.60 × 40.00 × 4.66 | ≤ 0.02 mm |
+| `PR-51` → trigger pin | 5.20 × 12.00 × 5.20 | ≤ 0.15 mm |
+
+Only the spine was corrected in CAD, because a 329.9 mm steel bar will not enter a
+printed slot at 0.10 mm by any means. The rest are **hand-fit at assembly**:
+
+- **Pintle pockets** — `PR-11`, `PR-12`, `PR-18` printed unsupported, so the bridge over
+  each pocket sagged *into* it. At 0.02 mm nominal any droop fouls the tab. Check with a
+  straightedge and dress flat before assembly.
+- **Trigger pin bores** — ream to size after printing. An FDM hole comes out undersize
+  anyway, so opening the model risks a sloppy pivot instead of a tight one.
+
+**Never put support material in an enveloping fit.** It has no clearance to give up.
+
 ## PRINTED SKIN RULES
 
 **"Flat panels" means flat FOR PRINTING, not featureless.** Each piece lies flat on the bed with

@@ -116,7 +116,7 @@ Light grey in the renders.
 | <img src="img/part-PR-13-Side-Front-L.png" width="150"> | `PR-13-Side-Front-L` | 71 | 131.75 | `Side_R2` |
 | <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 97 | 143.43 | `Side_L2` |
 | <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 77 | 464.63 | `Top1` |
-| <img src="img/part-PR-16-Top-Cover.png" width="150"> | `PR-16-Top-Cover` | 150 | 512.23 | `Hatch` |
+| <img src="img/part-PR-16-Top-Cover.png" width="150"> | `PR-16-Top-Cover` | 158 | 509.14 | `Hatch` |
 | <img src="img/part-PR-17-Front-Sight-Boss.png" width="150"> | `PR-17-Front-Sight-Boss` | 254 | 106.40 | `FrontBoss` |
 | <img src="img/part-PR-18-Bottom-Rear.png" width="150"> | `PR-18-Bottom-Rear` | 169 | 279.17 | `Bot1` |
 | <img src="img/part-PR-19-Bottom-Front-L.png" width="150"> | `PR-19-Bottom-Front-L` | 30 | 3.15 | half of `Bot2` |
@@ -130,8 +130,8 @@ Light grey in the renders.
 | <img src="img/part-PR-52-Trigger-Switch-Carrier.png" width="150"> | `PR-52-Trigger-Switch-Carrier` | 52 | 23.10 | `Trigger_Switch_Carrier` |
 | <img src="img/part-PR-61-Engine-Cradle.png" width="150"> | `PR-61-Engine-Cradle` | 30 | 181.08 | `Cradle_F2_HopUp` |
 
-**18 printed parts, 3,543 cm³** — about 4.4 kg in PLA at 100% infill, considerably less
-in practice. The rows above sum to 3543.39 and each one agrees with its STL; the
+**18 printed parts, 3,540 cm³** — about 4.4 kg in PLA at 100% infill, considerably less
+in practice. The rows above sum to 3540.30 and each one agrees with its STL; the
 4.4 kg follows at 1.24 g/cm³.
 
 > Do not hand-maintain this total. It has been wrong twice — 2,724 cm³ once, then
