@@ -34,10 +34,12 @@ For scale: a real M2HB is 84 lb; commercial airsoft M2 replicas run 33–44 lb.
 
 ```
 docs/PARTS.md              Parts catalogue — every name, in one place. START HERE
+docs/PRINTING.md           Orientation per part, settings, and why the long panels warp
 docs/BUILD-NOTES.md        Full build notes: cut list, coordinates, weld plan, gotchas
 docs/NATIVE-REBUILD.md     How the donor meshes were reauthored as native geometry
 
 stl/PR-*.stl               The 18 printed parts, ready to slice
+stl/print-aids/            PR-11/PR-12 with snap-off corner pads — print THESE two
 stl/ST-*.stl               Steel parts — for checking the cut list, not for printing
 stl/donor/                 Original donor meshes, kept for reference and attribution
 

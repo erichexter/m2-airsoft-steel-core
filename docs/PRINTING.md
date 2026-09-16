@@ -1,0 +1,103 @@
+# Printing the skins
+
+Everything in the table below that is a **coordinate, footprint or orientation is measured
+from the model** by `tools/bedcheck.js` and `tools/stlcheck.js`. Everything that is a
+temperature or a speed is a **starting point** from one reported failure on one machine —
+tune it.
+
+Reference machine: **Creality K1 Max**, 300 × 300 × 300, textured PEI, **0.6 nozzle at
+0.3 mm layer height**, PLA.
+
+---
+
+## Orientation — this is the part that matters
+
+Each skin lies **tube-mating (inner) face down on the bed, visible face up.** That is what
+the flattening work in `tools/reauthor/flatten_mating.py` was for, and it is also what lets
+you iron the outer surface. Get this wrong and the part needs support everywhere.
+
+| part | bed face | footprint | bed contact |
+|---|---|---:|---:|
+| `PR-11-Side-Rear-L` | Y min | 296 × 135 | 95.1% |
+| `PR-12-Side-Rear-R` | Y max | 296 × 135 | 95.8% |
+| `PR-13-Side-Front-L` | Y min | 271 × 99 | 99.9% |
+| `PR-14-Side-Front-R` | Y max | 271 × 99 | 99.9% |
+| `PR-15-Top-Deck` | Z min | 226 × 51 | 92.7% |
+| `PR-18-Bottom-Rear` | Z max | 296 × 51 | 97.2% |
+| `PR-17-Front-Sight-Boss` | X max | — | 71.5% |
+
+Check any other part with `node tools/bedcheck.js <stl> <axis> <min|max>`.
+
+**`PR-16-Top-Cover` is 329.9 mm long and does not fit a 300 mm bed axis-aligned.** Laid
+diagonally it is a 294 mm footprint — 5.7 mm of margin. Your slicer will not do this for
+you.
+
+---
+
+## The long panels warp, and a brim will not save them
+
+`PR-11` and `PR-12` are 295.6 mm long. PLA contracts about 0.4% as it cools, so each is
+trying to shrink **~1.2 mm along its length, 0.6 mm at each end**, and that force peels the
+end corners off the plate.
+
+A brim is not available in the direction that matters. The design sits at the bed limit on
+purpose — `BUILD-NOTES.md` puts the seam at X −265 because *"max forward is X −260.6 before
+Side_1 exceeds the 300 mm bed"* — which leaves **about 1.1 mm at each end.**
+
+**Print `stl/print-aids/PR-11-Side-Rear-L-ears.stl` and `-PR-12-Side-Rear-R-ears.stl`
+instead of the plain versions.** Four ⌀20 × 0.6 mm pads at the corners, growing sideways
+into the 165 mm of spare bed rather than lengthwise into the 1.1 mm that is not there.
+Snap them off afterwards.
+
+The pads are **0.6 mm = exactly two layers at 0.3 mm**. A pad thinner than one layer gets
+dropped or rounded up at slice time and looks like the fix failing. **Change layer height →
+change `PAD_T` in `tools/reauthor/print_aids.py` and regenerate.**
+
+`PR-13` / `PR-14` have 14 mm to spare. Just use a normal brim on those.
+
+---
+
+## Settings
+
+Ordered by how much they mattered on the reported failure.
+
+| | setting | why |
+|---|---|---|
+| 1 | **Auxiliary / side fan OFF for the first ~10 layers** | The K1 Max stock PLA profile runs it hard and it blows straight across a 296 mm first layer. Biggest single lever. |
+| 2 | **Part cooling 0% for layers 1–3**, then ramp | Same reason, less severe. |
+| 3 | **Keep the enclosure shut** | Chamber heat works *for* you against warping. Stock PLA profiles often want the door open — wrong for parts this long. |
+| 4 | **First layer 30–50 mm/s, reduced acceleration** | The K1 Max does 20,000 mm/s². That is real shear on a marginally-attached 296 mm part. |
+| 5 | **Bed 60 °C, soak 5+ min** | The edges lag the centre sensor, and these parts end exactly at the edge. |
+| 6 | **Z-offset one notch lower** | At 0.6/0.3 an under-squished first layer still looks fine. |
+
+**Do not add glue stick to textured PEI for PLA.** It generally *reduces* grip — it is for
+PETG release and smooth sheets. Wash the plate with **dish soap and warm water**, not IPA;
+IPA smears skin oils rather than removing them. Handle it by the edges.
+
+**Centre the long parts deliberately.** With the ears the footprint is 297.6 × 155.1 mm —
+**1.2 mm clear at each end.** A 1.5 mm nudge puts a pad off the plate.
+
+---
+
+## Debugging a failure
+
+Match the symptom before changing anything:
+
+| what you see | what it is | what to change |
+|---|---|---|
+| Corners lift at the **ends of the long axis**, middle stays down | contraction / warp | ears, fan, chamber heat |
+| Whole part breaks free early, first layer **shiny, not squished** | Z-offset or bed temp | squish and temperature |
+| Fails **hours in**, partway up | draft or cooling | close the enclosure, drop fan |
+| **Nothing sticks anywhere** from the start | surface contamination | wash the plate — *this* is when glue is the answer |
+
+**Validate settings on `PR-13` or `PR-14` first.** They are 271 mm with brim room, so if
+those still lift, the problem is the plate or the Z-offset and the ears will not save the
+long ones either. Six hours is a long time to find that out on `PR-12`.
+
+---
+
+## Material
+
+**3,542 cm³ across 18 parts — about 4.4 kg of PLA at 100% infill**, and considerably less
+in practice. These are non-structural skins; the steel carries everything. There is no
+reason to print them solid.
