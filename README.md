@@ -114,8 +114,10 @@ normals and a single shell.
 Two reported conditions, both understood and both fine:
 
 - **`PR-16-Top-Cover.stl` "does not fit the bed".** The checker only tests axis-aligned
-  orientations. The cover is 329.9 mm long and does fit laid diagonally — a 294 mm footprint
-  on a 300 mm bed, 5.7 mm of margin.
+  orientations. The cover is 329.9 mm long and does fit laid diagonally — measured by rotating
+  its actual first-layer point set, the best angle is **45°, giving 272.7 × 272.4 mm — 13.6 mm
+  of margin per side**, which is room for a 10 mm brim. An earlier note here said 294 mm and
+  5.7 mm; that was an estimate, not a measurement, and it was wrong.
 - **`PR-31-Spade-Grips.stl` reports 3 non-manifold edges.** They are three 2 mm verticals at
   X ≈ −583, Y ≈ ±10, where the trigger's clearance slot cuts through the spine and the cut
   surface meets itself. The part has **no holes** and is one closed shell; slicers handle

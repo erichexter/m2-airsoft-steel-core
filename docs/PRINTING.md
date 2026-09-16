@@ -28,9 +28,14 @@ you iron the outer surface. Get this wrong and the part needs support everywhere
 
 Check any other part with `node tools/bedcheck.js <stl> <axis> <min|max>`.
 
-**`PR-16-Top-Cover` is 329.9 mm long and does not fit a 300 mm bed axis-aligned.** Laid
-diagonally it is a 294 mm footprint — 5.7 mm of margin. Your slicer will not do this for
-you.
+**`PR-16-Top-Cover` is 329.9 mm long and does not fit a 300 mm bed axis-aligned.** Rotate it
+**45° about Z**: measured off its own first-layer point set that gives **272.7 × 272.4 mm,
+13.6 mm of margin per side** — enough for a 10 mm brim. Your slicer will not work this out
+for you.
+
+PR-16 also carries the same 0.15 mm standoff the skins had, fixed in the same way. It is the
+one part that cannot be printed on a better face: `x-min` scores higher but stands it 330 mm
+tall, past the 300 mm build height.
 
 ---
 

@@ -77,10 +77,10 @@ overhang.
 
 ## Two things that will go wrong if you ignore them
 
-**`PR-16-Top-Cover` is 329.9 mm long and will NOT fit the 300 mm bed axis-aligned.** It
-fits **laid diagonally** — a 294 mm footprint with about 5.7 mm of margin. You have to
-rotate it about Z yourself; the slicer will not work this out. If it still will not fit,
-stop and tell me rather than scaling it.
+**`PR-16-Top-Cover` is 329.9 mm long and will NOT fit the 300 mm bed axis-aligned.**
+Rotate it **45° about Z** — that gives **272.7 × 272.4 mm, 13.6 mm of margin per side**,
+which is room for a 10 mm brim. The slicer will not work this out for you. If it still
+will not fit, stop and tell me rather than scaling it.
 
 **`PR-11` and `PR-12` with their pads are 297.6 mm across a 300 mm bed — 1.2 mm clear at
 each end.** Centre them deliberately and confirm nothing is off the plate or inside any

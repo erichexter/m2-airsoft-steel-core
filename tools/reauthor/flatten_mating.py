@@ -39,6 +39,13 @@ PARTS = [
     ('PR-14-Side-Front-R', 'y', 'max'),
     ('PR-15-Top-Deck',     'z', 'min'),
     ('PR-18-Bottom-Rear',  'z', 'max'),
+    # PR-16 is not a tube-mating skin - it is the hinged cover - so it was not in the
+    # original scope and kept its defect through four releases. Same failure exactly:
+    # on the face it must print on it rested on 23.03 cm2 with 89.03 cm2 floating
+    # 0.15mm above. Found only by sweeping every part rather than the ones just edited.
+    # It cannot print on any other face: x-min scores better but stands it 330mm tall,
+    # over the 300mm build height.
+    ('PR-16-Top-Cover',    'z', 'min'),
 ]
 AXIS_I = {'x': 0, 'y': 1, 'z': 2}
 NEAR = 2.0          # mm: how far from the extreme plane to look for the main face
