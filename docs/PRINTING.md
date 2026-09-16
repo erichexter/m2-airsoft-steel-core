@@ -79,8 +79,27 @@ Ordered by how much they mattered on the reported failure.
 PETG release and smooth sheets. Wash the plate with **dish soap and warm water**, not IPA;
 IPA smears skin oils rather than removing them. Handle it by the edges.
 
-**Centre the long parts deliberately.** With the ears the footprint is 297.6 × 155.1 mm —
-**1.2 mm clear at each end.** A 1.5 mm nudge puts a pad off the plate.
+**The usable envelope is smaller than 300 mm for real geometry.** Creality Print 7.2
+refuses to place a 297.6 mm part at all — *"Nothing to be sliced … no object is fully
+inside the print volume"* — while a featureless box of the same size slices fine.
+Bracketed on the real mesh: **297.6 rejected, 296.1 rejected, 294.6 slices**, and
+`PR-18` at 295.6 slices. Treat ~296 mm as the practical ceiling, not 300.
+
+This is why the corner pads add **zero** length: they sit tangent to the part's ends, so
+the eared files are 295.6 mm, exactly the same as the plain ones. The bond they add comes
+from the half-disc overhanging *sideways*, which costs nothing in the constrained axis.
+
+**A defect smaller than the layer height is invisible to the slicer.** PR-16 had an
+0.15 mm standoff and sliced to **identical G-code before and after the fix — 171.99 g both
+times.** At 0.3 mm layers the first layer is sampled mid-layer at z = 0.15, where both the
+pads and the "floating" face are present. The fix added 1.39 cm³ and the floating band is
+1.335 cm³ — i.e. the fix added exactly the material the slicer was already ignoring. The
+geometry is correct now and it matters at finer layer heights, but **it changed nothing
+about this print.** Check a defect against layer height before calling it a print problem.
+
+**`brim_type = outer_brim` is silently ignored by Creality Print 7.2** and falls back to
+`auto_brim`, which often decides a large flat part needs no brim at all. Accepted values in
+that build are `auto_brim`, `outer_only`, `no_brim`.
 
 ---
 

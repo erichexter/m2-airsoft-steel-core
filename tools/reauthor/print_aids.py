@@ -28,7 +28,22 @@ PAD_R = 10.0          # mm
 # rounded up unpredictably, and a single 0.3 layer tears instead of snapping when you
 # pull it off. Re-check this if the layer height changes.
 PAD_T = 0.60
-X_PROUD = 1.0         # how far a pad may stand past the part's own end. Bed margin is 1.1.
+# How far a pad may stand past the part's own end.
+#
+# ZERO, and that is not a safety margin - it is a hard requirement.
+#
+# The first version used 1.0, which read as conservative against 1.1mm of bed margin.
+# It made the part 297.6mm and Creality Print refused to place it at all: "Nothing to
+# be sliced ... no object is fully inside the print volume". The slicer agent bracketed
+# it by scaling the real mesh - 297.6 rejected, 296.1 rejected, 294.6 slices - while
+# PR-18 at 295.6 slices and a featureless box at 297.6 also slices. So the usable
+# envelope for real geometry is tighter than the nominal 300 and tighter than for a
+# plain bounding box.
+#
+# At 0 the pads sit tangent to the part's ends and the footprint stays exactly 295.6mm,
+# unchanged from the plain part. Nothing is lost by this: the bond the pads add comes
+# from the half-disc that overhangs the part SIDEWAYS in Z, which is untouched.
+X_PROUD = 0.0
 
 # part, mating axis, bed-face coordinate, outboard direction, corner points of the
 # contact patch as (along-X, across) - measured off the exported mesh, not guessed.

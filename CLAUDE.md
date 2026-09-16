@@ -112,6 +112,11 @@ itself.
   each sat on six ⌀8 fastener pads with 98% of the bed face floating 0.45 mm above them.
   Nothing else in the toolchain looks at that, because every other check is about whether
   the geometry is *right* rather than whether it can be *made*.
+- **A defect smaller than the layer height is invisible to the slicer.** PR-16's 0.15 mm
+  standoff sliced to byte-identical G-code before and after being fixed, because at 0.3 mm
+  layers the first layer samples at z = 0.15 where both surfaces are present. Real geometry
+  error, zero print consequence. Check the scale of a defect against the process before
+  claiming it caused anything.
 - **Clash-check the whole matrix, not the parts you touched.** Checking only what was
   just edited is the natural instinct and it missed two interferences for days: the
   front sight boss sat over both welded hinge tabs the whole time, and had even been
