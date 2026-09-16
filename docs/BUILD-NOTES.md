@@ -249,12 +249,12 @@ Z −24 and +8 miss the CH slot (Z −12…−4) and the belt slot (Z ≥ +18); 
 pin (X −552), the backplate bosses (X −560…−547), the pintle tabs (X −384…−338), the air line
 (X −410) and the hinge tabs (X −22…0).
 
-### Four interferences found while checking the above — not yet fixed
+### Four interferences found while checking the above — now resolved
 
 Pairwise-intersecting the eight skins against all 210 bodies turned these up. All four **predate
 the mating-face work** — each was confirmed by checking that the overlap extends outside the
-0.45 mm band that work added, so none of them is a consequence of it. They are small, and they are
-recorded here rather than silently patched because two of them are design questions, not slips:
+0.45 mm band that work added, so none of them is a consequence of it. They are small, and they are recorded here
+because two of them looked like design questions rather than slips:
 
 | | | |
 |---|---|---|
@@ -263,8 +263,16 @@ recorded here rather than silently patched because two of them are design questi
 | `PR-12-Side-Rear-R` ↔ `HW-03-Trigger-Pin-4mm` | 20.1 mm³ | the panel fouls the ⌀4 pivot pin — **this one blocks assembly** |
 | `PR-15-Top-Deck` ↔ `PR-31-Spade-Grips` | 6.6 mm³ | deck corner into the grip spine |
 
-The two seam overlaps may well be intentional lap joints that were never given clearance; the
-trigger pin one is not intentional.
+**All four are cleared** by `tools/reauthor/resolve_clashes.py`, at 0.20 mm — deliberately more than
+the 0.05 between a strip and a panel, because these are not faces meant to bed together but places
+where two parts occupied the same space, and a printed joint wants room to be slid into.
+
+"It is probably an intentional lap" turned out not to be a defence. Two solids cannot share space
+whatever the intent; a lap still needs the clearance cut into one side of it. The part that gives
+way is the one easier to reprint and less load-bearing — the front panel yields to the rear, the
+skin yields to the hardware. Each cut leaves **0.000 mm³** of overlap and a single shell, and the
+bed faces are untouched: every relieved area became a pocket deeper than 1 mm, so bed contact stayed
+at 92.7–99.9%.
 
 **`PR-19-Bottom-Front-L` / `-R` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
 them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond it.

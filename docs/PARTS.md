@@ -112,10 +112,10 @@ Light grey in the renders.
 | | part | faces | cm³ | was called |
 |:-:|---|---:|---:|---|
 | <img src="img/part-PR-11-Side-Rear-L.png" width="150"> | `PR-11-Side-Rear-L` | 142 | 216.25 | `Side_R1` |
-| <img src="img/part-PR-12-Side-Rear-R.png" width="150"> | `PR-12-Side-Rear-R` | 246 | 343.43 | `Side_L1` |
-| <img src="img/part-PR-13-Side-Front-L.png" width="150"> | `PR-13-Side-Front-L` | 63 | 131.91 | `Side_R2` |
-| <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 72 | 143.70 | `Side_L2` |
-| <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 49 | 464.67 | `Top1` |
+| <img src="img/part-PR-12-Side-Rear-R.png" width="150"> | `PR-12-Side-Rear-R` | 253 | 343.40 | `Side_L1` |
+| <img src="img/part-PR-13-Side-Front-L.png" width="150"> | `PR-13-Side-Front-L` | 71 | 131.75 | `Side_R2` |
+| <img src="img/part-PR-14-Side-Front-R.png" width="150"> | `PR-14-Side-Front-R` | 97 | 143.43 | `Side_L2` |
+| <img src="img/part-PR-15-Top-Deck.png" width="150"> | `PR-15-Top-Deck` | 77 | 464.63 | `Top1` |
 | <img src="img/part-PR-16-Top-Cover.png" width="150"> | `PR-16-Top-Cover` | 138 | 510.84 | `Hatch` |
 | <img src="img/part-PR-17-Front-Sight-Boss.png" width="150"> | `PR-17-Front-Sight-Boss` | 250 | 106.67 | `FrontBoss` |
 | <img src="img/part-PR-18-Bottom-Rear.png" width="150"> | `PR-18-Bottom-Rear` | 169 | 279.17 | `Bot1` |
@@ -130,8 +130,8 @@ Light grey in the renders.
 | <img src="img/part-PR-52-Trigger-Switch-Carrier.png" width="150"> | `PR-52-Trigger-Switch-Carrier` | 52 | 23.10 | `Trigger_Switch_Carrier` |
 | <img src="img/part-PR-61-Engine-Cradle.png" width="150"> | `PR-61-Engine-Cradle` | 30 | 181.08 | `Cradle_F2_HopUp` |
 
-**18 printed parts, 3,543 cm³** — about 4.4 kg in PLA at 100% infill, considerably less
-in practice. The rows above sum to 3,542.77 and each one agrees with its STL; the
+**18 printed parts, 3,542 cm³** — about 4.4 kg in PLA at 100% infill, considerably less
+in practice. The rows above sum to 3542.27 and each one agrees with its STL; the
 4.4 kg follows at 1.24 g/cm³.
 
 > Do not hand-maintain this total. It has been wrong twice — 2,724 cm³ once, then
