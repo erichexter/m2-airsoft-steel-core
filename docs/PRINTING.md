@@ -12,30 +12,42 @@ Reference machine: **Creality K1 Max**, 300 × 300 × 300, textured PEI, **0.6 n
 
 ## Orientation — this is the part that matters
 
-Each skin lies **tube-mating (inner) face down on the bed, visible face up.** That is what
-the flattening work in `tools/reauthor/flatten_mating.py` was for, and it is also what lets
-you iron the outer surface. Get this wrong and the part needs support everywhere.
+Each part goes on the face with the **largest measured flat contact area**. For the skins
+that is the tube-mating (inner) face, which is what `tools/reauthor/flatten_mating.py`
+made flat and what lets you iron the outside.
 
-| part | bed face | footprint | bed contact |
+**Measure the area, not a percentage.** `bedcheck` reports both, and ranking by
+"% of bed-facing area" picks the **wrong face on 6 of these 18 parts** — the denominator
+changes with orientation, so a face with 73.7% of a tiny bed-facing total beats one with
+42.7% of a large one while having a tenth the actual contact. Rank by cm².
+
+| part | bed face | contact | height |
 |---|---|---:|---:|
-| `PR-11-Side-Rear-L` | Y min | 296 × 135 | 95.1% |
-| `PR-12-Side-Rear-R` | Y max | 296 × 135 | 95.8% |
-| `PR-13-Side-Front-L` | Y min | 271 × 99 | 99.9% |
-| `PR-14-Side-Front-R` | Y max | 271 × 99 | 99.9% |
-| `PR-15-Top-Deck` | Z min | 226 × 51 | 92.7% |
-| `PR-18-Bottom-Rear` | Z max | 296 × 51 | 97.2% |
-| `PR-17-Front-Sight-Boss` | X max | — | 71.5% |
+| `PR-11-Side-Rear-L` | Y min | 333.10 cm² | 24 mm |
+| `PR-12-Side-Rear-R` | Y max | 337.45 cm² | 37 mm |
+| `PR-13-Side-Front-L` | Y min | 218.80 cm² | 24 mm |
+| `PR-14-Side-Front-R` | Y max | 218.80 cm² | 24 mm |
+| `PR-15-Top-Deck` | Z min | 106.34 cm² | 66 mm |
+| `PR-16-Top-Cover` | Z min, **rotated 45° about Z** | 118.77 cm² | 30 mm |
+| `PR-17-Front-Sight-Boss` | X max | 32.41 cm² | 38 mm |
+| `PR-18-Bottom-Rear` | Z max | 133.29 cm² | 26 mm |
+| `PR-19-Bottom-Front-L` / `-R` | Y min | 11.06 cm² | 3 mm |
+| `PR-21-Barrel-Jacket` | X max | 22.59 cm² | 262 mm |
+| `PR-31-Spade-Grips` | Z min | 9.00 cm² | 126 mm |
+| `PR-41-CH-Handle` | Y max | 14.96 cm² | 133 mm |
+| `PR-42-CH-Carrier` | Y min | 15.96 cm² | 16 mm |
+| `PR-43-CH-Shoe` | Y min | 4.95 cm² | 8 mm |
+| `PR-51-Trigger-Butterfly` | Z min | 6.72 cm² | 63 mm |
+| `PR-52-Trigger-Switch-Carrier` | Z max | 12.24 cm² | 43 mm |
+| `PR-61-Engine-Cradle` | Z min | 57.90 cm² | 43 mm |
 
-Check any other part with `node tools/bedcheck.js <stl> <axis> <min|max>`.
+**"Thinnest axis down" is a bounding-box heuristic and it is blind to what is actually
+touching the plate.** It fails on round shells and tall organic shapes. Placed that way,
+`PR-21-Barrel-Jacket` and `PR-41-CH-Handle` both get **0.00 cm²** of flat contact — a
+cylinder lying down touches on a *line* — and `PR-51` gets 0.08 cm². All three would have
+gone to the plate resting on nothing.
 
-**`PR-16-Top-Cover` is 329.9 mm long and does not fit a 300 mm bed axis-aligned.** Rotate it
-**45° about Z**: measured off its own first-layer point set that gives **272.7 × 272.4 mm,
-13.6 mm of margin per side** — enough for a 10 mm brim. Your slicer will not work this out
-for you.
-
-PR-16 also carries the same 0.15 mm standoff the skins had, fixed in the same way. It is the
-one part that cannot be printed on a better face: `x-min` scores higher but stands it 330 mm
-tall, past the 300 mm build height.
+Check any part with `node tools/bedcheck.js <stl> <axis> <min|max>`.
 
 ---
 

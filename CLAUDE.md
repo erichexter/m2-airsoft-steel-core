@@ -112,6 +112,11 @@ itself.
   each sat on six ⌀8 fastener pads with 98% of the bed face floating 0.45 mm above them.
   Nothing else in the toolchain looks at that, because every other check is about whether
   the geometry is *right* rather than whether it can be *made*.
+- **Rank orientations by contact AREA, not percentage.** `bedcheck` prints both and the
+  percentage is a trap: its denominator is bed-facing area, which changes with
+  orientation, so it picks the wrong face on 6 of the 18 printed parts. And
+  "thinnest axis down" is worse — it is a bounding-box heuristic blind to what actually
+  touches the plate, and it puts the barrel jacket and the CH handle on **0.00 cm²**.
 - **A defect smaller than the layer height is invisible to the slicer.** PR-16's 0.15 mm
   standoff sliced to byte-identical G-code before and after being fixed, because at 0.3 mm
   layers the first layer samples at z = 0.15 where both surfaces are present. Real geometry
