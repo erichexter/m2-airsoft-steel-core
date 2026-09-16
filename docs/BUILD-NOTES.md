@@ -249,7 +249,7 @@ Z −24 and +8 miss the CH slot (Z −12…−4) and the belt slot (Z ≥ +18); 
 pin (X −552), the backplate bosses (X −560…−547), the pintle tabs (X −384…−338), the air line
 (X −410) and the hinge tabs (X −22…0).
 
-### Four interferences found while checking the above — now resolved
+### Six interferences found while checking the above — now resolved
 
 Pairwise-intersecting the eight skins against all 210 bodies turned these up. All four **predate
 the mating-face work** — each was confirmed by checking that the overlap extends outside the
@@ -262,6 +262,8 @@ because two of them looked like design questions rather than slips:
 | `PR-12-Side-Rear-R` ↔ `PR-14-Side-Front-R` | 37.6 mm³ | the same seam, other side |
 | `PR-12-Side-Rear-R` ↔ `HW-03-Trigger-Pin-4mm` | 20.1 mm³ | the panel fouls the ⌀4 pivot pin — **this one blocks assembly** |
 | `PR-15-Top-Deck` ↔ `PR-31-Spade-Grips` | 6.6 mm³ | deck corner into the grip spine |
+| `PR-17-Front-Sight-Boss` ↔ `ST-07-Hinge-Tab-L` | 12.6 mm³ | **printed part sits down over welded steel** |
+| `PR-17-Front-Sight-Boss` ↔ `ST-07-Hinge-Tab-R` | 2.9 mm³ | the same, other side |
 
 **All four are cleared** by `tools/reauthor/resolve_clashes.py`, at 0.20 mm — deliberately more than
 the 0.05 between a strip and a panel, because these are not faces meant to bed together but places
@@ -273,6 +275,15 @@ way is the one easier to reprint and less load-bearing — the front panel yield
 skin yields to the hardware. Each cut leaves **0.000 mm³** of overlap and a single shell, and the
 bed faces are untouched: every relieved area became a pocket deeper than 1 mm, so bed contact stayed
 at 92.7–99.9%.
+
+**The last two were only found when the check was widened from the eight skins to all eighteen
+printed parts.** The first four came out of checking the parts that had just been edited, which is
+the natural thing to do and is why the front sight boss — untouched for days, and previously
+reported clear — went unexamined. It runs back to X −13.4 while the hinge tabs run forward to X 0,
+so it was sitting down over both of them. Welded steel does not yield; the printed part does.
+
+The check that now stands is the whole matrix: **all 18 printed parts against all 210 bodies, 0
+clashing pairs**, deepest penetration into the tube 0.0000 mm³, 18 of 18 single-shell solids.
 
 **`PR-19-Bottom-Front-L` / `-R` cannot be screwed** — two rails over the tube's bottom corner radii with no flat behind
 them (tube reads 0.016 cm³ against a ⌀5 probe where the panel is solid). Bond it.

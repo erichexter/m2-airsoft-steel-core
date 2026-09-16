@@ -31,6 +31,13 @@ PAIRS = [
     ('PR-14-Side-Front-R', 'PR-12-Side-Rear-R'),
     ('PR-12-Side-Rear-R',  'HW-03-Trigger-Pin-4mm'),
     ('PR-15-Top-Deck',     'PR-31-Spade-Grips'),
+    # Found only when the check was widened from the eight skins to ALL EIGHTEEN
+    # printed parts. The front sight boss runs back to X -13.4 and the hinge tabs
+    # forward to X 0, so it sits down over both of them. Steel that is already welded
+    # into the tube does not yield; the printed part does. The relief is at the boss's
+    # X-min end, well away from the face it prints on.
+    ('PR-17-Front-Sight-Boss', 'ST-07-Hinge-Tab-L'),
+    ('PR-17-Front-Sight-Boss', 'ST-07-Hinge-Tab-R'),
 ]
 
 

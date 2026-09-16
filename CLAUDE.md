@@ -112,6 +112,11 @@ itself.
   each sat on six ⌀8 fastener pads with 98% of the bed face floating 0.45 mm above them.
   Nothing else in the toolchain looks at that, because every other check is about whether
   the geometry is *right* rather than whether it can be *made*.
+- **Clash-check the whole matrix, not the parts you touched.** Checking only what was
+  just edited is the natural instinct and it missed two interferences for days: the
+  front sight boss sat over both welded hinge tabs the whole time, and had even been
+  reported "clear" earlier. All 18 printed parts against all 210 bodies takes seconds
+  with a bounding-box prefilter.
 - **When a change moves a mating face, re-run the clash check and attribute every hit.**
   Filling that 0.45 mm gap created six new interferences with the parts that butted
   against those faces. Deciding new-versus-pre-existing is not a judgement call: intersect,
