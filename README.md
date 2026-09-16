@@ -35,6 +35,7 @@ For scale: a real M2HB is 84 lb; commercial airsoft M2 replicas run 33–44 lb.
 ```
 docs/PARTS.md              Parts catalogue — every name, in one place. START HERE
 docs/PRINTING.md           Orientation per part, settings, and why the long panels warp
+docs/SLICER-AGENT-PROMPT.md  Self-contained brief to hand an agent on the slicer machine
 docs/BUILD-NOTES.md        Full build notes: cut list, coordinates, weld plan, gotchas
 docs/NATIVE-REBUILD.md     How the donor meshes were reauthored as native geometry
 
