@@ -5,8 +5,14 @@ from the model** by `tools/bedcheck.js` and `tools/stlcheck.js`. Everything that
 temperature or a speed is a **starting point** from one reported failure on one machine —
 tune it.
 
-Reference machine: **Creality K1 Max**, 300 × 300 × 300, textured PEI, **0.6 nozzle at
+Reference machine: **Creality K1 Max**, 300 × 300 × 300, **smooth PEI**, **0.6 nozzle at
 0.3 mm layer height**, PLA.
+
+> **Check which plate is actually on the machine.** The slicer profile says
+> `textured_plate_temp` and bed type 3, and this build ran on smooth PEI regardless. Two
+> agents reasoned about the wrong surface for an entire session off the profile name. It
+> only failed to cause harm because every plate-type temperature key had been set to the
+> same value.
 
 ---
 
@@ -87,9 +93,30 @@ Ordered by how much they mattered on the reported failure.
 | 5 | **Bed 60 °C, soak 5+ min** | The edges lag the centre sensor, and these parts end exactly at the edge. |
 | 6 | **Z-offset one notch lower** | At 0.6/0.3 an under-squished first layer still looks fine. |
 
-**Do not add glue stick to textured PEI for PLA.** It generally *reduces* grip — it is for
-PETG release and smooth sheets. Wash the plate with **dish soap and warm water**, not IPA;
-IPA smears skin oils rather than removing them. Handle it by the edges.
+**Plate prep depends on which plate you have, and the two want opposite things.**
+
+*Smooth PEI* — grips clean PLA **harder** than textured, not less. A lift here points at
+contamination or nozzle height long before it points at temperature. Wash with **dish soap
+and warm water** to lift skin oils, then a **final IPA wipe**; on this surface the IPA step
+matters, because smooth PEI has no mechanical key and is working on surface chemistry
+alone. Glue stick here is conventionally a **release** agent — used to stop PLA bonding so
+hard it tears PEI off the sheet — not an adhesion aid.
+
+*Textured PEI* — keys mechanically, tolerates worse prep, and glue stick genuinely does
+reduce grip for PLA.
+
+**On smooth PEI the end of the print is the dangerous part.** Over-adhesion scales with
+contact area, and two parts in this set dwarf the rest:
+
+| `PR-12-Side-Rear-R` | 337.4 cm² |
+|---|---:|
+| `PR-11-Side-Rear-L` | 333.1 cm² |
+| next largest (`PR-13`/`PR-14`) | 218.8 cm² |
+| `PR-21-Barrel-Jacket` | 22.6 cm² |
+
+**Let the plate reach room temperature before flexing either of those two off.** Warm
+smooth PEI plus 333 cm² of PLA can take the PEI sheet with it. That risk rises with bed
+temperature — 65 °C is the top of the sensible range for PLA on smooth PEI.
 
 **The usable envelope is smaller than 300 mm for real geometry.** Creality Print 7.2
 refuses to place a 297.6 mm part at all — *"Nothing to be sliced … no object is fully

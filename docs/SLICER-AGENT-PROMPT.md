@@ -12,7 +12,8 @@ and tell me what you did so I can review and start it myself.
 
 ## Printer and process
 
-- Creality K1 Max, build volume 300 × 300 × 300 mm, textured PEI plate
+- Creality K1 Max, build volume 300 × 300 × 300 mm — **confirm which plate is fitted; do
+  not trust the slicer profile's plate type, it says textured on a machine running smooth PEI**
 - **0.6 mm nozzle, 0.3 mm layer height**
 - PLA
 - These are non-structural cosmetic panels — **do not print solid.** 3–4 walls and
