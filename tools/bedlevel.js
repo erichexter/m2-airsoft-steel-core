@@ -34,26 +34,9 @@ const outdir = process.argv[2] || path.join(__dirname, '..', 'stl', 'test');
 const H = 0.30;            // mm - one layer
 const W = 1.20;            // mm - two 0.6 beads
 const FRAMES = [290, 230, 170, 110, 50];
-const CENTRE = 20;         // filled patch in the middle, the reference square
-const KEY = 10;            // filled orientation key, front-left
 
 const tri = [];
 const push = (n, a, b, c) => tri.push([n, a, b, c]);
-
-// A box as 12 triangles with outward normals.
-function box(x0, x1, y0, y1, z0, z1) {
-  const v = [
-    [x0, y0, z0], [x1, y0, z0], [x1, y1, z0], [x0, y1, z0],
-    [x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1],
-  ];
-  const q = (a, b, c, d, n) => { push(n, v[a], v[b], v[c]); push(n, v[a], v[c], v[d]); };
-  q(0, 3, 2, 1, [0, 0, -1]);   // bottom
-  q(4, 5, 6, 7, [0, 0, 1]);    // top
-  q(0, 1, 5, 4, [0, -1, 0]);
-  q(1, 2, 6, 5, [1, 0, 0]);
-  q(2, 3, 7, 6, [0, 1, 0]);
-  q(3, 0, 4, 7, [-1, 0, 0]);
-}
 
 // A square frame as ONE closed shell: an annulus prism.
 //
@@ -82,8 +65,6 @@ function frame(size, w, h) {
 }
 
 for (const s of FRAMES) frame(s, W, H);
-box(-CENTRE / 2, CENTRE / 2, -CENTRE / 2, CENTRE / 2, 0, H);        // centre patch
-box(-130, -130 + KEY, -130, -130 + KEY, 0, H);                      // orientation key
 
 // ---- binary STL ----
 const buf = Buffer.alloc(84 + tri.length * 50);
@@ -100,6 +81,6 @@ fs.writeFileSync(file, buf);
 
 const span = FRAMES[0];
 console.log(path.relative(path.join(__dirname, '..'), file));
-console.log(`  ${FRAMES.length} frames ${FRAMES.join(', ')} mm + a ${CENTRE}mm centre patch + a ${KEY}mm key`);
+console.log(`  ${FRAMES.length} concentric frames: ${FRAMES.join(', ')} mm`);
 console.log(`  ${W.toFixed(2)} mm wide, ${H.toFixed(2)} mm tall, ${tri.length} triangles`);
 console.log(`  footprint ${span} x ${span} mm - ${(300 - span) / 2} mm clear each side of a 300 bed`);

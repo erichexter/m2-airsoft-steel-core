@@ -1,7 +1,6 @@
 # Bed levelling test
 
-`bed-level-squares.stl` — five concentric single-layer frames, a centre patch and an
-orientation key. Regenerate with `node tools/bedlevel.js`.
+`bed-level-squares.stl` — five concentric single-layer frames. Nothing else. Regenerate with `node tools/bedlevel.js`.
 
 **`tools/bedlevel.js` is the source of truth for the STL.** There is also a copy in the
 Fusion model (`tools/reauthor/build_bedlevel.py` → `00_Ref_Test_Artifacts` /
@@ -30,7 +29,7 @@ Built for the **K1 Max at 0.6 nozzle / 0.3 mm layer**. Three numbers are tied to
 - **No brim, no raft, no supports.** 0% infill is irrelevant, it is one layer.
 - Same first-layer settings you intend to use for real parts, or the test tells you
   nothing about them.
-- 7 separate shells is expected — five frames, the centre patch, the key.
+- 5 separate shells is expected, one per frame.
 
 ## Reading it
 
@@ -46,9 +45,6 @@ Look at each ring, and compare sides *within* a ring rather than between rings:
 The concentric layout is what separates those last two from a simple Z-offset error: a
 Z-offset problem looks the same everywhere, tilt does not.
 
-The **orientation key** is the small filled square at front-left. It tells you which way
-the print was lying once it is off the plate — without it, a symmetric part gives you no
-way to map a bad corner back to a bed corner.
 
 ## Context for this machine
 

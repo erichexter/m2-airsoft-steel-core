@@ -22,8 +22,6 @@ T = tbm()
 H = 0.30          # one layer at 0.3mm - see bedlevel.js for why this is not 0.2
 W = 1.20          # two 0.6mm beads
 FRAMES = [290, 230, 170, 110, 50]
-CENTRE = 20
-KEY = 10
 PARK_Z = -400.0   # out of the way of the gun
 
 COMPONENT, PART = '00_Ref_Test_Artifacts', 'RF-90-Bed-Level-Squares'
@@ -51,9 +49,6 @@ for s in FRAMES:
     add(box(-o, o, i, o, PARK_Z, PARK_Z + H))
     add(box(-o, -i, -i, i, PARK_Z, PARK_Z + H))
     add(box(i, o, -i, i, PARK_Z, PARK_Z + H))
-
-add(box(-CENTRE / 2, CENTRE / 2, -CENTRE / 2, CENTRE / 2, PARK_Z, PARK_Z + H))
-add(box(-130, -130 + KEY, -130, -130 + KEY, PARK_Z, PARK_Z + H))
 
 nb = finish_part(comp, KEEP, acc, PART)
 print('%s: %d faces, %d shells, %.3f cm3, parked at Z %.0f'
