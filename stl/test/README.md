@@ -3,6 +3,18 @@
 `bed-level-squares.stl` — five concentric single-layer frames, a centre patch and an
 orientation key. Regenerate with `node tools/bedlevel.js`.
 
+**`tools/bedlevel.js` is the source of truth for the STL.** There is also a copy in the
+Fusion model (`tools/reauthor/build_bedlevel.py` → `00_Ref_Test_Artifacts` /
+`RF-90-Bed-Level-Squares`) so the thing can be seen and measured alongside the gun. The
+constants are duplicated in both files and nothing keeps them in step — change one,
+change the other.
+
+Two things about where the Fusion copy lives, both deliberate: it sits in a `00_Ref_*`
+component, which every clash and audit script in this repo skips, and it is parked at
+**Z −400**, well clear of a gun that bottoms out at Z −92. Without both, a 290 mm square
+lying at the origin would intersect the tube and most of the skins, and every
+interference check in the project would come back garbage.
+
 Built for the **K1 Max at 0.6 nozzle / 0.3 mm layer**. Three numbers are tied to that:
 
 | | | why |
